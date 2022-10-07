@@ -21,7 +21,6 @@ const LoginPage = () => {
                         <a href="/login" className="bg-green-300 p-2 rounded-xl mt-6 mb-3 font-bold">Login</a>
                         <a href="/register" className="bg-red-600 p-2 rounded-xl  mt-6 mb-3 font-bold">Register</a>
                     </div>
-                    
                 </div>
             </div>
         </div>
