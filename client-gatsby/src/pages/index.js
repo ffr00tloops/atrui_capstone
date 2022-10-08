@@ -1,10 +1,10 @@
 import * as React from "react"
 import Nav_Atrz from '../components/Nav_Atrz'
+import Footer from '../components/Footer'
 
 function Posts() {
   return (
     <div className="w-10/12 m-auto mt-8 mb-8">
-    <h1 className="text-5xl font-bold text-center">Our Works</h1>
     <div className=" lg:grid lg:grid-cols-3 lg:grid-rows-1 w-10/12 m-auto">
       <div className="border-2 rounded-sm drop-shadow-lg border-gray-200 m-3">
         <div className="">
@@ -37,6 +37,7 @@ const IndexPage = () => {
     <div>
       <Nav_Atrz />
       <Posts />
+      <Footer/>
     </div>
   )
 }
