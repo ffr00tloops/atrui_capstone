@@ -140,7 +140,7 @@ function ContactUs() {
 
 // handles logic for when changing menus in the home-loggedin page
 function Nav() {
-  const [location, setLocation] = useState('')
+  const [location, setLocation] = useState('Dashboard')
 
   // this function will trigger which menu is displayed 
   function renderMenu() {
@@ -169,12 +169,13 @@ function Nav() {
   return (
     <div>
       <div className="w-6/12 m-auto mb-12 grid lg:grid-cols-5">
-        <button onClick={() => setLocation('Dashboard')} className="bg-red-500 border-2 p-3">Dashboard</button>
-        <button onClick={() => setLocation('Fundraisers')} className="bg-red-500 border-2 p-3">Fundraisers</button>
-        <button onClick={() => setLocation('Organizers')} className="bg-red-500 border-2 p-3">Organizers</button>
-        <button onClick={() => setLocation('Feed')} className="bg-red-500 border-2 p-3">Feed</button>
-        <button onClick={() => setLocation('ContactUs')} className="bg-red-500 border-2 p-3">Contact Us</button>
+        <button onClick={() => setLocation('Dashboard')} className="text-white bg-red-500 border-2 p-3">Dashboard</button>
+        <button onClick={() => setLocation('Fundraisers')} className="text-white bg-red-500 border-2 p-3">Fundraisers</button>
+        <button onClick={() => setLocation('Organizers')} className="text-white bg-red-500 border-2 p-3">Organizers</button>
+        <button onClick={() => setLocation('Feed')} className="text-white bg-red-500 border-2 p-3">Feed</button>
+        <button onClick={() => setLocation('ContactUs')} className="text-white bg-red-500 border-2 p-3">Contact Us</button>
       </div>
+
 
       {renderMenu()}
     </div>
