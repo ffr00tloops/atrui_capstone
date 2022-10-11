@@ -1,7 +1,7 @@
 import * as React from "react"
 import {useState} from "react"
-import Footer from '../components/Footer'
-import NavLogged from '../components/NavLogged'
+import Footer from '../../components/Footer'
+import NavLogged from '../../components/NavLogged'
 
 function Fundraisers() {
   return (
@@ -150,6 +150,7 @@ function Nav() {
     else if (location == "Fundraisers") {
       return <Fundraisers />
     }
+
     else if (location == "Organizers") {
       return <Organizers />
     }
@@ -171,7 +172,7 @@ function Nav() {
       <div className="w-6/12 m-auto mb-12 grid lg:grid-cols-5">
         <button onClick={() => setLocation('Dashboard')} className="text-white bg-red-500 border-2 p-3">Dashboard</button>
         <button onClick={() => setLocation('Fundraisers')} className="text-white bg-red-500 border-2 p-3">Fundraisers</button>
-        <button onClick={() => setLocation('Organizers')} className="text-white bg-red-500 border-2 p-3">Organizers</button>
+        <button onClick={() => setLocation('Organizers')} className="tex t-white bg-red-500 border-2 p-3">Organizers</button>
         <button onClick={() => setLocation('Feed')} className="text-white bg-red-500 border-2 p-3">Feed</button>
         <button onClick={() => setLocation('ContactUs')} className="text-white bg-red-500 border-2 p-3">Contact Us</button>
       </div>

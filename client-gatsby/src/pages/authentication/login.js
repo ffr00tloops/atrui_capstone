@@ -18,8 +18,8 @@ const LoginPage = () => {
                         <a className="m-auto mt-3 mb-3 text-red-600 text-sm" href="/register">Create an Account?</a>
                     </div>
                     <div className="grid grid-cols-2 m-auto">
-                        <a href="/login" className="bg-green-300 p-2 rounded-xl mt-6 mb-3 font-bold">Login</a>
-                        <a href="/register" className="bg-red-600 p-2 rounded-xl  mt-6 mb-3 font-bold">Register</a>
+                        <a href="/authentication/login" className="bg-green-300 p-2 rounded-xl mt-6 mb-3 font-bold">Login</a>
+                        <a href="/authentication/register" className="bg-red-600 p-2 rounded-xl  mt-6 mb-3 font-bold">Register</a>
                     </div>
                 </div>
             </div>
