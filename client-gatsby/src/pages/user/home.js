@@ -127,16 +127,6 @@ function Feed() {
   )
 }
 
-function ContactUs() {
-  return (
-    <div className="w-10/12 m-auto mt-8 mb-8">
-    <h1 className="text-center">Contact Us</h1>
-    <div className=" lg:grid lg:grid-cols-3 lg:grid-rows-1 w-10/12 m-auto">
-        <h1>Lorem</h1>
-    </div>
-  </div>
-  )
-}
 
 // handles logic for when changing menus in the home-loggedin page
 function Nav() {
@@ -157,9 +147,6 @@ function Nav() {
     else if (location == "Feed") {
       return <Feed />
     }
-    else if (location == "ContactUs") {
-      return <ContactUs/>
-    }
     else {
       return <h1>Error</h1>
     }
@@ -169,12 +156,11 @@ function Nav() {
 
   return (
     <div>
-      <div className="w-6/12 m-auto mb-12 grid lg:grid-cols-5">
+      <div className="w-6/12 m-auto mb-12 grid lg:grid-cols-4">
         <button onClick={() => setLocation('Dashboard')} className="text-white bg-red-500 border-2 p-3">Dashboard</button>
         <button onClick={() => setLocation('Fundraisers')} className="text-white bg-red-500 border-2 p-3">Fundraisers</button>
-        <button onClick={() => setLocation('Organizers')} className="tex t-white bg-red-500 border-2 p-3">Organizers</button>
+        <button onClick={() => setLocation('Organizers')} className="text-white bg-red-500 border-2 p-3">Organizers</button>
         <button onClick={() => setLocation('Feed')} className="text-white bg-red-500 border-2 p-3">Feed</button>
-        <button onClick={() => setLocation('ContactUs')} className="text-white bg-red-500 border-2 p-3">Contact Us</button>
       </div>
 
 
