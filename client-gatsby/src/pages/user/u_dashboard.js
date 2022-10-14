@@ -1,47 +1,96 @@
 import * as React from "react"
+import {useState} from "react"
 import Footer from '../../components/Footer'
 import NavLogged from '../../components/NavLogged'
 
 
 function DashboardContent(){
   return (
-    <div className="bg-gray-300 col-span-3">
-    <div className="grid lg:grid-cols-3 gap-5 grid-rows-3">
-      <div className="bg-white row-span-2 p-3 m-3 ">
-        <div className="m-auto">
-          <h1>Current Rank: Bronze IV</h1>
-          <h1>Season 1: 60 Days Left</h1>
-        </div>  
-      </div> 
-      <div className="bg-green-500 p-3 m-3">Classname</div>
-      <div className="bg-green-500 p-3 m-3">Classname</div>
-      <div className="bg-green-500 p-3 m-3">Classname</div>
-      <div className="bg-green-500 p-3 m-3">Classname</div>
-      <div className="bg-green-500 p-3 m-3">Classname</div>
-      <div className="bg-green-500 p-3 m-3">Classname</div>
-      <div className="bg-green-500 p-3 m-3">Classname</div>
-      <div className="bg-green-500 p-3 m-3">Classname</div>
+    <div className="bg-gray-300 col-span-3 ">
+    <div className="grid lg:grid-cols-3 gap-3 grid-rows-6">
+      <div className="bg-white m-3 p-3 text-center">
+        <h1>Current Rank: Bronze IV</h1>
+        <h1>Season 1: 60 Days Left</h1>
+      </div>
+      <div className="bg-white m-3 p-3 text-center">
+        <h1>Current Rank: Bronze IV</h1>
+        <h1>Season 1: 60 Days Left</h1>
+      </div>
+      <div className="bg-white m-3 p-3 text-center">
+        <h1>Current Rank: Bronze IV</h1>
+        <h1>Season 1: 60 Days Left</h1>
+      </div>
+      <div className="bg-white m-3 p-3 text-center">
+        <h1>Current Rank: Bronze IV</h1>
+        <h1>Season 1: 60 Days Left</h1>
+      </div>
+      <div className="bg-white m-3 p-3 text-center">
+        <h1>Current Rank: Bronze IV</h1>
+        <h1>Season 1: 60 Days Left</h1>
+      </div>
+      <div className="bg-white m-3 p-3 text-center">
+        <h1>Current Rank: Bronze IV</h1>
+        <h1>Season 1: 60 Days Left</h1>
+      </div>
     </div>
   </div>
   )
+}
 
+function Leaderboard(){
+  return (
+    <div className="bg-gray-300 col-span-3 ">
+    <div className="grid lg:grid-cols-3 gap-3 grid-rows-6">
+      <div className="bg-white m-3 p-3 text-center">
+        <h1>Current Rank: Bronze IV</h1>
+        <h1>Season 1: 60 Days Left</h1>
+      </div>
+      <div className="bg-white m-3 p-3 text-center">
+        <h1>Current Rank: Bronze IV</h1>
+        <h1>Season 1: 60 Days Left</h1>
+      </div>
+      <div className="bg-white row-span-5 m-3 p-3 text-center">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/8/89/Portrait_Placeholder.png"/>
+        <h1>Current Rank: Bronze IV</h1>
+        <h1>Season 1: 60 Days Left</h1>
+      </div>
+    </div>
+  </div>
+  )
 }
 
 function Main() {
+
+  const [location, setLocation] = useState('Dashboard')
+
+  // this function will trigger which menu is displayed 
+  function renderMenu() {
+    if(location == 'Dashboard') {
+      return <DashboardContent />
+    }
+    else if (location == 'Leaderboard') {
+      return <Leaderboard />
+    }
+    else {
+      return <h1>Error</h1>
+    }
+
+  }
+
   return (
     <div className="grid grid-cols-1 grid-rows-2 lg:grid-cols-4 p-3 m-auto">
-      <div className="grid gap-4 grid-cols-1 bg-white p-6">
-        <a>Dashboard</a>
-        <a>Leaderboard</a>
-        <a>Badges</a>
-        <a>Achievements</a>
-        <a>History</a>
-        <a>Profile</a>
-        <a>Account</a>
-        <a>Logout</a>
-
+      <div className="grid gap-3 grid-cols-1 bg-white">
+        <button onClick={() => setLocation('Dashboard')}  className="cursor-pointer hover:bg-gray-300 p-3">Dashboard</button>
+        <button onClick={() => setLocation('Leaderboard')} className="cursor-pointer hover:bg-gray-300 p-3">Leaderboard</button>
+        <button onClick={() => setLocation('Dashboard')} className="cursor-pointer hover:bg-gray-300 p-3">Badges</button>
+        <button onClick={() => setLocation('Dashboard')} className="cursor-pointer hover:bg-gray-300 p-3">Achievements</button>
+        <button onClick={() => setLocation('Dashboard')} className="cursor-pointer hover:bg-gray-300 p-3">History</button>
+        <button onClick={() => setLocation('Dashboard')} className="cursor-pointer hover:bg-gray-300 p-3">Profile</button>
+        <button onClick={() => setLocation('Dashboard')} className="cursor-pointer hover:bg-gray-300 p-3">Account</button>
+        <button onClick={() => setLocation('Dashboard')} className="cursor-pointer hover:bg-gray-300 text-red-500 p-3">Logout</button>
       </div>
-      <DashboardContent />
+
+      {renderMenu()}
 
     </div>
   )
