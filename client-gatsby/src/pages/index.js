@@ -32,10 +32,19 @@ function Posts() {
   )
 }
 
+function Banner() {
+  return (
+    <div className="bg-green-500 p-3">
+      <h1 className="p-3 m-3 text-center text-5xl text-white font-bo"> Featured Fundraisers</h1>
+    </div>
+  )
+}
+
 const IndexPage = () => {
   return (
     <div>
       <Nav_Atrz />
+      <Banner />
       <Posts />
       <Footer/>
     </div>
