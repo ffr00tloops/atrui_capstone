@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useEffect } from "react"
 import { useAuth0 } from "@auth0/auth0-react";
 
 
@@ -6,26 +6,60 @@ export default function Nav_Atrz() {
 
     
     function VerifyAuth() {
-        const {
-            isAuthenticated,
-            loginWithRedirect,
-             } = useAuth0();
+        const {isAuthenticated,loginWithRedirect} = useAuth0();
+        
+        const { user } = useAuth0();
+
+        function VerifyNewUser() {
+
+            const { user } = useAuth0();
+            const requestOptions = {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ uniqueid: `${user.sub}` })
+            };
+            fetch('http://localhost:3000/userdata/verifyNewUser', requestOptions)
+                .then(response => response.json())
+                .then(data =>{
+
+                    console.log(data)
+                    if (!data) {
+                        const requestOptions2 = {
+                            method: 'POST',
+                            headers: { 'Content-Type': 'application/json' },
+                            body: JSON.stringify({ uniqueid: `${user.sub}`, email: `${user.email}` })
+                        };
+                        fetch('http://localhost:3000/userdata/newUser', requestOptions2)
+                            .then(response => response.json())
+                            .then(data => console.log("New user has been added"));
+                    }
+                    else {
+                    }
+                });
+            
 
 
-        function verifyNewUser() {
-            loginWithRedirect
+
+            
+
+
+            
 
         }
 
-        const { user } = useAuth0();
+
+        
 
             if (isAuthenticated) {
+               VerifyNewUser()
                return <h1 className="p-3 mr-3 text-xl rounded-3xl text-white bg-red-500">{user.email}</h1>
             }
             else {
-                return <button onClick={verifyNewUser()} className="p-3 mr-3 text-xl rounded-3xl text-white bg-red-500">Login</button>
+                return <button onClick={loginWithRedirect} className="p-3 mr-3 text-xl rounded-3xl text-white bg-red-500">Login</button>
             }
           ;
+
+
 
     }
 
