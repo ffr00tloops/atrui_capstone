@@ -11,13 +11,19 @@ export default function Nav_Atrz() {
             loginWithRedirect,
              } = useAuth0();
 
+
+        function verifyNewUser() {
+            loginWithRedirect
+
+        }
+
         const { user } = useAuth0();
 
             if (isAuthenticated) {
                return <h1 className="p-3 mr-3 text-xl rounded-3xl text-white bg-red-500">{user.email}</h1>
             }
             else {
-                return <button onClick={loginWithRedirect} className="p-3 mr-3 text-xl rounded-3xl text-white bg-red-500">Login</button>
+                return <button onClick={verifyNewUser()} className="p-3 mr-3 text-xl rounded-3xl text-white bg-red-500">Login</button>
             }
           ;
 

@@ -26,22 +26,10 @@ app.use(auth(config));
 
 
 
-const userRouter = require('./routes/user')
-
-app.use('/users', userRouter)
-
-app.get("/", async (req, res) => {
-
-    try {
-      const allFundraisers = await pool.query("SELECT * FROM fundraisers")
-        
-      res.json(allFundraisers.rows)
-    }
-    catch(err)
-    { 
-        console.log (err.message)
-    }
-})
+const fundraisers = require('./routes/fundraisers')
+const userData = require('./routes/userData')
+app.use('/fundraisers', fundraisers)
+app.use('/userdata', userData)
 
 
 

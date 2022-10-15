@@ -8,3 +8,10 @@ CREATE TABLE fundraisers (
 );
 
 INSERT INTO fundraisers(title,description,location) VALUES ('Sample Title', 'Sample Description', "Manila");
+
+
+CREATE TABLE userData (
+    id SERIAL PRIMARY KEY,
+    uniqueid VARCHAR,
+    email VARCHAR
+);

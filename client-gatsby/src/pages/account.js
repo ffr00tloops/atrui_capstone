@@ -18,6 +18,8 @@ const Account = () => {
     <Link to="/">Home</Link>
     {/* 👇 Display users email */} 👇
     <p>Email: {user.email}</p>
+    <p>ID: {user.sub}</p>
+
     <LogoutButton />
   </nav>
     
