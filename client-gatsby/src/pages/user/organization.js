@@ -1,7 +1,8 @@
 import * as React from "react"
 import {useState} from "react"
 import Footer from '../../components/Footer'
-import NavLogged from '../../components/NavLogged'
+import Nav_Atrz from "../../components/Nav_Atrz"
+import { withAuthenticationRequired } from '@auth0/auth0-react';
 
 function Organization() {
   return (
@@ -69,7 +70,7 @@ function Nav() {
 const HomepageLogged = () => {
   return (
     <div>
-      <NavLogged />
+      <Nav_Atrz/>
       <Nav />
       <Footer />
     </div>
@@ -78,6 +79,6 @@ const HomepageLogged = () => {
 
 
 
-export default HomepageLogged
+export default withAuthenticationRequired(HomepageLogged)
 
 export const Head = () => <title>Home Page</title>

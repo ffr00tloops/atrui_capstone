@@ -3,7 +3,6 @@ import Nav_Atrz from '../components/Nav_Atrz'
 import Footer from '../components/Footer'
 import { Link } from "gatsby";
 /* 👇 New Code */ 
-import LoginButton from "../components/LoginButton";
 
 function Posts() {
   return (
@@ -49,8 +48,6 @@ const IndexPage = () => {
       <Nav_Atrz />
       <Banner />
       <Posts />
-      <LoginButton />
-      <p><Link to="/account">Visit Your Account</Link></p>
       <Footer/>
     </div>
   )

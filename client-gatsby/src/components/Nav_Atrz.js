@@ -2,17 +2,6 @@ import React from "react"
 import { useAuth0 } from "@auth0/auth0-react";
 
 
-function NotLogged() {
-    <a href="/authentication/login" className="p-3 mr-3 text-xl rounded-3xl text-white bg-green-500">Login</a>
-}
-
-function Logged(){
-    return (
-        <a href="/account" className="p-3 mr-3 text-xl rounded-3xl text-white bg-red-500">Username</a>
-    )
-}
-
-
 export default function Nav_Atrz() {
 
     

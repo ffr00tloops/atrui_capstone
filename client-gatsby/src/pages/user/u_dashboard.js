@@ -1,7 +1,8 @@
 import * as React from "react"
 import {useState} from "react"
 import Footer from '../../components/Footer'
-import NavLogged from '../../components/NavLogged'
+import Nav_Atrz from "../../components/Nav_Atrz"
+import { withAuthenticationRequired } from '@auth0/auth0-react';
 
 
 function DashboardContent(){
@@ -107,7 +108,7 @@ function Banner() {
 const Dashboard = () => {
   return (
     <div>
-      <NavLogged />
+      <Nav_Atrz/>
       <Banner />
       <Main />
       <Footer />
@@ -117,6 +118,6 @@ const Dashboard = () => {
 
 
 
-export default Dashboard
+export default withAuthenticationRequired(Dashboard)
 
 export const Head = () => <title>User Dashboard</title>
