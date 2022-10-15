@@ -2,22 +2,15 @@ const express = require('express');
 const router = express.Router();
 const pool = require('../db')
 
+const { requiresAuth } = require('express-openid-connect');
 
-router.post('/register',  async(req,res) => {
-    const {username, password} = req.body;
+router.get('/', (req, res) => {
+    res.send(req.oidc.isAuthenticated() ? 'Logged in' : 'Logged out');
+});
 
-    try {
-
-        console.log(username,password)
-        const newUser = await pool.query("INSERT INTO users(username,password) VALUES($1,$2) RETURNING *", [username, password])
-
-        console.log("New user registered")
-    }
-    catch(err){
-        console.log(err.message)
-        res.status(500).send("Server error");
-    }
-})
+router.get('/profile', requiresAuth(), (req, res) => {
+  res.send(JSON.stringify(req.oidc.user));
+});
 
 module.exports = router;
 
