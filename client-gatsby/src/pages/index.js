@@ -2,6 +2,7 @@ import * as React from "react"
 import Nav_Atrz from '../components/Nav_Atrz'
 import Footer from '../components/Footer'
 import { Link } from "gatsby";
+import { withAuthenticationRequired } from '@auth0/auth0-react';
 /* 👇 New Code */ 
 
 function Posts() {
@@ -55,6 +56,6 @@ const IndexPage = () => {
 
 
 
-export default IndexPage
+export default withAuthenticationRequired(IndexPage)
 
 export const Head = () => <title>Home Page</title>

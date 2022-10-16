@@ -69,6 +69,9 @@ function Main() {
     if(location == 'Dashboard') {
       return <DashboardContent />
     }
+    else if (location == 'Home') {
+      window.location.href = "/user/home"
+    }
     else if (location == 'Leaderboard') {
       return <Leaderboard />
     }
@@ -79,8 +82,9 @@ function Main() {
   }
 
   return (
-    <div className="grid grid-cols-1 grid-rows-2 lg:grid-cols-4 p-3 m-auto">
+    <div className="grid grid-cols-1 lg:grid-rows-1 lg:grid-cols-4 p-3 m-auto">
       <div className="grid gap-3 grid-cols-1 bg-white">
+      <button onClick={() => setLocation('Home')}  className="cursor-pointer hover:bg-gray-300 p-3">Home</button>
         <button onClick={() => setLocation('Dashboard')}  className="cursor-pointer hover:bg-gray-300 p-3">Dashboard</button>
         <button onClick={() => setLocation('Leaderboard')} className="cursor-pointer hover:bg-gray-300 p-3">Leaderboard</button>
         <button onClick={() => setLocation('Dashboard')} className="cursor-pointer hover:bg-gray-300 p-3">Badges</button>

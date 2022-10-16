@@ -6,13 +6,7 @@ const pool = require('../db')
 router.post('/verifyNewUser', async(req,res) => {
     try {
         const {uniqueid} = req.body
-
-        console.log(uniqueid)
-
         const searchUserId = await pool.query("SELECT * FROM userdata WHERE uniqueid = $1", [uniqueid])
-
-        console.log((searchUserId.rows).length)
-
 
         // if the array is greater than one then there is already an existing user with the id therefore no user will be added.
         if ((searchUserId.rows).length > 1) {
@@ -34,11 +28,8 @@ router.post('/newUser', async(req,res) => {
     
     try {
         const {uniqueid, email} = req.body
-
         const newUser = await pool.query("INSERT INTO userdata(uniqueid,email) VALUES($1,$2) RETURNING *", [uniqueid, email])
-
         console.log('New User Added')
-        
     }
     catch(err){
         console.log(err.message)
