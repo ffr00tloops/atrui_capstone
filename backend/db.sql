@@ -15,6 +15,7 @@ CREATE TABLE fundraisers (
 
 CREATE TABLE organizations {
     id SERIAL PRIMARY KEY,
+    orgname VARCHAR,
     description VARCHAR,
     location VARCHAR,
     fundraiser VARCHAR,
@@ -23,7 +24,7 @@ CREATE TABLE organizations {
     contactno VARCHAR,
     contactperson VARCHAR,
     website VARCHAR
-}
+};
 
 INSERT INTO fundraisers(title,description,location) VALUES ('Sample Title', 'Sample Description', "Manila");
 

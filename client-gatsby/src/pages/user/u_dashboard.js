@@ -3,6 +3,7 @@ import {useState} from "react"
 import Footer from '../../components/Footer'
 import Nav_Atrz from "../../components/Nav_Atrz"
 import { withAuthenticationRequired } from '@auth0/auth0-react';
+import { useAuth0 } from "@auth0/auth0-react";
 
 
 function DashboardContent(){
@@ -62,7 +63,14 @@ function Leaderboard(){
 
 function Main() {
 
+  
+
   const [location, setLocation] = useState('Dashboard')
+
+  const {
+    isAuthenticated,
+    logout,
+    } = useAuth0();
 
   // this function will trigger which menu is displayed 
   function renderMenu() {
@@ -92,7 +100,7 @@ function Main() {
         <button onClick={() => setLocation('Dashboard')} className="cursor-pointer hover:bg-gray-300 p-3">History</button>
         <button onClick={() => setLocation('Dashboard')} className="cursor-pointer hover:bg-gray-300 p-3">Profile</button>
         <button onClick={() => setLocation('Dashboard')} className="cursor-pointer hover:bg-gray-300 p-3">Account</button>
-        <button onClick={() => setLocation('Dashboard')} className="cursor-pointer hover:bg-gray-300 text-red-500 p-3">Logout</button>
+        <button onClick={() => { logout({ returnTo: window.location.origin })}}className="cursor-pointer hover:bg-gray-300 text-red-500 p-3">Logout</button>
       </div>
 
       {renderMenu()}
