@@ -49,8 +49,10 @@ app.use(auth(config));
 
 const fundraisers = require('./routes/fundraisers')
 const userData = require('./routes/userData')
+const organizations = require('./routes/organizations')
 app.use('/fundraisers', fundraisers)
 app.use('/userdata', userData)
+app.use('/organizations', organizations)
 
 
 

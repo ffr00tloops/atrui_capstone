@@ -3,7 +3,7 @@ const router = express.Router();
 const pool = require('../db')
 
 
-router.get("/", async (req, res) => {
+router.get("/getAllPosts", async (req, res) => {
 
   try {
     const allFundraisers = await pool.query("SELECT * FROM fundraisers")
@@ -16,11 +16,9 @@ router.get("/", async (req, res) => {
   }
 })
 
-router.post('/', async (req,res) => {
+router.post('/createFundraiser', async (req,res) => {
 
   try {
-
-
       console.log(req.files)
       const { title, description, location, datemade, progress } = req.body;
       const newFundraiser = await pool.query("INSERT INTO fundraisers(title,description, location, datemade, progress) VALUES($1,$2,$3,$4,$5) RETURNING *",[title, description, location, datemade, progress])
@@ -32,7 +30,6 @@ router.post('/', async (req,res) => {
   catch(err){
       console.log(err)
   }
-
   
 })
 
