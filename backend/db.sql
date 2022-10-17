@@ -11,12 +11,12 @@ CREATE TABLE fundraisers (
     donationamount MONEY,
     duration INTEGER
     contactname VARCHAR,
-    contactno VARCHAR,
+    contactno VARCHAR
 
 );
 
 
-CREATE TABLE organizations {
+CREATE TABLE organizations (
     id SERIAL PRIMARY KEY,
     orgname VARCHAR,
     description VARCHAR,
@@ -25,17 +25,16 @@ CREATE TABLE organizations {
     email VARCHAR,
     website VARCHAR,
     contactno VARCHAR,
-    contactperson VARCHAR,
-    website VARCHAR
-};
+    contactperson VARCHAR
+);
 
 
-CREATE TABLE feed {
+CREATE TABLE feed (
     id SERIAL PRIMARY KEY,
     orgname VARCHAR,
-    datemade DATE,
-
-}
+    description VARCHAR,
+    datemade DATE
+);
 
 INSERT INTO fundraisers(title,description,location) VALUES ('Sample Title', 'Sample Description', "Manila");
 
