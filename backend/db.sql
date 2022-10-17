@@ -1,3 +1,6 @@
+
+\c atruidb /* Connect to database called "atruidb" */
+
 CREATE TABLE fundraisers (
     id SERIAL PRIMARY KEY,
     organizer VARCHAR
@@ -18,13 +21,21 @@ CREATE TABLE organizations {
     orgname VARCHAR,
     description VARCHAR,
     location VARCHAR,
-    fundraiser VARCHAR,
+    fundraisers VARCHAR, /* Array containing fundraiser list to be modified to non varchar */
     email VARCHAR,
     website VARCHAR,
     contactno VARCHAR,
     contactperson VARCHAR,
     website VARCHAR
 };
+
+
+CREATE TABLE feed {
+    id SERIAL PRIMARY KEY,
+    orgname VARCHAR,
+    datemade DATE,
+
+}
 
 INSERT INTO fundraisers(title,description,location) VALUES ('Sample Title', 'Sample Description', "Manila");
 
