@@ -29,7 +29,6 @@ router.post('/newUser', async(req,res) => {
     try {
         const {uniqueid, email} = req.body
         const newUser = await pool.query("INSERT INTO userdata(uniqueid,email) VALUES($1,$2) RETURNING *", [uniqueid, email])
-        console.log('New User Added')
     }
     catch(err){
         console.log(err.message)

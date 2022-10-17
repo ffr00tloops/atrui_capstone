@@ -3,13 +3,13 @@
 
 CREATE TABLE fundraisers (
     id SERIAL PRIMARY KEY,
-    organizer VARCHAR
+    organizer VARCHAR,
     title VARCHAR,
     description VARCHAR,
     location VARCHAR,
     datemade DATE,
     donationamount MONEY,
-    duration INTEGER
+    duration INTEGER,
     contactname VARCHAR,
     contactno VARCHAR
 

@@ -24,8 +24,7 @@ function Fundraisers() {
   return (
     <div className="w-10/12 m-auto mt-8 mb-8">
     <h1 className="text-center">Fundraisers</h1>
-    <div className=" lg:grid lg:grid-cols-3 lg:grid-rows-1 w-10/12 m-auto">
-    
+    <div className=" lg:grid lg:grid-cols-4 lg:grid-rows-1 w-10/12 m-auto">
     {
       fundraisers.map(fundraiser => (
         <div className="border-2 rounded-sm drop-shadow-lg border-gray-200 m-3">
@@ -37,7 +36,6 @@ function Fundraisers() {
         </div>        
       ))
     }  
-    
 
     </div>
   </div>
