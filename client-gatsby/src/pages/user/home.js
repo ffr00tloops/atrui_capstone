@@ -166,6 +166,8 @@ function Nav() {
 
 
 const SubPage = props => {
+  
+
   return (
     	<div className="w-8/12 m-auto bg-gray-200 mt-3 mb-3">
         <div className="p-3 grid lg:grid-cols-3 ">

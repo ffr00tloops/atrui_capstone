@@ -16,6 +16,23 @@ router.get("/getAllPosts", async (req, res) => {
   }
 })
 
+router.get('/getAllPosts/:id', async(req,res) => {
+    
+  try {
+      const id = req.params.id
+
+      const searchFundraiser = await pool.query("SELECT * FROM fundraisers WHERE id = $1", [id])
+
+      console.log("Page has been accessed")
+
+      res.json(searchFundraiser.rows)
+      
+  }
+  catch(err){
+      console.log(err.message)
+  }
+})
+
 router.post('/createFundraiser', async (req,res) => {
 
   try {
