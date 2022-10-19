@@ -16,6 +16,23 @@ router.get("/getAllFeeds", async (req, res) => {
   }
 })
 
+router.get('/getAllFeeds/:id', async(req,res) => {
+    
+  try {
+      const id = req.params.id
+
+      const searchFeed = await pool.query("SELECT * FROM feed WHERE id = $1", [id])
+
+      console.log("Page has been accessed")
+
+      res.json(searchFeed.rows)
+      
+  }
+  catch(err){
+      console.log(err.message)
+  }
+})
+
 router.post('/createNewFeed', async (req,res) => {
 
   try {

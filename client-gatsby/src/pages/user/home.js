@@ -23,11 +23,11 @@ function Fundraisers() {
   
   return (
     <div className="w-10/12 m-auto mt-8 mb-8">
-      <h1 className="text-center">Fundraisers</h1>
+      <h1 className="text-center text-green-600 text-5xl p-3 m-3">Fundraisers</h1>
       <div className=" lg:grid lg:grid-cols-4 lg:grid-rows-1 w-10/12 m-auto">
       {
         fundraisers.map(fundraiser => (
-          <Link to={`/user/home/posts/${fundraiser.id}`}>
+          <Link to={`/user/home/fundraisers/${fundraiser.id}`}>
           <div className="text-center border-2 rounded-xl drop-shadow-lg border-gray-200 m-3">
             <div className="p-3">
               <img src="https://www.firstbenefits.org/wp-content/uploads/2017/10/placeholder.png"/>
@@ -62,7 +62,7 @@ function Organizers() {
 
   return (
     <div className="w-10/12 m-auto mt-8 mb-8">
-      <h1 className="text-center">Organizations</h1>
+      <h1 className="text-center text-green-600 text-5xl p-3 m-3">Organizations</h1>
       <div className=" lg:grid lg:grid-cols-4 lg:grid-rows-1 w-10/12 m-auto">
       {
         organizations.map(organization => (
@@ -100,17 +100,19 @@ function Feed() {
   
   return (
     <div className="w-10/12 m-auto mt-8 mb-8">
-      <h1 className="text-center">Feed</h1>
+      <h1 className="text-center text-green-600 text-5xl p-3 m-3">Feed</h1>
       <div className=" lg:grid lg:grid-cols-4 lg:grid-rows-1 w-10/12 m-auto">
       {
         feeds.map(feed => (
-          <div className="border-2 rounded-sm drop-shadow-lg border-gray-200 m-3">
-            <div className="">
+          <Link to={`/user/home/feeds/${feed.id}`}>
+          <div className="text-center border-2 rounded-xl drop-shadow-lg border-gray-200 m-3">
+            <div className="p-3">
               <img src="https://www.firstbenefits.org/wp-content/uploads/2017/10/placeholder.png"/>
               <h1 className="text-xl font-bold">{feed.title}</h1>
               <p>{feed.description}</p>
             </div> 
-          </div>        
+          </div>
+          </Link>        
         ))
       }  
       </div>
@@ -176,7 +178,7 @@ const SubPageFundraisers = props => {
 
   
   return (
-    	<div className="w-8/12 m-auto bg-gray-200 mt-3 mb-3">
+    	<div className="w-8/12 m-auto rounded-lg bg-gray-200 mt-3 mb-3">
         <div className="p-3 grid lg:grid-cols-3 ">
           <img className="row-span-2 border-2 border-black " src="https://upload.wikimedia.org/wikipedia/commons/8/89/Portrait_Placeholder.png"/>
           <div className="p-3">
@@ -198,13 +200,43 @@ const SubPageFundraisers = props => {
   )
 }
 
+const SubPageFeed = props => {
+
+
+  const [feeds, setFeeds] = useState([]);
+
+  useEffect(() => {
+    axios.get(`http://localhost:3000/feed/getAllFeeds/${props.id}`)
+    .then(res => {
+        setFeeds(res.data[0])
+    })
+    .catch(err => { console.log(err)})
+
+  },[])
+
+  
+  return (
+    	<div className="w-6/12 m-auto rounded-lg bg-gray-200 mt-3 mb-3">
+        <div className="p-3 grid lg:grid-cols-1 text-center ">
+          <h1 className="text-3xl font-bold ">{feeds.title}</h1>
+          <p>{feeds.description}</p>
+          <Link to="/user/home">
+          <button className="bg-blue-500 p-3 m-3 text-white">Go Back</button>
+          </Link>
+            
+        </div>
+      </div>
+  )
+}
+
 const HomepageLogged = () => {
   return (
     <div>
       <Nav_Atrz/>
       <Router>
         <Nav path="/user/home"/> 
-        <SubPageFundraisers path="/user/home/posts/:id"/>
+        <SubPageFundraisers path="/user/home/fundraisers/:id"/>
+        <SubPageFeed path="/user/home/feeds/:id"/>
       </Router>
       <Footer />
     </div>

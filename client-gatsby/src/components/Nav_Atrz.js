@@ -37,7 +37,7 @@ export default function Nav_Atrz() {
 
         if (isAuthenticated) {
             VerifyNewUser()
-            return <a href='/user/u_dashboard'className="p-3 mr-3 text-xl rounded-3xl text-white bg-blue-500">{user.email}</a>
+            return <a href='/user/u_dashboard'className="p-3 text-lg rounded-3xl text-white bg-blue-500">{user.email}</a>
             
             
         }
