@@ -64,7 +64,7 @@ function Organizers() {
 
   console.log(organizations)
 
-  
+
   return (
     <div className="w-10/12 m-auto mt-8 mb-8">
       <h1 className="text-center">Organizations</h1>
@@ -166,8 +166,19 @@ function Nav() {
 
 
 const SubPage = props => {
-  
 
+
+  const [fundraisers, setFundraisers] = useState([]);
+
+  useEffect(() => {
+    axios.get("http://localhost:3000/fundraisers/getAllPosts/")
+    .then(res => {
+        setFundraisers(res.data)
+    })
+    .catch(err => { console.log(err)})
+
+  },[])
+  
   return (
     	<div className="w-8/12 m-auto bg-gray-200 mt-3 mb-3">
         <div className="p-3 grid lg:grid-cols-3 ">
@@ -178,8 +189,9 @@ const SubPage = props => {
             <h1 className="">Total Goal Amount:</h1>
             <h1 className="">Current Progress</h1>
             <button className="bg-green-500 p-3 m-3 text-white">Donate</button>
-            <Link to="/user/home"><button className="bg-blue-500 p-3 m-3 text-white">Go Back</button></Link>
-            
+            <Link to="/user/home">
+            <button className="bg-blue-500 p-3 m-3 text-white">Go Back</button>
+            </Link>
           </div>
         </div>
         
@@ -191,10 +203,9 @@ const HomepageLogged = () => {
   return (
     <div>
       <Nav_Atrz/>
-      
       <Router>
         <Nav path="/user/home"/> 
-        <SubPage path="/user/home/posts/:id" />
+        <SubPage path="/user/home/posts/:id"/>
       </Router>
       <Footer />
     </div>
