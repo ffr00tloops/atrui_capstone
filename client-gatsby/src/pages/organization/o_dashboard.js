@@ -76,6 +76,7 @@ function NewPost(){
     const postData = {
         title,
         description,
+        'orgname' : `${orgname}`
     };
 
     axios.post(`http://localhost:3000/feed/createNewFeed`, postData)

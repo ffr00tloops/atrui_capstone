@@ -160,7 +160,7 @@ function Nav() {
 
 
 
-const SubPage = props => {
+const SubPageFundraisers = props => {
 
 
   const [fundraisers, setFundraisers] = useState([]);
@@ -184,10 +184,13 @@ const SubPage = props => {
             <p>{fundraisers.description}</p>
             <h1 className="">Total Goal Amount: {fundraisers.donationgoal}</h1>
             <h1 className="">Current Progress</h1>
-            <button className="bg-green-500 p-3 m-3 text-white">Donate</button>
-            <Link to="/user/home">
-            <button className="bg-blue-500 p-3 m-3 text-white">Go Back</button>
-            </Link>
+            <div className="text-center pt-16">
+              <button className="bg-green-500 p-3 m-3 text-white">Donate</button>
+              <Link to="/user/home">
+              <button className="bg-blue-500 p-3 m-3 text-white">Go Back</button>
+              </Link>
+            </div>
+            
           </div>
         </div>
         
@@ -201,7 +204,7 @@ const HomepageLogged = () => {
       <Nav_Atrz/>
       <Router>
         <Nav path="/user/home"/> 
-        <SubPage path="/user/home/posts/:id"/>
+        <SubPageFundraisers path="/user/home/posts/:id"/>
       </Router>
       <Footer />
     </div>

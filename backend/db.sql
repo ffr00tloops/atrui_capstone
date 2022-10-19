@@ -50,3 +50,10 @@ CREATE TABLE userData (
     totaldonations VARCHAR,
     role VARCHAR
 );
+
+
+CREATE TABLE leaderboard {
+    donator VARCHAR,
+    amountdonated MONEY,
+    
+}

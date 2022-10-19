@@ -19,8 +19,8 @@ router.get("/getAllFeeds", async (req, res) => {
 router.post('/createNewFeed', async (req,res) => {
 
   try {
-      const { title, description } = req.body;
-      const newFeed = await pool.query("INSERT INTO feed(title,description) VALUES($1,$2) RETURNING *",[title, description])
+      const { title, description, orgname } = req.body;
+      const newFeed = await pool.query("INSERT INTO feed(title,description,orgname) VALUES($1,$2,$3) RETURNING *",[title, description,orgname])
 
       console.log('Data Inserted');
 

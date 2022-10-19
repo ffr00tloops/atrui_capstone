@@ -7,32 +7,44 @@ import { useAuth0 } from "@auth0/auth0-react";
 
 
 function DashboardContent(){
+
+
+  const image = {
+    width: "100px",
+    height: "100px"
+  };
+
+
   return (
     <div className="bg-gray-300 col-span-3 ">
-    <div className="grid lg:grid-cols-3 gap-3 grid-rows-6">
+    <div className="lg:grid lg:grid-cols-3 gap-3 grid-rows-6">
       <div className="bg-white m-3 p-3 text-center">
         <h1>Current Rank: Bronze IV</h1>
         <h1>Season 1: 60 Days Left</h1>
       </div>
-      <div className="bg-white m-3 p-3 text-center">
-        <h1>Current Rank: Bronze IV</h1>
-        <h1>Season 1: 60 Days Left</h1>
+      <div className="bg-white m-3 p-3 grid grid-rows-3 text-center">
+        <h1 className="row-start-2">Level : 1</h1>
       </div>
-      <div className="bg-white m-3 p-3 text-center">
-        <h1>Current Rank: Bronze IV</h1>
-        <h1>Season 1: 60 Days Left</h1>
+      <div className="bg-white row-start-2 row-span-2 m-3 p-3 text-center">
+          <img className="m-auto" style={image} src="https://cdn.shopify.com/s/files/1/0527/5808/5812/products/Badge_You_27re_Tiering_Me_Apart_Bronze_RS5_720x.png?v=1613484537"></img>
+          <h1>Current Rank Badge</h1>
       </div>
-      <div className="bg-white m-3 p-3 text-center">
-        <h1>Current Rank: Bronze IV</h1>
-        <h1>Season 1: 60 Days Left</h1>
+      <div className="bg-white m-3 col-start-2 row-start-2 row-span-2 p-3 text-center">
+        <h1>Total Donations</h1>
       </div>
-      <div className="bg-white m-3 p-3 text-center">
-        <h1>Current Rank: Bronze IV</h1>
-        <h1>Season 1: 60 Days Left</h1>
+      <div className="bg-white m-3 grid grid-rows-3 row-span-5 col-start-3 p-3 text-center">
+        <h1 className="row-start-2">Weekly Challenges</h1>
       </div>
-      <div className="bg-white m-3 p-3 text-center">
-        <h1>Current Rank: Bronze IV</h1>
-        <h1>Season 1: 60 Days Left</h1>
+      <div className="bg-white m-3 p-3 row-start-4 col-start-1 col-span-2 text-center">
+        <h1>Level Experience</h1>
+      </div>
+      <div className="bg-white m-3 p-3 row-start-5 col-start-1 col-span-2 text-center">
+        <h1>Rank Progress</h1>
+      </div>
+      <div className="bg-white m-3 p-3 row-start-6 col-start-1 col-span-3">
+        <h1>Earn Level exp and rank points through the following.</h1>
+        <h1 className="text-blue-500">Donations</h1>
+        <h1 className="text-blue-500"s>Weekly Challenges</h1>
       </div>
     </div>
   </div>
@@ -42,19 +54,46 @@ function DashboardContent(){
 function Leaderboard(){
   return (
     <div className="bg-gray-300 col-span-3 ">
-    <div className="grid lg:grid-cols-3 gap-3 grid-rows-6">
-      <div className="bg-white m-3 p-3 text-center">
-        <h1>Current Rank: Bronze IV</h1>
-        <h1>Season 1: 60 Days Left</h1>
+    <div className="grid lg:grid-cols-1 ">
+      <div className="bg-white m-3 p-3 grid grid-cols-3 text-center">
+        <h1 className="text-xl font-bold text-green-600">Position</h1>
+        <h1 className="text-xl font-bold text-red-600">User</h1>
+        <h1 className="text-xl font-bold text-blue-600">Total Donation</h1>
       </div>
-      <div className="bg-white m-3 p-3 text-center">
-        <h1>Current Rank: Bronze IV</h1>
-        <h1>Season 1: 60 Days Left</h1>
+      <div className="m-3 p-3 grid grid-cols-3 text-center">
+        <h1 className="text-green-600">1</h1>
+        <h1 className="text-red-600">Joe</h1>
+        <h1 className="text-blue-600">1000000000</h1>
       </div>
-      <div className="bg-white row-span-5 m-3 p-3 text-center">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/8/89/Portrait_Placeholder.png"/>
-        <h1>Current Rank: Bronze IV</h1>
-        <h1>Season 1: 60 Days Left</h1>
+      <div className="m-3 p-3 grid grid-cols-3 text-center">
+        <h1 className="text-green-600">1</h1>
+        <h1 className="text-red-600">Joe</h1>
+        <h1 className="text-blue-600">1000000000</h1>
+      </div>
+      <div className="m-3 p-3 grid grid-cols-3 text-center">
+        <h1 className="text-green-600">1</h1>
+        <h1 className="text-red-600">Joe</h1>
+        <h1 className="text-blue-600">1000000000</h1>
+      </div>
+      <div className="m-3 p-3 grid grid-cols-3 text-center">
+        <h1 className="text-green-600">1</h1>
+        <h1 className="text-red-600">Joe</h1>
+        <h1 className="text-blue-600">1000000000</h1>
+      </div>
+      <div className="m-3 p-3 grid grid-cols-3 text-center">
+        <h1 className="text-green-600">1</h1>
+        <h1 className="text-red-600">Joe</h1>
+        <h1 className="text-blue-600">1000000000</h1>
+      </div>
+      <div className="m-3 p-3 grid grid-cols-3 text-center">
+        <h1 className="text-green-600">1</h1>
+        <h1 className="text-red-600">Joe</h1>
+        <h1 className="text-blue-600">1000000000</h1>
+      </div>
+      <div className="m-3 p-3 grid grid-cols-3 text-center">
+        <h1 className="text-green-600">1</h1>
+        <h1 className="text-red-600">Joe</h1>
+        <h1 className="text-blue-600">1000000000</h1>
       </div>
     </div>
   </div>
