@@ -10,7 +10,7 @@ import axios from 'axios';
 function NewFundraiser(){
     const [title, setTitle] = useState('');
     const [description, setDescription] = useState('');
-    const [donationamount, setAmount] = useState('');
+    const [donationgoal, setAmount] = useState('');
     const [duration, setDuration] = useState('');
 
 
@@ -19,7 +19,7 @@ function NewFundraiser(){
       const postData = {
           title,
           description,
-          donationamount,
+          donationgoal,
           duration,
       };
 
@@ -46,7 +46,7 @@ function NewFundraiser(){
         </div>
         <div className="bg-white m-3 p-3 grid grid-cols-4 text-center">
           <label>Donation Amount:</label>
-          <input onChange={(e) => setAmount(e.target.value)} value={donationamount} va placeholder="Philippine Pesos" className="col-span-3 border-2" />
+          <input onChange={(e) => setAmount(e.target.value)} value={donationgoal} va placeholder="Philippine Pesos" className="col-span-3 border-2" />
         </div>
         <div className="bg-white m-3 p-3 grid grid-cols-4 text-center">
           <label>Duration</label>
@@ -61,20 +61,48 @@ function NewFundraiser(){
 
 function NewPost(){
 
+  const [title, setTitle] = useState('');
+  const [description, setDescription] = useState('');
+
+  const { user } = useAuth0();
+
+
+  const orgname = user.name
+
+
+
+  function handleSubmit(e){
+    e.preventDefault();
+    const postData = {
+        title,
+        description,
+    };
+
+    axios.post(`http://localhost:3000/feed/createNewFeed`, postData)
+    .then( res => {
+        console.log(res)
+    })
+
+    alert("You have submitted a recipe");
+
+}
+
 
   return (
     <div className="bg-gray-300 col-span-3 ">
+    <form onSubmit={handleSubmit}>
     <div className="grid lg:grid-cols-1">
       <div className="bg-white m-3 p-3 grid grid-cols-4 text-center">
         <label>Title Name:</label>
-        <input className="col-span-3 border-2" />
+        <input onChange={(e) => setTitle(e.target.value)} value={title}  className="col-span-3 border-2" />
       </div>
       <div className="bg-white m-3 p-3 grid grid-cols-4 grid-rows-6 text-center">
         <label>Description</label>
-        <textarea className="col-span-3 row-span-6 border-2" />
+        <textarea onChange={(e) => setDescription(e.target.value)} value={description}  className="col-span-3 row-span-6 border-2" />
       </div>
-      <button className="bg-green-500 p-3 m-3 " >Create Post +</button>
+      <button type="submit" className="bg-green-500 p-3 m-3 " >Create Post +</button>
     </div>
+    </form>
   </div>
   )
 }
@@ -149,4 +177,4 @@ const Dashboard = () => {
 
 export default withAuthenticationRequired(Dashboard)
 
-export const Head = () => <title>User Dashboard</title>
+export const Head = () => <title>Organizer Dashboard</title>

@@ -20,9 +20,6 @@ function Fundraisers() {
     .catch(err => { console.log(err)})
 
   },[])
-
-  console.log(fundraisers)
-
   
   return (
     <div className="w-10/12 m-auto mt-8 mb-8">
@@ -61,8 +58,6 @@ function Organizers() {
 
   },[])
 
-
-  console.log(organizations)
 
 
   return (
@@ -171,22 +166,23 @@ const SubPage = props => {
   const [fundraisers, setFundraisers] = useState([]);
 
   useEffect(() => {
-    axios.get("http://localhost:3000/fundraisers/getAllPosts/")
+    axios.get(`http://localhost:3000/fundraisers/getAllPosts/${props.id}`)
     .then(res => {
-        setFundraisers(res.data)
+        setFundraisers(res.data[0])
     })
     .catch(err => { console.log(err)})
 
   },[])
+
   
   return (
     	<div className="w-8/12 m-auto bg-gray-200 mt-3 mb-3">
         <div className="p-3 grid lg:grid-cols-3 ">
           <img className="row-span-2 border-2 border-black " src="https://upload.wikimedia.org/wikipedia/commons/8/89/Portrait_Placeholder.png"/>
           <div className="p-3">
-            <h1 className="text-xl">Program Name</h1>
-            <p>Description</p>
-            <h1 className="">Total Goal Amount:</h1>
+            <h1 className="text-xl">{fundraisers.title}</h1>
+            <p>{fundraisers.description}</p>
+            <h1 className="">Total Goal Amount: {fundraisers.donationgoal}</h1>
             <h1 className="">Current Progress</h1>
             <button className="bg-green-500 p-3 m-3 text-white">Donate</button>
             <Link to="/user/home">

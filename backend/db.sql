@@ -8,7 +8,8 @@ CREATE TABLE fundraisers (
     description VARCHAR,
     location VARCHAR,
     datemade DATE,
-    donationamount MONEY,
+    donationgoal MONEY,
+    currentprogress MONEY,
     duration INTEGER,
     contactname VARCHAR,
     contactno VARCHAR
