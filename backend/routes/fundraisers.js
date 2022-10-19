@@ -19,9 +19,8 @@ router.get("/getAllPosts", async (req, res) => {
 router.post('/createFundraiser', async (req,res) => {
 
   try {
-      console.log(req.files)
-      const { title, description, location, datemade, progress } = req.body;
-      const newFundraiser = await pool.query("INSERT INTO fundraisers(title,description, location, datemade, progress) VALUES($1,$2,$3,$4,$5) RETURNING *",[title, description, location, datemade, progress])
+      const { title, description, donationamount, duration } = req.body;
+      const newFundraiser = await pool.query("INSERT INTO fundraisers(title,description,donationamount, duration) VALUES($1,$2,$3,$4) RETURNING *",[title, description, donationamount, duration])
 
       console.log('Data Inserted');
 

@@ -29,9 +29,10 @@ CREATE TABLE organizations (
 );
 
 
-CREATE TABLE feed (
+CREATE TABLE feeds (
     id SERIAL PRIMARY KEY,
     orgname VARCHAR,
+    title VARCHAR,
     description VARCHAR,
     datemade DATE
 );

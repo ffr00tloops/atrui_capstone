@@ -3,11 +3,12 @@ const router = express.Router();
 const pool = require('../db')
 
 
-router.get("/getAllOrgs", async (req, res) => {
+router.get("/getAllFeeds", async (req, res) => {
+
   try {
-    const allOrgs = await pool.query("SELECT * FROM organizations")
+    const allFeed = await pool.query("SELECT * FROM feed")
       
-    res.json(allOrgs.rows)
+    res.json(allFeed.rows)
   }
   catch(err)
   { 

@@ -1,9 +1,12 @@
 import * as React from "react"
+import { Link } from "gatsby"
 import {useEffect, useState} from "react"
 import Footer from '../../components/Footer'
 import Nav_Atrz from "../../components/Nav_Atrz"
 import axios from 'axios'
+import { Router} from '@reach/router'
 import { withAuthenticationRequired } from '@auth0/auth0-react';
+
 
 function Fundraisers() {
 
@@ -23,76 +26,104 @@ function Fundraisers() {
   
   return (
     <div className="w-10/12 m-auto mt-8 mb-8">
-    <h1 className="text-center">Fundraisers</h1>
-    <div className=" lg:grid lg:grid-cols-4 lg:grid-rows-1 w-10/12 m-auto">
-    {
-      fundraisers.map(fundraiser => (
-        <div className="border-2 rounded-sm drop-shadow-lg border-gray-200 m-3">
-          <div className="">
-            <img src="https://www.firstbenefits.org/wp-content/uploads/2017/10/placeholder.png"/>
-            <h1 className="text-xl font-bold">{fundraiser.title}</h1>
-            <p>{fundraiser.description}</p>
-          </div> 
-        </div>        
-      ))
-    }  
+      <h1 className="text-center">Fundraisers</h1>
+      <div className=" lg:grid lg:grid-cols-4 lg:grid-rows-1 w-10/12 m-auto">
+      {
+        fundraisers.map(fundraiser => (
+          <Link to={`/user/home/posts/${fundraiser.id}`}>
+          <div className="text-center border-2 rounded-xl drop-shadow-lg border-gray-200 m-3">
+            <div className="p-3">
+              <img src="https://www.firstbenefits.org/wp-content/uploads/2017/10/placeholder.png"/>
+              <h1 className="text-xl font-bold">{fundraiser.title}</h1>
+              <p>{fundraiser.description}</p>
+            </div> 
+          </div>
+          </Link>        
+        ))
+      }  
 
-    </div>
+      </div>
   </div>
+  
   )
 }
 
-
 function Organizers() {
 
+  const [organizations, setOrganizations] = useState([]);
+
+  useEffect(() => {
+    axios.get("http://localhost:3000/organizations/getAllOrgs")
+    .then(res => {
+        setOrganizations(res.data)
+    })
+    .catch(err => { console.log(err)})
+
+  },[])
 
 
+  console.log(organizations)
+
+  
   return (
     <div className="w-10/12 m-auto mt-8 mb-8">
-    <h1 className="text-center">Organizations</h1>
-    <div className=" lg:grid lg:grid-cols-3 lg:grid-rows-1 w-10/12 m-auto">
-      <div className="border-2 rounded-sm drop-shadow-lg border-gray-200 m-3">
-        <div className="">
-          <img src="https://www.firstbenefits.org/wp-content/uploads/2017/10/placeholder.png"/>
-          <h1 className="text-xl font-bold">Hello World</h1>
-          <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. </p>
-        </div>
+      <h1 className="text-center">Organizations</h1>
+      <div className=" lg:grid lg:grid-cols-4 lg:grid-rows-1 w-10/12 m-auto">
+      {
+        organizations.map(organization => (
+          <div className="border-2 rounded-sm drop-shadow-lg border-gray-200 m-3">
+            <div className="">
+              <img src="https://www.firstbenefits.org/wp-content/uploads/2017/10/placeholder.png"/>
+              <h1 className="text-xl font-bold">{organization.title}</h1>
+              <p>{organization.description}</p>
+            </div> 
+          </div>        
+        ))
+      }  
+
       </div>
-    </div>
   </div>
+  
   )
 }
 
 function Feed() {
+
+  const [feeds, setFeeds] = useState([]);
+
+  useEffect(() => {
+    axios.get("http://localhost:3000/feed/getAllFeeds")
+    .then(res => {
+        setFeeds(res.data)
+    })
+    .catch(err => { console.log(err)})
+
+  },[])
+
+  console.log(feeds)
+
+  
   return (
     <div className="w-10/12 m-auto mt-8 mb-8">
-    <h1 className="text-center">Feed</h1>
-    <div className=" lg:grid lg:grid-cols-3 lg:grid-rows-1 w-10/12 m-auto">
-      <div className="border-2 rounded-sm drop-shadow-lg border-gray-200 m-3">
-        <div className="">
-          <img src="https://www.firstbenefits.org/wp-content/uploads/2017/10/placeholder.png"/>
-          <h1 className="text-xl font-bold">Hello World</h1>
-          <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. </p>
-        </div>
+      <h1 className="text-center">Feed</h1>
+      <div className=" lg:grid lg:grid-cols-4 lg:grid-rows-1 w-10/12 m-auto">
+      {
+        feeds.map(feed => (
+          <div className="border-2 rounded-sm drop-shadow-lg border-gray-200 m-3">
+            <div className="">
+              <img src="https://www.firstbenefits.org/wp-content/uploads/2017/10/placeholder.png"/>
+              <h1 className="text-xl font-bold">{feed.title}</h1>
+              <p>{feed.description}</p>
+            </div> 
+          </div>        
+        ))
+      }  
       </div>
-      <div className="border-2 rounded-sm drop-shadow-lg border-gray-200 m-3">
-        <div className="">
-          <img src="https://www.firstbenefits.org/wp-content/uploads/2017/10/placeholder.png"/>
-          <h1 className="text-xl font-bold">Hello World</h1>
-          <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
-        </div>
-      </div>
-      <div className="border-2 rounded-sm drop-shadow-lg border-gray-200 m-3">
-        <div className="">
-          <img src="https://www.firstbenefits.org/wp-content/uploads/2017/10/placeholder.png"/>
-          <h1 className="text-xl font-bold">Hello World</h1>
-          <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
-        </div>
-      </div>
-    </div>
   </div>
   )
 }
+
+
 
 
 // handles logic for when changing menus in the home-loggedin page
@@ -134,11 +165,35 @@ function Nav() {
 
 
 
+const SubPage = props => {
+  return (
+    	<div className="w-8/12 m-auto bg-gray-200 mt-3 mb-3">
+        <div className="p-3 grid lg:grid-cols-3 ">
+          <img className="row-span-2 border-2 border-black " src="https://upload.wikimedia.org/wikipedia/commons/8/89/Portrait_Placeholder.png"/>
+          <div className="p-3">
+            <h1 className="text-xl">Program Name</h1>
+            <p>Description</p>
+            <h1 className="">Total Goal Amount:</h1>
+            <h1 className="">Current Progress</h1>
+            <button className="bg-green-500 p-3 m-3 text-white">Donate</button>
+            <Link to="/user/home"><button className="bg-blue-500 p-3 m-3 text-white">Go Back</button></Link>
+            
+          </div>
+        </div>
+        
+      </div>
+  )
+}
+
 const HomepageLogged = () => {
   return (
     <div>
       <Nav_Atrz/>
-      <Nav />
+      
+      <Router>
+        <Nav path="/user/home"/> 
+        <SubPage path="/user/home/posts/:id" />
+      </Router>
       <Footer />
     </div>
   )

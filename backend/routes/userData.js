@@ -15,7 +15,6 @@ router.post('/verifyNewUser', async(req,res) => {
         else {
             res.json(false)
         }
-
         
     }
     catch(err){
