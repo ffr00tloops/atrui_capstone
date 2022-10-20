@@ -7,7 +7,7 @@ CREATE TABLE fundraisers (
     title VARCHAR,
     description VARCHAR,
     location VARCHAR,
-    datemade DATE,
+    datemade VARCHAR,
     donationgoal MONEY,
     currentprogress MONEY,
     duration INTEGER,
@@ -35,7 +35,7 @@ CREATE TABLE feeds (
     orgname VARCHAR,
     title VARCHAR,
     description VARCHAR,
-    datemade DATE
+    datemade VARCHAR
 );
 
 INSERT INTO fundraisers(title,description,location) VALUES ('Sample Title', 'Sample Description', "Manila");

@@ -23,8 +23,6 @@ router.get('/getAllPosts/:id', async(req,res) => {
 
       const searchFundraiser = await pool.query("SELECT * FROM fundraisers WHERE id = $1", [id])
 
-      console.log("Page has been accessed")
-
       res.json(searchFundraiser.rows)
       
   }
@@ -36,10 +34,8 @@ router.get('/getAllPosts/:id', async(req,res) => {
 router.post('/createFundraiser', async (req,res) => {
 
   try {
-      const { title, description, donationgoal, duration } = req.body;
-      const newFundraiser = await pool.query("INSERT INTO fundraisers(title,description,donationgoal, duration) VALUES($1,$2,$3,$4) RETURNING *",[title, description, donationgoal, duration])
-
-      console.log('Data Inserted');
+      const { organizer, title, description, donationgoal, duration, datemade  } = req.body;
+      const newFundraiser = await pool.query("INSERT INTO fundraisers(organizer,title,description,donationgoal, duration, datemade) VALUES($1,$2,$3,$4, $5, $6) RETURNING *",[organizer, title, description, donationgoal, duration, datemade])
 
       res.json(newFundraiser)
   }

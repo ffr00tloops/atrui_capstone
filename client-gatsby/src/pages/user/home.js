@@ -33,7 +33,6 @@ function Fundraisers() {
             <div className="p-3">
               <img src="https://www.firstbenefits.org/wp-content/uploads/2017/10/placeholder.png"/>
               <h1 className="text-xl font-bold">{fundraiser.title}</h1>
-              <p>{fundraiser.description}</p>
             </div> 
           </div>
           </Link>        
@@ -71,7 +70,6 @@ function Organizers() {
             <div className="">
               <img src="https://www.firstbenefits.org/wp-content/uploads/2017/10/placeholder.png"/>
               <h1 className="text-xl font-bold">{organization.title}</h1>
-              <p>{organization.description}</p>
             </div> 
           </div>        
         ))
@@ -110,7 +108,6 @@ function Feed() {
             <div className="p-3">
               <img src="https://www.firstbenefits.org/wp-content/uploads/2017/10/placeholder.png"/>
               <h1 className="text-xl font-bold">{feed.title}</h1>
-              <p>{feed.description}</p>
             </div> 
           </div>
           </Link>        
@@ -166,6 +163,7 @@ function Nav() {
 const SubPageFundraisers = props => {
 
 
+
   const [fundraisers, setFundraisers] = useState([]);
 
   useEffect(() => {
@@ -180,24 +178,25 @@ const SubPageFundraisers = props => {
   
   return (
     	<div className="w-8/12 m-auto rounded-lg bg-gray-200 mt-3 mb-3">
-        <div className="p-3 grid lg:grid-cols-3 ">
-          <img className="row-span-2 border-2 border-black " src="https://upload.wikimedia.org/wikipedia/commons/8/89/Portrait_Placeholder.png"/>
-          <div className="p-3">
-            <h1 className="text-xl">{fundraisers.title}</h1>
-            <p>{fundraisers.description}</p>
-            <h1 className="">Total Goal Amount: {fundraisers.donationgoal}</h1>
-            <h1 className="">Current Progress</h1>
-            <ProgressBar completed={60} maxCompleted={100} />
-            <div className="text-center pt-8">
+        <div className="p-3 m-3 lg:grid lg:grid-cols-4 grid-rows-6 ">
+          <img className="row-span-1 m-auto col-start-1 row-start-1 border-2 border-black" src="https://upload.wikimedia.org/wikipedia/commons/8/89/Portrait_Placeholder.png"/>
+          <div className="col-start-3 m-auto row-start-1">
+            <h1 className="text-xl p-3 m-3 font-bold">{fundraisers.title}</h1>
+            <h1 className="p-3 m-3">Date Made: {fundraisers.datemade}</h1>
+            <h1 className="p-3 m-3">Total Goal Amount: {fundraisers.donationgoal}</h1>
+            <h1 className="p-3 m-3">Duration: {fundraisers.duration} Days Left</h1>
+            <ProgressBar className="p-3 m-3" completed={60} maxCompleted={100} />
+            <div className="text-center">
               <button className="bg-green-500 p-3 m-3 text-white">Donate</button>
               <Link to="/user/home">
               <button className="bg-blue-500 p-3 m-3 text-white">Go Back</button>
               </Link>
             </div>
-            
+          </div>
+          <div className="row-start-2 row-span-4 col-span-4 row col-start-1">
+            <p className="whitespace-pre-line" >{fundraisers.description}</p>
           </div>
         </div>
-        
       </div>
   )
 }
@@ -221,7 +220,8 @@ const SubPageFeed = props => {
     	<div className="w-6/12 m-auto rounded-lg bg-gray-200 mt-3 mb-3">
         <div className="p-3 grid lg:grid-cols-1 text-center ">
           <h1 className="text-3xl font-bold ">{feeds.title}</h1>
-          <p>{feeds.description}</p>
+          <p className="whitespace-pre-line">{feeds.description}</p>
+          <p>{feeds.orgname}</p>
           <Link to="/user/home">
           <button className="bg-blue-500 p-3 m-3 text-white">Go Back</button>
           </Link>

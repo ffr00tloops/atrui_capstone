@@ -14,13 +14,30 @@ function NewFundraiser(){
     const [duration, setDuration] = useState('');
 
 
+    var today = new Date();
+    var dd = String(today.getDate()).padStart(2, '0');
+    var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+    var yyyy = today.getFullYear();
+
+    
+
+    const { user } = useAuth0();
+
+
+    const orgname = user.name
+
+    today = mm + '/' + dd + '/' + yyyy;
+
     function handleSubmit(e){
       e.preventDefault();
       const postData = {
+          'organizer' : `${orgname}`,
           title,
           description,
           donationgoal,
           duration,
+          'datemade' : `${today}`
+
       };
 
       axios.post(`http://localhost:3000/fundraisers/createFundraiser`, postData)
