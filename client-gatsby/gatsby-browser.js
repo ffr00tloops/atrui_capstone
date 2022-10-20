@@ -15,7 +15,7 @@ export const wrapRootElement = ({ element }) => {
    domain="dev--fvxeza3.us.auth0.com"
    clientId="sENW1u750k2VFWbAbBX5J1MIqnGv3wgD"
    redirectUri={window.location.origin}
-   onRedirectCallback="https://atrui-ffr00tloops.vercel.app/"
+   onRedirectCallback={onRedirectCallback}
    >
     {element}
  </Auth0Provider>
