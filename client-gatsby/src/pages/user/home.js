@@ -14,7 +14,7 @@ function Fundraisers() {
   const [fundraisers, setFundraisers] = useState([]);
 
   useEffect(() => {
-    axios.get("http://localhost:3000/fundraisers/getAllPosts/")
+    axios.get("http://128.199.101.58/fundraisers/getAllPosts/")
     .then(res => {
         setFundraisers(res.data)
     })
@@ -50,7 +50,7 @@ function Organizers() {
   const [organizations, setOrganizations] = useState([]);
 
   useEffect(() => {
-    axios.get("http://localhost:3000/organizations/getAllOrgs")
+    axios.get("http://128.199.101.58/organizations/getAllOrgs")
     .then(res => {
         setOrganizations(res.data)
     })
@@ -86,7 +86,7 @@ function Feed() {
   const [feeds, setFeeds] = useState([]);
 
   useEffect(() => {
-    axios.get("http://localhost:3000/feed/getAllFeeds")
+    axios.get("http://128.199.101.58/feed/getAllFeeds")
     .then(res => {
         setFeeds(res.data)
     })
@@ -167,7 +167,7 @@ const SubPageFundraisers = props => {
   const [fundraisers, setFundraisers] = useState([]);
 
   useEffect(() => {
-    axios.get(`http://localhost:3000/fundraisers/getAllPosts/${props.id}`)
+    axios.get(`http://128.199.101.58/fundraisers/getAllPosts/${props.id}`)
     .then(res => {
         setFundraisers(res.data[0])
     })
@@ -207,7 +207,7 @@ const SubPageFeed = props => {
   const [feeds, setFeeds] = useState([]);
 
   useEffect(() => {
-    axios.get(`http://localhost:3000/feed/getAllFeeds/${props.id}`)
+    axios.get(`http://128.199.101.58/feed/getAllFeeds/${props.id}`)
     .then(res => {
         setFeeds(res.data[0])
     })
