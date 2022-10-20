@@ -12,10 +12,10 @@ const onRedirectCallback = (appState) => {
 export const wrapRootElement = ({ element }) => {
  return (
   <Auth0Provider
-   domain={process.env.AUTH0_DOMAIN}
-   clientId={process.env.AUTH0_CLIENTID}
+   domain="dev--fvxeza3.us.auth0.com"
+   clientId="sENW1u750k2VFWbAbBX5J1MIqnGv3wgD"
    redirectUri={window.location.origin}
-   onRedirectCallback={onRedirectCallback}
+   onRedirectCallback="https://atrui-ffr00tloops.vercel.app/"
    >
     {element}
  </Auth0Provider>
