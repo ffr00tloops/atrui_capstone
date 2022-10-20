@@ -38,7 +38,7 @@ CREATE TABLE feeds (
     datemade VARCHAR
 );
 
-INSERT INTO fundraisers(title,description,location) VALUES ('Sample Title', 'Sample Description', "Manila");
+INSERT INTO fundraisers(title,description,location) VALUES ('Sample Title', 'Sample Description', 'Manila');
 
 
 CREATE TABLE userData (
@@ -54,6 +54,5 @@ CREATE TABLE userData (
 
 CREATE TABLE leaderboard {
     donator VARCHAR,
-    amountdonated MONEY,
-    
-}
+    amountdonated MONEY   
+};
