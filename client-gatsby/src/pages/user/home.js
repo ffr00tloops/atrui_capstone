@@ -6,6 +6,7 @@ import Nav_Atrz from "../../components/Nav_Atrz"
 import axios from 'axios'
 import { Router} from '@reach/router'
 import { withAuthenticationRequired } from '@auth0/auth0-react';
+import ProgressBar from "@ramonak/react-progress-bar";
 
 
 function Fundraisers() {
@@ -186,7 +187,8 @@ const SubPageFundraisers = props => {
             <p>{fundraisers.description}</p>
             <h1 className="">Total Goal Amount: {fundraisers.donationgoal}</h1>
             <h1 className="">Current Progress</h1>
-            <div className="text-center pt-16">
+            <ProgressBar completed={60} maxCompleted={100} />
+            <div className="text-center pt-8">
               <button className="bg-green-500 p-3 m-3 text-white">Donate</button>
               <Link to="/user/home">
               <button className="bg-blue-500 p-3 m-3 text-white">Go Back</button>
