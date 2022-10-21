@@ -40,7 +40,7 @@ function NewFundraiser(){
 
       };
 
-      axios.post(`http://localhost:3000/fundraisers/createFundraiser`, postData)
+      axios.post(`http://128.199.101.58/fundraisers/createFundraiser`, postData)
       .then( res => {
           console.log(res)
       })
@@ -96,7 +96,7 @@ function NewPost(){
         'orgname' : `${orgname}`
     };
 
-    axios.post(`http://localhost:3000/feed/createNewFeed`, postData)
+    axios.post(`http://128.199.101.58/feed/createNewFeed`, postData)
     .then( res => {
         console.log(res)
     })
