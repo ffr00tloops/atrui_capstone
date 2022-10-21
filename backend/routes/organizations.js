@@ -15,6 +15,20 @@ router.get("/getAllOrgs", async (req, res) => {
   }
 })
 
+router.get("/getAllOrgs/:id", async (req, res) => {
+  try {
+    const id = req.params.id
+
+    const searchOrg = await pool.query("SELECT * FROM organizations WHERE id = $1", [id])
+      
+    res.json(allOrgs.rows)
+  }
+  catch(err)
+  { 
+      console.log (err.message)
+  }
+})
+
 router.post('/createOrganization', async (req,res) => {
 
   try {

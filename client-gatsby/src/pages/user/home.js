@@ -63,15 +63,17 @@ function Organizers() {
   return (
     <div className="w-10/12 m-auto mt-8 mb-8">
       <h1 className="text-center text-green-600 text-5xl p-3 m-3">Organizations</h1>
-      <div className=" lg:grid lg:grid-cols-4 lg:grid-rows-1 w-10/12 m-auto">
+      <div className="  lg:grid lg:grid-cols-4 lg:grid-rows-1 w-10/12 m-auto">
       {
         organizations.map(organization => (
-          <div className="border-2 rounded-sm drop-shadow-lg border-gray-200 m-3">
-            <div className="">
+          <Link to={`/user/home/organization/${organization.id}`}>
+          <div className="text-center border-2 rounded-xl drop-shadow-lg border-gray-200 m-3">
+            <div className="p-3">
               <img src="https://www.firstbenefits.org/wp-content/uploads/2017/10/placeholder.png"/>
-              <h1 className="text-xl font-bold">{organization.title}</h1>
+              <h1 className="text-xl font-bold">{organization.orgname}</h1>
             </div> 
-          </div>        
+          </div>
+          </Link>        
         ))
       }  
 
@@ -105,7 +107,7 @@ function Feed() {
         feeds.map(feed => (
           <Link to={`/user/home/feeds/${feed.id}`}>
           <div className="text-center border-2 rounded-xl drop-shadow-lg border-gray-200 m-3">
-            <div className="p-3">
+            <div className="p-3"> 
               <img src="https://www.firstbenefits.org/wp-content/uploads/2017/10/placeholder.png"/>
               <h1 className="text-xl font-bold">{feed.title}</h1>
             </div> 
@@ -231,6 +233,38 @@ const SubPageFeed = props => {
   )
 }
 
+const SubPageOrganization = props => {
+
+
+  const [organizations, setOrganizations] = useState([]);
+
+  useEffect(() => {
+    axios.get(`http://128.199.101.58/organizations/getAllOrgs/${props.id}`)
+    .then(res => {
+        setOrganizations(res.data[0])
+    })
+    .catch(err => { console.log(err)})
+
+  },[])
+
+  
+  return (
+    	<div className="w-6/12 m-auto rounded-lg bg-gray-200 mt-3 mb-3">
+        <div className="p-3 grid lg:grid-cols-2 text-center ">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/8/89/Portrait_Placeholder.png"/>
+          <div>
+            <p className="whitespace-pre-line">{organizations.description}</p>
+            <p>{organizations.orgname}</p>
+            <Link to="/user/home">
+            <button className="bg-blue-500 p-3 m-3 text-white">Go Back</button>
+            </Link>
+          </div>
+            
+        </div>
+      </div>
+  )
+}
+
 const HomepageLogged = () => {
   return (
     <div>
@@ -239,6 +273,7 @@ const HomepageLogged = () => {
         <Nav path="/user/home"/> 
         <SubPageFundraisers path="/user/home/fundraisers/:id"/>
         <SubPageFeed path="/user/home/feeds/:id"/>
+        <SubPageOrganization path="/user/home/organization/:id"/>
       </Router>
       <Footer />
     </div>
