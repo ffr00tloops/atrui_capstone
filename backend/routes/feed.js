@@ -35,7 +35,7 @@ router.post('/createNewFeed', async (req,res) => {
 
   try {
       const { title, description, orgname } = req.body;
-      const newFeed = await pool.query("INSERT INTO feed(title,description,orgname) VALUES($1,$2,$3) RETURNING *",[title, description,orgname])
+      const newFeed = await pool.query("INSERT INTO feeds(title,description,orgname) VALUES($1,$2,$3) RETURNING *",[title, description,orgname])
 
       res.json(newFeed)
   }
