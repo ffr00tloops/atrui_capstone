@@ -125,6 +125,55 @@ function NewPost(){
   )
 }
 
+function NewOrg(){
+
+  const [title, setTitle] = useState('');
+  const [description, setDescription] = useState('');
+
+  const { user } = useAuth0();
+
+
+  const orgname = user.name
+
+
+
+  function handleSubmit(e){
+    e.preventDefault();
+    const postData = {
+        title,
+        description,
+        'orgname' : `${orgname}`
+    };
+
+    axios.post(`http://128.199.101.58/feed/createNewFeed`, postData)
+    .then( res => {
+        console.log(res)
+    })
+
+    alert("You have submitted a recipe");
+
+}
+
+
+  return (
+    <div className="bg-gray-300 col-span-3 ">
+    <form onSubmit={handleSubmit}>
+    <div className="grid lg:grid-cols-1">
+      <div className="bg-white m-3 p-3 grid grid-cols-4 text-center">
+        <label>Title Name:</label>
+        <input onChange={(e) => setTitle(e.target.value)} value={title}  className="col-span-3 border-2" />
+      </div>
+      <div className="bg-white m-3 p-3 grid grid-cols-4 grid-rows-6 text-center">
+        <label>Description</label>
+        <textarea onChange={(e) => setDescription(e.target.value)} value={description}  className="col-span-3 row-span-6 border-2" />
+      </div>
+      <button type="submit" className="bg-green-500 p-3 m-3 " >Create Post +</button>
+    </div>
+    </form>
+  </div>
+  )
+}
+
 function Main() {
 
   
@@ -147,6 +196,9 @@ function Main() {
     else if (location == 'NewPost') {
       return <NewPost />
     }
+    else if (location == 'NewOrg') {
+      return <NewOrg />
+    }
     else {
       return <h1>Error</h1>
     }
@@ -160,8 +212,7 @@ function Main() {
             <button onClick={() => setLocation('Home')}  className="cursor-pointer hover:bg-blue-500 bg-blue-700 text-white p-3">Home</button>
             <button onClick={() => setLocation('NewFundraiser')}  className="cursor-pointer hover:bg-gray-300 bg-green-200 p-3">New Fundraiser +</button>
             <button onClick={() => setLocation('NewPost')}  className="cursor-pointer hover:bg-gray-300 bg-green-200 p-3">New Post +</button>
-            <button onClick={() => setLocation('Dashboard')}  className="cursor-pointer hover:bg-gray-300 p-3">Posts and Fundraisers</button>
-            <button onClick={() => setLocation('Dashboard')}  className="cursor-pointer hover:bg-gray-300 p-3">Organization Profile</button>
+            <button onClick={() => setLocation('NewOrg')}  className="cursor-pointer hover:bg-gray-300 bg-green-200 p-3">New Organization + </button>
             <button onClick={() => { logout({ returnTo: window.location.origin })}}className="cursor-pointer bg-red-500 hover:bg-red-300 text-white p-3">Logout</button>
         </div>
       </div>
@@ -195,4 +246,4 @@ const Dashboard = () => {
 
 export default withAuthenticationRequired(Dashboard)
 
-export const Head = () => <title>Organizer Dashboard</title>
+export const Head = () => <title>Admin Dashboard</title>
