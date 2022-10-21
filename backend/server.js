@@ -5,6 +5,9 @@ const port = 3000
 const cors = require("cors")
 const bodyParser = require('body-parser')
 const pool = require('./db')
+const fileUpload = require('express-fileupload');
+
+app.use(fileUpload());
 
 // Add headers
 app.use(function (req, res, next) {
@@ -45,18 +48,14 @@ const config = {
 
 app.use(auth(config));
 
-
-
 const fundraisers = require('./routes/fundraisers')
 const userData = require('./routes/userData')
 const organizations = require('./routes/organizations')
 const feed = require('./routes/feed')
 app.use('/fundraisers', fundraisers)
 app.use('/userdata', userData)
-app.use('/organizations', organizations)
+app.use('/organizations',organizations )
 app.use('/feed', feed)
-
-
 
 
 app.listen(port, () => {

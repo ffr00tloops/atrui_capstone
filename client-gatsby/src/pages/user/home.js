@@ -7,7 +7,7 @@ import axios from 'axios'
 import { Router} from '@reach/router'
 import { withAuthenticationRequired } from '@auth0/auth0-react';
 import ProgressBar from "@ramonak/react-progress-bar";
-
+import { useAuth0 } from "@auth0/auth0-react";
 
 function Fundraisers() {
 
@@ -168,6 +168,10 @@ const SubPageFundraisers = props => {
 
   const [fundraisers, setFundraisers] = useState([]);
 
+  const [amount, setAmount] = useState(0);
+  
+  const { user } = useAuth0();
+
   useEffect(() => {
     axios.get(`http://128.199.101.58/fundraisers/getAllPosts/${props.id}`)
     .then(res => {
@@ -176,6 +180,33 @@ const SubPageFundraisers = props => {
     .catch(err => { console.log(err)})
 
   },[])
+
+  function Donate() {
+
+    var today = new Date();
+    var dd = String(today.getDate()).padStart(2, '0');
+    var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+    var yyyy = today.getFullYear();
+
+    
+
+
+    today = mm + '/' + dd + '/' + yyyy;
+
+    const postData = {
+          "donor" : `${user.name}`,
+          "fundraiser" : `${fundraisers.title}`,
+          'datemade' : `${today}`,
+          "amount" : `${amount}`
+
+      };
+      axios.post(`http://localhost:3000/fundraisers/donate`, postData)
+      .then( res => {
+          console.log(res)
+      })
+      alert("You have submitted a recipe");
+
+  }
 
   
   return (
@@ -189,7 +220,8 @@ const SubPageFundraisers = props => {
             <h1 className="p-3 m-3">Duration: {fundraisers.duration} Days Left</h1>
             <ProgressBar className="p-3 m-3" completed={60} maxCompleted={100} />
             <div className="text-center">
-              <button className="bg-green-500 p-3 m-3 text-white">Donate</button>
+              <input onChange={(e) => setAmount(e.target.value)} value={amount} />
+              <button onClick={Donate} className="bg-green-500 p-3 m-3 text-white">Donate</button>
               <Link to="/user/home">
               <button className="bg-blue-500 p-3 m-3 text-white">Go Back</button>
               </Link>
@@ -259,7 +291,6 @@ const SubPageOrganization = props => {
             <button className="bg-blue-500 p-3 m-3 text-white">Go Back</button>
             </Link>
           </div>
-            
         </div>
       </div>
   )

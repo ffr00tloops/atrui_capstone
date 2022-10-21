@@ -52,7 +52,16 @@ CREATE TABLE userData (
 );
 
 
-CREATE TABLE leaderboard {
+CREATE TABLE leaderboard (
     donator VARCHAR,
     amountdonated MONEY   
-};
+);
+
+
+CREATE TABLE donations (
+    id SERIAL PRIMARY KEY,
+    donor VARCHAR,
+    fundraiser VARCHAR,
+    datemade VARCHAR,
+    amount MONEY
+);
