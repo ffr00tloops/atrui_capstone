@@ -21,7 +21,7 @@ router.get("/getAllOrgs/:id", async (req, res) => {
 
     const searchOrg = await pool.query("SELECT * FROM organizations WHERE id = $1", [id])
       
-    res.json(allOrgs.rows)
+    res.json(searchOrg.rows)
   }
   catch(err)
   { 
