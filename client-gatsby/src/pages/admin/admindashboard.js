@@ -226,7 +226,7 @@ function Main() {
 function Banner() {
   return (
     <div className="bg-green-500 p-3">
-      <h1 className="p-3 m-3 text-center text-5xl text-white font-bo">Organizer Dashboard</h1>
+      <h1 className="p-3 m-3 text-center text-5xl text-white font-bo">Admin Dashboard</h1>
     </div>
   )
 }

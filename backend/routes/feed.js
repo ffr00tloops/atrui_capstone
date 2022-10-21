@@ -6,7 +6,7 @@ const pool = require('../db')
 router.get("/getAllFeeds", async (req, res) => {
 
   try {
-    const allFeed = await pool.query("SELECT * FROM feed")
+    const allFeed = await pool.query("SELECT * FROM feeds")
       
     res.json(allFeed.rows)
   }
@@ -21,7 +21,7 @@ router.get('/getAllFeeds/:id', async(req,res) => {
   try {
       const id = req.params.id
 
-      const searchFeed = await pool.query("SELECT * FROM feed WHERE id = $1", [id])
+      const searchFeed = await pool.query("SELECT * FROM feeds WHERE id = $1", [id])
 
       res.json(searchFeed.rows)
       

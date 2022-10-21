@@ -15,6 +15,20 @@ router.get("/getAllOrgs", async (req, res) => {
   }
 })
 
+router.post('/createOrganization', async (req,res) => {
+
+  try {
+      const { orgname, description, location, email, website, contactno,contactperson  } = req.body;
+      const newOrganization = await pool.query("INSERT INTO organizations(orgname, description,location, email, website, contactno, contactperson) VALUES($1,$2,$3,$4,$5,$6,$7) RETURNING *",[orgname, description,location, email, website, contactno, contactperson])
+
+      res.json(newOrganization)
+  }
+  catch(err){
+      console.log(err)
+  }
+  
+})
+
 
 module.exports = router;
 
