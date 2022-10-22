@@ -108,8 +108,8 @@ function Feed() {
           <Link to={`/user/home/feeds/${feed.id}`}>
           <div className="text-center border-2 rounded-xl drop-shadow-lg border-gray-200 m-3">
             <div className="p-3"> 
-              <img src="https://www.firstbenefits.org/wp-content/uploads/2017/10/placeholder.png"/>
               <h1 className="text-xl font-bold">{feed.title}</h1>
+              <h1 className="">{feed.description}</h1>
             </div> 
           </div>
           </Link>        
@@ -219,7 +219,7 @@ const SubPageFundraisers = props => {
             <h1 className="p-3 m-3">Total Goal Amount: {fundraisers.donationgoal}</h1>
             <h1 className="p-3 m-3">Duration: {fundraisers.duration} Days Left</h1>
             <ProgressBar className="p-3 m-3" completed={60} maxCompleted={100} />
-            <div className="text-center">
+            <div className="p-3 m-3 text-center">
               <input onChange={(e) => setAmount(e.target.value)} value={amount} />
               <button onClick={Donate} className="bg-green-500 p-3 m-3 text-white">Donate</button>
               <Link to="/user/home">
@@ -227,7 +227,7 @@ const SubPageFundraisers = props => {
               </Link>
             </div>
           </div>
-          <div className="row-start-2 row-span-4 col-span-4 row col-start-1">
+          <div className="p-3 m-3 row-start-2 row-span-4 col-span-4 row col-start-1">
             <p className="whitespace-pre-line" >{fundraisers.description}</p>
           </div>
         </div>
@@ -281,15 +281,21 @@ const SubPageOrganization = props => {
 
   
   return (
-    	<div className="w-6/12 m-auto rounded-lg bg-gray-200 mt-3 mb-3">
-        <div className="p-3 grid lg:grid-cols-2 text-center ">
+    	<div className="w-9/12 m-auto rounded-lg bg-gray-200 mt-3 mb-3">
+        <div className="p-3 lg:grid lg:grid-cols-4 ">
           <img src="https://upload.wikimedia.org/wikipedia/commons/8/89/Portrait_Placeholder.png"/>
-          <div>
-            <p className="whitespace-pre-line">{organizations.description}</p>
-            <p>{organizations.orgname}</p>
+          <div className="p-3 m-3 col-start-2 col-span-2">
+            <h1 className="text-xl font-bold">{organizations.orgname}</h1>
+            <h1 className="whitespace-pre-line">{organizations.description}</h1>
             <Link to="/user/home">
             <button className="bg-blue-500 p-3 m-3 text-white">Go Back</button>
             </Link>
+          </div>
+          <div className="p-3 m-3">
+            <h1>Location: {organizations.location}</h1>
+            <h1>Contact Person: {organizations.contactperson}</h1>
+            <h1>Contact Number:{organizations.contactno}</h1>
+            <h1>Website: <a>{organizations.website}</a></h1>            
           </div>
         </div>
       </div>
