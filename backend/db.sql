@@ -3,6 +3,7 @@
 
 CREATE TABLE fundraisers (
     id SERIAL PRIMARY KEY,
+    image VARCHAR,
     organizer VARCHAR,
     title VARCHAR,
     description VARCHAR,
@@ -13,7 +14,6 @@ CREATE TABLE fundraisers (
     duration INTEGER,
     contactname VARCHAR,
     contactno VARCHAR
-
 );
 
 

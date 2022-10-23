@@ -5,9 +5,7 @@ const port = 3000
 const cors = require("cors")
 const bodyParser = require('body-parser')
 const pool = require('./db')
-const fileUpload = require('express-fileupload');
-
-app.use(fileUpload());
+app.use(express.static('./upload'));
 
 // Add headers
 app.use(function (req, res, next) {

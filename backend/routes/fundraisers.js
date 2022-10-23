@@ -1,6 +1,20 @@
 const express = require('express');
 const router = express.Router();
 const pool = require('../db')
+const path = require('path')
+const multer = require('multer')
+
+
+const storage = multer.diskStorage({
+  destination: (req, file, cb) => {
+    cb(null, '../backend/upload')
+  },
+  filename: (req, file, cb) => {
+    console.log(file)
+    cb(null, `${Date.now()}--${file.originalname}` )
+  }
+})
+const upload = multer({storage : storage})
 
 router.get("/getAllPosts", async (req, res) => {
 
@@ -30,11 +44,13 @@ router.get('/getAllPosts/:id', async(req,res) => {
   }
 })
 
-router.post('/createFundraiser', async (req,res) => {
+router.post('/createFundraiser', upload.single('image'), async (req,res) => {
 
   try {
-      const { organizer, title, description, donationgoal, duration, datemade  } = req.body;
-      const newFundraiser = await pool.query("INSERT INTO fundraisers(organizer,title,description,donationgoal, duration, datemade) VALUES($1,$2,$3,$4, $5, $6) RETURNING *",[organizer, title, description, donationgoal, duration, datemade])
+
+      const image = req.file.filename
+      const {organizer, title, description, donationgoal, duration, datemade  } = req.body;
+      const newFundraiser = await pool.query("INSERT INTO fundraisers(image, organizer,title,description,donationgoal, duration, datemade) VALUES($1,$2,$3,$4, $5, $6 , $7) RETURNING *",[image, organizer, title, description, donationgoal, duration, datemade])
 
       res.json(newFundraiser)
   }
@@ -55,6 +71,7 @@ router.post('/donate', async(req,res) => {
 
   }
 })
+
 
 module.exports = router;
 
