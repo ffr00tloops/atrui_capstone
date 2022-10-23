@@ -19,10 +19,11 @@ CREATE TABLE fundraisers (
 
 CREATE TABLE organizations (
     id SERIAL PRIMARY KEY,
+    image VARCHAR,
     orgname VARCHAR,
     description VARCHAR,
     location VARCHAR,
-    fundraisers VARCHAR, /* Array containing fundraiser list to be modified to non varchar */
+    fundraisers VARCHAR,
     email VARCHAR,
     website VARCHAR,
     contactno VARCHAR,
