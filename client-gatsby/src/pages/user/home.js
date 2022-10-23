@@ -211,9 +211,9 @@ const SubPageFundraisers = props => {
   
   return (
     	<div className="w-8/12 m-auto rounded-lg bg-gray-200 mt-3 mb-3">
-        <div className="p-3 m-3 lg:grid lg:grid-cols-4 grid-rows-6 ">
-          <img className="row-span-1 m-auto col-start-1 row-start-1 border-2 border-black" src="https://upload.wikimedia.org/wikipedia/commons/8/89/Portrait_Placeholder.png"/>
-          <div className="col-start-3 m-auto row-start-1">
+        <div className="p-3 m-3 lg:grid lg:grid-cols-1 grid-rows-6 ">
+          <img className=" border-2 border-black" src="https://upload.wikimedia.org/wikipedia/commons/8/89/Portrait_Placeholder.png"/>
+          <div className="col-start-3 m-auto">
             <h1 className="text-xl p-3 m-3 font-bold">{fundraisers.title}</h1>
             <h1 className="p-3 m-3">Date Made: {fundraisers.datemade}</h1>
             <h1 className="p-3 m-3">Total Goal Amount: {fundraisers.donationgoal}</h1>
