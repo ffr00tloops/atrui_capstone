@@ -9,12 +9,22 @@ import { withAuthenticationRequired } from '@auth0/auth0-react';
 import ProgressBar from "@ramonak/react-progress-bar";
 import { useAuth0 } from "@auth0/auth0-react";
 
+
+const imageStyle = {
+  minHeight: "200px",
+  maxHeight: "200px"
+}
+
+
+
 function Fundraisers() {
+
+
 
   const [fundraisers, setFundraisers] = useState([]);
 
   useEffect(() => {
-    axios.get("http://128.199.101.58/fundraisers/getAllPosts/")
+    axios.get("http://localhost:3000/fundraisers/getAllPosts/")
     .then(res => {
         setFundraisers(res.data)
     })
@@ -31,8 +41,9 @@ function Fundraisers() {
           <Link to={`/user/home/fundraisers/${fundraiser.id}`}>
           <div className="text-center border-2 rounded-xl drop-shadow-lg border-gray-200 m-3">
             <div className="p-3">
-              <img src="https://www.firstbenefits.org/wp-content/uploads/2017/10/placeholder.png"/>
+              <img className="m-auto" style={imageStyle} src={`http://localhost:3000/${fundraiser.image}`}/>
               <h1 className="text-xl font-bold">{fundraiser.title}</h1>
+              <p>{fundraiser.description.slice(0, 50)+'...' }</p>
             </div> 
           </div>
           </Link>        
@@ -50,7 +61,7 @@ function Organizers() {
   const [organizations, setOrganizations] = useState([]);
 
   useEffect(() => {
-    axios.get("http://128.199.101.58/organizations/getAllOrgs")
+    axios.get("http://localhost:3000/organizations/getAllOrgs")
     .then(res => {
         setOrganizations(res.data)
     })
@@ -69,7 +80,7 @@ function Organizers() {
           <Link to={`/user/home/organization/${organization.id}`}>
           <div className="text-center border-2 rounded-xl drop-shadow-lg border-gray-200 m-3">
             <div className="p-3">
-              <img src="https://www.firstbenefits.org/wp-content/uploads/2017/10/placeholder.png"/>
+            <img className="m-auto" style={imageStyle} src={`http://localhost:3000/${organization.image}`}/>
               <h1 className="text-xl font-bold">{organization.orgname}</h1>
             </div> 
           </div>
@@ -88,7 +99,7 @@ function Feed() {
   const [feeds, setFeeds] = useState([]);
 
   useEffect(() => {
-    axios.get("http://128.199.101.58/feed/getAllFeeds")
+    axios.get("http://localhost:3000/feed/getAllFeeds")
     .then(res => {
         setFeeds(res.data)
     })
@@ -136,9 +147,6 @@ function Nav() {
     else if (location == "Organizers") {
       return <Organizers />
     }
-    else if (location == "Feed") {
-      return <Feed />
-    }
     else {
       return <h1>Error</h1>
     }
@@ -148,10 +156,9 @@ function Nav() {
 
   return (
     <div>
-      <div className="w-6/12 m-auto mb-12 grid lg:grid-cols-3">
+      <div className="w-6/12 m-auto mb-12 grid lg:grid-cols-2">
         <button onClick={() => setLocation('Fundraisers')} className="text-white bg-red-500 hover:bg-red-300 rounded-2xl drop-shadow-md border-2 p-3">Fundraisers</button>
         <button onClick={() => setLocation('Organizers')} className="text-white bg-red-500 hover:bg-red-300 rounded-2xl  drop-shadow-md border-2 p-3">Organizations</button>
-        <button onClick={() => setLocation('Feed')} className="text-white bg-red-500 hover:bg-red-300 border-2 rounded-2xl drop-shadow-md p-3">Feed</button>
       </div>
 
 
@@ -173,7 +180,7 @@ const SubPageFundraisers = props => {
   const { user } = useAuth0();
 
   useEffect(() => {
-    axios.get(`http://128.199.101.58/fundraisers/getAllPosts/${props.id}`)
+    axios.get(`http://localhost:3000/fundraisers/getAllPosts/${props.id}`)
     .then(res => {
         setFundraisers(res.data[0])
     })
@@ -212,7 +219,7 @@ const SubPageFundraisers = props => {
   return (
     	<div className="w-8/12 m-auto rounded-lg bg-gray-200 mt-3 mb-3">
         <div className="p-3 m-3 lg:grid lg:grid-cols-1 grid-rows-6 ">
-          <img className=" border-2 border-black" src="https://upload.wikimedia.org/wikipedia/commons/8/89/Portrait_Placeholder.png"/>
+          <img className=" border-2 border-black" style={imageStyle} src={`http://localhost:3000/${fundraisers.image}`}/>
           <div className="col-start-3 m-auto">
             <h1 className="text-xl p-3 m-3 font-bold">{fundraisers.title}</h1>
             <h1 className="p-3 m-3">Date Made: {fundraisers.datemade}</h1>
@@ -241,7 +248,7 @@ const SubPageFeed = props => {
   const [feeds, setFeeds] = useState([]);
 
   useEffect(() => {
-    axios.get(`http://128.199.101.58/feed/getAllFeeds/${props.id}`)
+    axios.get(`http://localhost:3000/feed/getAllFeeds/${props.id}`)
     .then(res => {
         setFeeds(res.data[0])
     })
@@ -271,7 +278,7 @@ const SubPageOrganization = props => {
   const [organizations, setOrganizations] = useState([]);
 
   useEffect(() => {
-    axios.get(`http://128.199.101.58/organizations/getAllOrgs/${props.id}`)
+    axios.get(`http://localhost:3000/organizations/getAllOrgs/${props.id}`)
     .then(res => {
         setOrganizations(res.data[0])
     })
@@ -283,7 +290,7 @@ const SubPageOrganization = props => {
   return (
     	<div className="w-9/12 m-auto rounded-lg bg-gray-200 mt-3 mb-3">
         <div className="p-3 lg:grid lg:grid-cols-4 ">
-          <img src="https://upload.wikimedia.org/wikipedia/commons/8/89/Portrait_Placeholder.png"/>
+          <img classname="m-auto" src={`http://localhost:3000/${organizations.image}`}/>
           <div className="p-3 m-3 col-start-2 col-span-2">
             <h1 className="text-xl font-bold">{organizations.orgname}</h1>
             <h1 className="whitespace-pre-line">{organizations.description}</h1>
