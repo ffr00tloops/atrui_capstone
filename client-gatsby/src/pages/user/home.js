@@ -155,8 +155,8 @@ function Nav() {
 
 
   return (
-    <div>
-      <div className="w-6/12 m-auto mb-12 grid lg:grid-cols-2">
+    <div className="mb-64">
+      <div className="w-6/12 m-auto mb-12 grid lg:grid-cols-2 ">
         <button onClick={() => setLocation('Fundraisers')} className="text-white bg-red-500 hover:bg-red-300 rounded-2xl drop-shadow-md border-2 p-3">Fundraisers</button>
         <button onClick={() => setLocation('Organizers')} className="text-white bg-red-500 hover:bg-red-300 rounded-2xl  drop-shadow-md border-2 p-3">Organizations</button>
       </div>

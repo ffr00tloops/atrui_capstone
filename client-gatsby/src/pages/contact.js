@@ -5,7 +5,7 @@ import Footer from '../components/Footer'
 
 function EmailForm() {
     return (
-      <div className="shadow-lg rounded-lg m-auto border-2 border-solid border-gray-100 p-3 text-center lg:w-6/12 mt-16 mb-16 grid">
+      <div className="mb-64 shadow-lg rounded-lg m-auto border-2 border-solid border-gray-100 p-3 text-center lg:w-6/12 mt-16 mb-16 grid">
         <h1 className="text-2xl p-3 font-bold">Send us an Inquiry!</h1>
         <input className="border-gray-300 border-2 p-3 m-3 rounded-lg" placeholder="Name"/>
         <input className="border-gray-300 border-2 p-3 m-3 rounded-lg" placeholder="Email Address"/>
