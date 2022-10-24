@@ -3,18 +3,29 @@ import React from 'react'
 
 export default function Footer() {
     return (
-      <div className="pb-8 bg-green-600 text-white">
-        <div className="w-10/12 m-auto text-center ">
-          <h1 className="lg:text-xl text-4xl font-bold lg:m-0 mb-12 lg:pt-8 pt-16">&nbsp;&nbsp;ATRUI</h1>
-          <div className="pt-8">
-          <a href="/" className="p-1 hover:text-black hover:bg-white hover:border-black lg:mr-3 text-md mb-3 border-solid border-2 border-white rounded-xl">Home</a>
-          <a href="/contact" className="p-1 hover:text-black hover:bg-white hover:border-black lg:mr-3 text-md mb-3 border-solid border-2 border-white rounded-xl">Contact Us</a>
-          <a href="/about "className="p-1 hover:text-black hover:bg-white hover:border-black lg:mr-3 text-md mb-3 border-solid border-2 border-white rounded-xl">About Us</a>
-          </div>
-          <div className="text-center pt-8">
-            <h1>@Copyright Atrui</h1>
-          </div>
-        </div>
-      </div>
+
+<footer class="p-4 bg-white rounded-lg bg-green-600 shadow md:px-6 md:py-8 font-bold text-white ">
+    <div class="sm:flex sm:items-center sm:justify-between">
+        <a href="https://flowbite.com/" class="flex items-center mb-4 sm:mb-0">
+            <img src="https://flowbite.com/docs/images/logo.svg" class="mr-3 h-8" alt="Flowbite Logo"/>
+            <span class="self-center text-2xl font-semibold whitespace-nowrap">ATRUI</span>
+        </a>
+        <ul class="flex flex-wrap items-center mb-6 text-sm sm:mb-0 ">
+            <li>
+                <a href="/" class="mr-4 hover:underline md:mr-6 ">Home</a>
+            </li>
+            <li>
+                <a href="/contact" class="mr-4 hover:underline md:mr-6">Contact</a>
+            </li>
+            <li>
+                <a href="/about" class="mr-4 hover:underline md:mr-6 ">About Us</a>
+            </li>
+        </ul>
+    </div>
+    <hr class="my-6 border-gray-200 sm:mx-auto  lg:my-8"/>
+    <span class="block text-sm  sm:text-center">© 2022 <a href="https://flowbite.com/" class="hover:underline">ATRUI</a>. All Rights Reserved.
+    </span>
+</footer>
+
     )
 }

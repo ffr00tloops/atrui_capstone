@@ -3,35 +3,50 @@ import Nav_Atrz from '../components/Nav_Atrz'
 import Footer from '../components/Footer'
 import { Link } from "gatsby";
 import { withAuthenticationRequired } from '@auth0/auth0-react';
-/* 👇 New Code */ 
+import {useEffect, useState} from "react"
+import axios from 'axios'
 
-function Posts() {
+const imageStyle = {
+  minHeight: "300px",
+  maxHeight: "300px"
+}
+
+function Fundraisers() {
+
+
+
+  const [fundraisers, setFundraisers] = useState([]);
+
+  useEffect(() => {
+    axios.get("https://atrui.online/fundraisers/getAllPosts/")
+    .then(res => {
+        setFundraisers(res.data)
+    })
+    .catch(err => { console.log(err)})
+
+  },[])
+  
   return (
     <div className="w-10/12 m-auto mt-8 mb-8">
-    <div className=" lg:grid lg:grid-cols-3 lg:grid-rows-1 w-10/12 m-auto">
-      <div className="border-2 rounded-sm drop-shadow-lg border-gray-200 m-3">
-        <div className="">
-          <img src="https://www.firstbenefits.org/wp-content/uploads/2017/10/placeholder.png"/>
-          <h1 className="text-xl font-bold">Hello World</h1>
-          <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. </p>
-        </div>
+      <h1 className="text-center text-green-600 text-5xl p-3 m-3">Fundraisers</h1>
+      <div className=" lg:grid lg:grid-cols-3 lg:grid-rows-1 w-10/12 m-auto">
+      {
+        fundraisers.map(fundraiser => (
+          <Link to={`/user/home/fundraisers/${fundraiser.id}`}>
+          <div className="border-2 rounded-xl drop-shadow-lg border-gray-200 m-3">
+            <div className="p-3">
+              <img className="m-auto" style={imageStyle} src={`https://atrui.online/${fundraiser.image}`}/>
+              <h1 className="text-xl font-bold">{fundraiser.title}</h1>
+              <p className="whitespace-pre-line">{fundraiser.description.substring(0,60) + "....." /*.slice(0, 50)+'...' */ }</p>
+            </div> 
+          </div>
+          </Link>        
+        ))
+      }  
+
       </div>
-      <div className="border-2 rounded-sm drop-shadow-lg border-gray-200 m-3">
-        <div className="">
-          <img src="https://www.firstbenefits.org/wp-content/uploads/2017/10/placeholder.png"/>
-          <h1 className="text-xl font-bold">Hello World</h1>
-          <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
-        </div>
-      </div>
-      <div className="border-2 rounded-sm drop-shadow-lg border-gray-200 m-3">
-        <div className="">
-          <img src="https://www.firstbenefits.org/wp-content/uploads/2017/10/placeholder.png"/>
-          <h1 className="text-xl font-bold">Hello World</h1>
-          <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
-        </div>
-      </div>
-    </div>
   </div>
+  
   )
 }
 
@@ -48,7 +63,7 @@ const IndexPage = () => {
     <div>
       <Nav_Atrz />
       <Banner />
-      <Posts />
+      <Fundraisers />
       <Footer/>
     </div>
   )
