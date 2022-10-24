@@ -39,11 +39,11 @@ function Fundraisers() {
       {
         fundraisers.map(fundraiser => (
           <Link to={`/user/home/fundraisers/${fundraiser.id}`}>
-          <div className="text-center border-2 rounded-xl drop-shadow-lg border-gray-200 m-3">
+          <div className="border-2 rounded-xl drop-shadow-lg border-gray-200 m-3">
             <div className="p-3">
               <img className="m-auto" style={imageStyle} src={`https://atrui.online/${fundraiser.image}`}/>
               <h1 className="text-xl font-bold">{fundraiser.title}</h1>
-              <p>{fundraiser.description /*.slice(0, 50)+'...' */ }</p>
+              <p className="whitespace-pre-line">{fundraiser.description.substring(0,60) + "....." /*.slice(0, 50)+'...' */ }</p>
             </div> 
           </div>
           </Link>        
