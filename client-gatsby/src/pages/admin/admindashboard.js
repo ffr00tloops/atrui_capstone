@@ -15,8 +15,6 @@ function NewFundraiser(){
 
     const [selectedFile, setSelectedFile] = React.useState(null);
 
-
-
     var today = new Date();
     var dd = String(today.getDate()).padStart(2, '0');
     var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
@@ -29,27 +27,29 @@ function NewFundraiser(){
 
 
     const handleSubmit = async(event) => {
-      event.preventDefault()
-      const formData = new FormData();
-      formData.append("image", selectedFile);
-      formData.append("organizer", orgname);
-      formData.append("title", title);
-      formData.append("donationgoal", donationgoal);
-      formData.append("description", description);
-      formData.append("duration", duration);
-      formData.append("datemade", today);
-      try {
-        const response = await axios({
-          method: "post",
-          url: "http://localhost:3000/fundraisers/createFundraiser",
-          data: formData,
-          headers: { "Content-Type": "multipart/form-data" },
-        });
 
-        alert('You submitted a new fundraiser')
-      } catch(error) {
-        console.log(error)
-      }
+        event.preventDefault()
+        const formData = new FormData();
+        formData.append("image", selectedFile);
+        formData.append("organizer", orgname);
+        formData.append("title", title);
+        formData.append("donationgoal", donationgoal);
+        formData.append("description", description);
+        formData.append("duration", duration);
+        formData.append("datemade", today);
+        try {
+          const response = await axios({
+            method: "post",
+            url: "https://atrui.online/fundraisers/createFundraiser",
+            data: formData,
+            headers: { "Content-Type": "multipart/form-data" },
+          });
+
+          alert('You submitted a new fundraiser')
+        } catch(error) {
+          console.log(error)
+        }
+      
     }    
     
     const handleFileSelect = (event) => {
@@ -113,7 +113,7 @@ function NewOrg(){
     try {
       const response = await axios({
         method: "post",
-        url: "http://localhost:3000/organizations/createOrganization",
+        url: "https://atrui.online/organizations/createOrganization",
         data: formData,
         headers: { "Content-Type": "multipart/form-data" },
 
