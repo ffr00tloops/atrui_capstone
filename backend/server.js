@@ -6,6 +6,7 @@ const cors = require("cors")
 const bodyParser = require('body-parser')
 const pool = require('./db')
 app.use(express.static('./upload'));
+app.use(express.static('./badges'));
 
 // Add headers
 app.use(function (req, res, next) {

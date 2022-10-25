@@ -139,6 +139,84 @@ function History(){
   )
 }
 
+function Badges(){
+
+
+  return (
+    <div className="bg-gray-300 col-span-3 ">
+    <div className="grid lg:grid-cols-1 lg:grid-rows-6 ">
+      <h1 className="text-center p-3 m-3 text-2xl font-bold">Ranking System</h1>
+      <div className=" text-black grid grid-cols-2 text-center">
+        <div>
+          <h1>Your current rank is</h1>
+          <h1 className="text-yellow-500 text-2xl font-bold">Gold IV</h1>
+        </div>
+        <div>
+          <h1>Points awarded:</h1>
+          <h1>PHP1 = 5 Ranked Points:</h1>
+          <h1>PHP1 = 0.5LVL Points:</h1>
+        </div>
+      </div>
+      <div className=" text-black grid grid-cols-7 gap-4 text-center m-auto">
+        <div className="bg-green-500 p-3 rounded-full">
+          <h1 className="font-bold text-lg">IV</h1>
+        </div>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-6 h-6 m-3">
+        <path fillRule="evenodd" d="M16.72 7.72a.75.75 0 011.06 0l3.75 3.75a.75.75 0 010 1.06l-3.75 3.75a.75.75 0 11-1.06-1.06l2.47-2.47H3a.75.75 0 010-1.5h16.19l-2.47-2.47a.75.75 0 010-1.06z" clipRule="evenodd" />
+        </svg>
+        <div className="bg-green-500 p-3 rounded-full">
+          <h1 className="font-bold text-lg">III</h1>
+        </div>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-6 h-6 m-3">
+        <path fillRule="evenodd" d="M16.72 7.72a.75.75 0 011.06 0l3.75 3.75a.75.75 0 010 1.06l-3.75 3.75a.75.75 0 11-1.06-1.06l2.47-2.47H3a.75.75 0 010-1.5h16.19l-2.47-2.47a.75.75 0 010-1.06z" clipRule="evenodd" />
+        </svg>
+        <div className="bg-green-500 p-3 rounded-full">
+          <h1 className="font-bold text-lg">II</h1>
+        </div>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-6 h-6 m-3">
+        <path fillRule="evenodd" d="M16.72 7.72a.75.75 0 011.06 0l3.75 3.75a.75.75 0 010 1.06l-3.75 3.75a.75.75 0 11-1.06-1.06l2.47-2.47H3a.75.75 0 010-1.5h16.19l-2.47-2.47a.75.75 0 010-1.06z" clipRule="evenodd" />
+        </svg>
+        <div className="bg-green-500 p-3 rounded-full">
+          <h1 className="font-bold text-lg">I</h1>
+        </div>
+      </div>
+      <div className="lg:grid row-span-3 grid-cols-5">
+        <div className="bg-yellow-700 p-12 m-3 text-center">
+          <h1>0 RP Required</h1>
+          <h1 className="text-xl font-bold">Bronze</h1>
+          <h1>Rewards:</h1>
+          <h1>Bronze Badge</h1>
+        </div>
+        <div className="bg-gray-600 p-12 m-3 text-center">
+          <h1>4,000 RP Required</h1>
+          <h1 className="text-xl font-bold">Silver</h1>
+          <h1>Rewards:</h1>
+          <h1>Silver Badge</h1>
+        </div>
+        <div className="bg-yellow-500 p-12 m-3 text-center">
+          <h1>32,000 RP Required</h1>
+          <h1 className="text-xl font-bold">Gold</h1>
+          <h1>Rewards:</h1>
+          <h1>Gold Badge</h1>
+        </div>
+        <div className="bg-blue-400 p-12 m-3 text-center">
+          <h1>960,000 RP Required</h1>
+          <h1 className="text-xl font-bold">Platinum</h1>
+          <h1>Rewards:</h1>
+          <h1>Platinum Badge</h1>
+        </div>
+        <div className="bg-red-700 p-12 m-3 text-center">
+          <h1>15,360,000 RP Required</h1>
+          <h1 className="text-xl font-bold">Philanthropist</h1>
+          <h1>Rewards:</h1>
+          <h1>Philanthropist Badge</h1>
+        </div>
+      </div>
+    </div>
+  </div>
+  )
+}
+
 
 function Main() {
 
@@ -165,6 +243,9 @@ function Main() {
     else if (location == 'History') {
       return <History />
     }
+    else if (location == 'Badges') {
+      return <Badges />
+    }
     else {
       return <h1>Error</h1>
     }
@@ -178,10 +259,8 @@ function Main() {
           <button onClick={() => setLocation('Home')}  className="cursor-pointer hover:bg-blue-500 bg-blue-700 text-white p-3">Home</button>
           <button onClick={() => setLocation('Dashboard')}  className="cursor-pointer hover:bg-gray-300 p-3">Dashboard</button>
           <button onClick={() => setLocation('Leaderboard')} className="cursor-pointer hover:bg-gray-300 p-3">Leaderboard</button>
-          <button onClick={() => setLocation('Dashboard')} className="cursor-pointer hover:bg-gray-300 p-3">Badges</button>
+          <button onClick={() => setLocation('Badges')} className="cursor-pointer hover:bg-gray-300 p-3">Badges</button>
           <button onClick={() => setLocation('History')} className="cursor-pointer hover:bg-gray-300 p-3">History</button>
-          <button onClick={() => setLocation('Dashboard')} className="cursor-pointer hover:bg-gray-300 p-3">Profile</button>
-          <button onClick={() => setLocation('Dashboard')} className="cursor-pointer hover:bg-gray-300 p-3">Account</button>
           <button onClick={() => { logout({ returnTo: window.location.origin })}}className="cursor-pointer bg-red-500 hover:bg-red-300 text-white p-3">Logout</button>
         </div>
       </div>
