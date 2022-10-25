@@ -40,7 +40,7 @@ function NewFundraiser(){
         try {
           const response = await axios({
             method: "post",
-            url: "https://atrui.online/fundraisers/createFundraiser",
+            url: "http://localhost:3000/fundraisers/createFundraiser",
             data: formData,
             headers: { "Content-Type": "multipart/form-data" },
           });
@@ -113,7 +113,7 @@ function NewOrg(){
     try {
       const response = await axios({
         method: "post",
-        url: "https://atrui.online/organizations/createOrganization",
+        url: "http://localhost:3000/organizations/createOrganization",
         data: formData,
         headers: { "Content-Type": "multipart/form-data" },
 

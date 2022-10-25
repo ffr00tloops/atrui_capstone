@@ -16,7 +16,7 @@ export default function Nav_Atrz() {
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ uniqueid: `${user.sub}` })
             };
-            fetch('https://atrui.online/userdata/verifyNewUser', requestOptions)
+            fetch('http://loocalhost:3000/userdata/verifyNewUser', requestOptions)
                 .then(response => response.json())
                 .then(data =>{
                     console.log(data)
@@ -26,7 +26,7 @@ export default function Nav_Atrz() {
                             headers: { 'Content-Type': 'application/json' },
                             body: JSON.stringify({ uniqueid: `${user.sub}`, email: `${user.email}` })
                         };
-                        fetch('https://atrui.online/userdata/newUser', requestOptions2)
+                        fetch('http://loocalhost:3000/userdata/newUser', requestOptions2)
                             .then(response => response.json())
                             .then(data => console.log("New user has been added"));
                     }
