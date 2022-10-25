@@ -1,23 +1,26 @@
 import * as React from "react"
-import {useState} from "react"
+import {useState, useEffect} from "react"
 import Footer from '../../components/Footer'
 import Nav_Atrz from "../../components/Nav_Atrz"
 import { withAuthenticationRequired } from '@auth0/auth0-react';
 import { useAuth0 } from "@auth0/auth0-react";
+import axios from 'axios'
+
+
 
 
 function DashboardContent(){
 
 
   const image = {
-    width: "100px",
-    height: "100px"
+    maxWidth: "200px",
+    maxHeight: "200px"
   };
 
 
   return (
     <div className="bg-gray-300 col-span-3 ">
-    <div className="lg:grid lg:grid-cols-3 gap-3 grid-rows-6">
+    <div className="lg:grid lg:grid-cols-2 gap-3 grid-rows-6">
       <div className="bg-white m-3 p-3 text-center">
         <h1>Current Rank: Bronze IV</h1>
         <h1>Season 1: 60 Days Left</h1>
@@ -31,9 +34,6 @@ function DashboardContent(){
       </div>
       <div className="bg-white m-3 col-start-2 row-start-2 row-span-2 p-3 text-center">
         <h1>Total Donations</h1>
-      </div>
-      <div className="bg-white m-3 grid grid-rows-3 row-span-5 col-start-3 p-3 text-center">
-        <h1 className="row-start-2">Weekly Challenges</h1>
       </div>
       <div className="bg-white m-3 p-3 row-start-4 col-start-1 col-span-2 text-center">
         <h1>Level Experience</h1>
@@ -100,6 +100,46 @@ function Leaderboard(){
   )
 }
 
+function History(){
+
+
+  const [donations, setDonation] = useState([]);
+
+  const {user} = useAuth0()
+
+  useEffect(() => {
+    axios.get(`http://localhost:3000/fundraisers/getDonations/${user.name}`)
+    .then(res => {
+        setDonation(res.data)
+    })
+    .catch(err => { console.log(err)})
+
+  },[])
+
+
+  return (
+    <div className="bg-gray-300 col-span-3 ">
+    <div className="grid lg:grid-cols-1 ">
+      <div className="bg-white m-3 p-3 grid grid-cols-3 text-center">
+        <h1 className="text-xl font-bold text-green-600">ID:</h1>
+        <h1 className="text-xl font-bold text-red-600">Date Made</h1>
+        <h1 className="text-xl font-bold text-blue-600">Donation Amount</h1>
+      </div>
+      {
+        donations.map(donation => (
+          <div className=" m-3 p-3 grid grid-cols-3 text-center">
+          <h1 className="text-xl">{donation.id}</h1>
+          <h1 className="text-xl">{donation.datemade}</h1>
+          <h1 className="text-xl">{donation.amount}</h1>
+        </div>
+        ))
+      }
+    </div>
+  </div>
+  )
+}
+
+
 function Main() {
 
   
@@ -122,6 +162,9 @@ function Main() {
     else if (location == 'Leaderboard') {
       return <Leaderboard />
     }
+    else if (location == 'History') {
+      return <History />
+    }
     else {
       return <h1>Error</h1>
     }
@@ -136,8 +179,7 @@ function Main() {
           <button onClick={() => setLocation('Dashboard')}  className="cursor-pointer hover:bg-gray-300 p-3">Dashboard</button>
           <button onClick={() => setLocation('Leaderboard')} className="cursor-pointer hover:bg-gray-300 p-3">Leaderboard</button>
           <button onClick={() => setLocation('Dashboard')} className="cursor-pointer hover:bg-gray-300 p-3">Badges</button>
-          <button onClick={() => setLocation('Dashboard')} className="cursor-pointer hover:bg-gray-300 p-3">Achievements</button>
-          <button onClick={() => setLocation('Dashboard')} className="cursor-pointer hover:bg-gray-300 p-3">History</button>
+          <button onClick={() => setLocation('History')} className="cursor-pointer hover:bg-gray-300 p-3">History</button>
           <button onClick={() => setLocation('Dashboard')} className="cursor-pointer hover:bg-gray-300 p-3">Profile</button>
           <button onClick={() => setLocation('Dashboard')} className="cursor-pointer hover:bg-gray-300 p-3">Account</button>
           <button onClick={() => { logout({ returnTo: window.location.origin })}}className="cursor-pointer bg-red-500 hover:bg-red-300 text-white p-3">Logout</button>

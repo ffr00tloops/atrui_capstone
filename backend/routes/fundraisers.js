@@ -72,6 +72,35 @@ router.post('/donate', async(req,res) => {
   }
 })
 
+router.get("/getDonations/:donor", async (req, res) => {
+
+  try {
+    const donor = req.params.donor
+
+    const allDonations = await pool.query("SELECT * FROM donations WHERE donor = $1", [donor])
+      
+    res.json(allDonations.rows)
+  }
+  catch(err)
+  { 
+      console.log (err.message)
+  }
+})
+
+router.get("/getDonations", async(req, res) => {
+
+  try {
+
+    const allDonations = await pool.query("SELECT * FROM donations")
+      
+    res.json(allDonations.rows)
+  }
+  catch(err)
+  { 
+      console.log (err.message)
+  }
+})
+
 
 module.exports = router;
 
