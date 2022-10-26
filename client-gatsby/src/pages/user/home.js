@@ -174,6 +174,7 @@ const SubPageFundraisers = props => {
 
 
   const [fundraisers, setFundraisers] = useState([]);
+  const [donationprogress, setDonationprogress] = useState([]);
 
   const [amount, setAmount] = useState(0);
   
@@ -186,7 +187,22 @@ const SubPageFundraisers = props => {
     })
     .catch(err => { console.log(err)})
 
-  },[])
+
+
+  },[])    
+  
+  useEffect(() => {
+  axios.get(`http://localhost:3000/fundraisers/getFundraiserProgress/${fundraisers.title}`)
+    .then(res => {
+        setDonationprogress(res.data[0])
+    })
+    .catch(err => { console.log(err)})
+  
+  })
+
+
+  console.log(donationprogress.sum)
+
 
   function Donate() {
 
@@ -211,20 +227,22 @@ const SubPageFundraisers = props => {
       .then( res => {
           console.log(res)
       })
-      alert("You have submitted a recipe");
+      alert("You have submitted a donation");
 
   }
 
   
+  
   return (
     	<div className="w-8/12 m-auto rounded-lg bg-gray-200 mt-3 mb-3">
-        <div className="p-3 m-3 lg:grid lg:grid-cols-1 grid-rows-6 ">
-          <img className=" border-2 border-black" style={imageStyle} src={`http://localhost:3000/${fundraisers.image}`}/>
-          <div className="col-start-3 m-auto">
-            <h1 className="text-xl p-3 m-3 font-bold">{fundraisers.title}</h1>
-            <h1 className="p-3 m-3">Date Made: {fundraisers.datemade}</h1>
-            <h1 className="p-3 m-3">Total Goal Amount: {fundraisers.donationgoal}</h1>
-            <h1 className="p-3 m-3">Duration: {fundraisers.duration} Days Left</h1>
+        <div className="p-3 m-3 lg:grid lg:grid-cols-2 grid-rows-6 ">
+          <img className="col-start-1" src={`http://localhost:3000/${fundraisers.image}`}/>
+          <div className="col-start-2 m-auto">
+            <h1 className="text-3xl p-3 m-3 font-bold">{fundraisers.title}</h1>
+            <h1 className="p-3 m-3"><b>Date Made:</b>  {fundraisers.datemade}</h1>
+            <h1 className="p-3 m-3"><b>Total Donation Goal:</b> {fundraisers.donationgoal}</h1>
+            <h1 className="p-3 m-3"><b>Date Made:</b> {fundraisers.duration} Days Left</h1>
+            <h1 className="p-3 m-3"><b>Money Raised:</b>{donationprogress.sum}</h1>
             <ProgressBar className="p-3 m-3" completed={60} maxCompleted={100} />
             <div className="p-3 m-3 text-center">
               <input onChange={(e) => setAmount(e.target.value)} value={amount} />
@@ -236,6 +254,7 @@ const SubPageFundraisers = props => {
           </div>
           <div className="p-3 m-3 row-start-2 row-span-4 col-span-4 row col-start-1">
             <p className="whitespace-pre-line" >{fundraisers.description}</p>
+            <div id="gcash-container"></div>
           </div>
         </div>
       </div>

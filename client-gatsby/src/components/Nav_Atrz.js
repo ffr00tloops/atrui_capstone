@@ -37,7 +37,13 @@ export default function Nav_Atrz() {
 
         if (isAuthenticated) {
             VerifyNewUser()
-            return <a href='/user/u_dashboard'className="p-3 text-lg rounded-3xl text-white bg-blue-500">{user.email}</a>
+            return  (
+            <>
+                <a href='/user/home'className="p-3 m-3 text-lg rounded-3xl text-white bg-green-500">Homepage</a>
+                <a href='/user/u_dashboard'className="p-3 m-3 text-md rounded-3xl text-white bg-blue-500">{user.email}</a>
+                
+            </>
+            )
             
             
         }
@@ -50,13 +56,12 @@ export default function Nav_Atrz() {
     }
 
     return( 
-        <div className="p-6 m-6 lg:grid text-center grid-cols-2 justify-between">
+        <div className="p-3 m-3 grid grid-cols-1 lg:grid-cols-3 m-auto text-center">
             <a href="/" className="text-5xl m-auto text-green-600" style={{fontFamily: 'Merriweather'}}>ATRUI</a>
-            <div className=" m-auto pt-3">
+
+        
+            {VerifyAuth()}
             
-                {VerifyAuth()}
-            
-            </div>
         </div>
     )
 

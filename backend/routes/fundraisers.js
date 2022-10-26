@@ -101,6 +101,21 @@ router.get("/getDonations", async(req, res) => {
   }
 })
 
+router.get('/getFundraiserProgress/:fundraiser', async(req,res) => {
+    
+  try {
+    const fundraiser = req.params.fundraiser
+
+      const searchFundraiser = await pool.query("SELECT SUM(amount) FROM donations WHERE fundraiser = $1", [fundraiser])
+
+      res.json(searchFundraiser.rows)
+      
+  }
+  catch(err){
+      console.log(err.message)
+  }
+})
+
 
 module.exports = router;
 

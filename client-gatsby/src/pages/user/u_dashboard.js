@@ -158,25 +158,25 @@ function Badges(){
         </div>
       </div>
       <div className=" text-black grid grid-cols-7 gap-4 text-center m-auto">
-        <div className="bg-green-500 p-3 rounded-full">
+        <div className="bg-yellow-500 p-3 rounded-full">
           <h1 className="font-bold text-lg">IV</h1>
         </div>
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-6 h-6 m-3">
         <path fillRule="evenodd" d="M16.72 7.72a.75.75 0 011.06 0l3.75 3.75a.75.75 0 010 1.06l-3.75 3.75a.75.75 0 11-1.06-1.06l2.47-2.47H3a.75.75 0 010-1.5h16.19l-2.47-2.47a.75.75 0 010-1.06z" clipRule="evenodd" />
         </svg>
-        <div className="bg-green-500 p-3 rounded-full">
+        <div className="bg-yellow-500 p-3 rounded-full">
           <h1 className="font-bold text-lg">III</h1>
         </div>
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-6 h-6 m-3">
         <path fillRule="evenodd" d="M16.72 7.72a.75.75 0 011.06 0l3.75 3.75a.75.75 0 010 1.06l-3.75 3.75a.75.75 0 11-1.06-1.06l2.47-2.47H3a.75.75 0 010-1.5h16.19l-2.47-2.47a.75.75 0 010-1.06z" clipRule="evenodd" />
         </svg>
-        <div className="bg-green-500 p-3 rounded-full">
+        <div className="bg-yellow-500 p-3 rounded-full">
           <h1 className="font-bold text-lg">II</h1>
         </div>
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-6 h-6 m-3">
         <path fillRule="evenodd" d="M16.72 7.72a.75.75 0 011.06 0l3.75 3.75a.75.75 0 010 1.06l-3.75 3.75a.75.75 0 11-1.06-1.06l2.47-2.47H3a.75.75 0 010-1.5h16.19l-2.47-2.47a.75.75 0 010-1.06z" clipRule="evenodd" />
         </svg>
-        <div className="bg-green-500 p-3 rounded-full">
+        <div className="bg-yellow-500 p-3 rounded-full">
           <h1 className="font-bold text-lg">I</h1>
         </div>
       </div>
