@@ -71,6 +71,6 @@ const IndexPage = () => {
 
 
 
-export default withAuthenticationRequired(IndexPage)
+export default IndexPage
 
 export const Head = () => <title>Home Page</title>
