@@ -5,46 +5,103 @@ import Nav_Atrz from "../../components/Nav_Atrz"
 import { withAuthenticationRequired } from '@auth0/auth0-react';
 import { useAuth0 } from "@auth0/auth0-react";
 import axios from 'axios'
+import NavOldUser from "../../components/NavOldUser";
 
 
 
 
 function DashboardContent(){
 
+  const [userStats, setUserStats] = useState([]);
+  const [totaldonations, setTotaldonations] = useState([]);
 
   const image = {
     maxWidth: "200px",
     maxHeight: "200px"
   };
 
+  const { user } = useAuth0();
+
+
+
+  useEffect(() => {
+    axios.get(`http://localhost:3000/userdata/getUserPoints/${user.sub}`)
+      .then(res => {
+          setUserStats(res.data[0])
+      })
+      .catch(err => { console.log(err)})
+    
+    },[])
+
+  useEffect(() => {
+    axios.get(`http://localhost:3000/fundraisers/getUserTotalDonations/${user.name}`)
+      .then(res => {
+          setTotaldonations(res.data[0])
+      })
+      .catch(err => { console.log(err)})
+    
+    },[]) 
+
+  
+  function BadgeImage() {
+
+    if ((userStats.rankpoints >= 0.25 * 4000) && (userStats.rankpoints <= 0.50 * 4000)) { return <img className="m-auto bg-red-200 rounded-full" style={image} src={`http://localhost:3000/br4.png`}/> }
+    if ((userStats.rankpoints >= 0.50 * 4000) && (userStats.rankpoints <= 0.75 * 4000)) { return <img className="m-auto bg-red-200 rounded-full" style={image} src={`http://localhost:3000/br3.png`}/> }
+    if ((userStats.rankpoints >= 0.75 * 4000) && (userStats.rankpoints <= 4000)) { return <img className="m-auto bg-red-200 rounded-full" style={image} src={`http://localhost:3000/br2.png`}/> }
+    if ((userStats.rankpoints >= 4000) && (userStats.rankpoints <= 0.25 * 32000)) { return <img className="m-auto bg-red-200 rounded-full" style={image} src={`http://localhost:3000/br1.png`}/> }
+
+    if ((userStats.rankpoints >= 0.25 * 32000) && (userStats.rankpoints <= 0.50 * 32000)) { return <img className="m-auto bg-red-200 rounded-full" style={image} src={`http://localhost:3000/sil4.png`}/> }
+    if ((userStats.rankpoints >= 0.50 * 32000) && (userStats.rankpoints <= 0.75 * 32000)) { return <img className="m-auto bg-red-200 rounded-full" style={image} src={`http://localhost:3000/sil3.png`}/> }
+    if ((userStats.rankpoints >= 0.75 * 32000) && (userStats.rankpoints <= 32000)) { return <img className="m-auto bg-red-200 rounded-full" style={image} src={`http://localhost:3000/sil2.png`}/> }
+    if ((userStats.rankpoints >= 32000) && (userStats.rankpoints <= 0.25 * 960000)) { return <img className="m-auto bg-red-200 rounded-full" style={image} src={`http://localhost:3000/sil1.png`}/> }
+
+    if ((userStats.rankpoints >= 0.25 * 960000) && (userStats.rankpoints <= 0.50 * 960000)) { return <img className="m-auto bg-red-200 rounded-full" style={image} src={`http://localhost:3000/gl4.png`}/> }
+    if ((userStats.rankpoints >= 0.50 * 960000) && (userStats.rankpoints <= 0.75 * 960000)) { return <img className="m-auto bg-red-200 rounded-full" style={image} src={`http://localhost:3000/gl3.png`}/> }
+    if ((userStats.rankpoints >= 0.75 * 4000) && (userStats.rankpoints <= 960000)) { return <img className="m-auto bg-red-200 rounded-full" style={image} src={`http://localhost:3000/gl2.png`}/> }
+    if ((userStats.rankpoints >= 960000) && (userStats.rankpoints <= 0.25 * 15360000)) { return <img className="m-auto bg-red-200 rounded-full" style={image} src={`http://localhost:3000/gl1.png`}/> }
+
+    if ((userStats.rankpoints >= 0.25 * 15360000) && (userStats.rankpoints <= 0.50 * 15360000)) { return <img className="m-auto bg-red-200 rounded-full" style={image} src={`http://localhost:3000/pl4.png`}/> }
+    if ((userStats.rankpoints >= 0.50 * 15360000) && (userStats.rankpoints <= 0.75 * 15360000)) { return <img className="m-auto bg-red-200 rounded-full" style={image} src={`http://localhost:3000/pl3.png`}/> }
+    if ((userStats.rankpoints >= 0.75 * 15360000) && (userStats.rankpoints <= 15360000)) { return <img className="m-auto bg-red-200 rounded-full" style={image} src={`http://localhost:3000/pl2.png`}/> }
+    if ((userStats.rankpoints >= 15360000) && (userStats.rankpoints <= 0.25 * 100000000)) { return <img className="m-auto bg-red-200 rounded-full" style={image} src={`http://localhost:3000/pl1.png`}/> }
+
+
+    if ((userStats.rankpoints >= 0.25 * 100000000) && (userStats.rankpoints <= 0.50 * 100000000)) { return <img className="m-auto bg-red-200 rounded-full" style={image} src={`http://localhost:3000/ph4.png`}/> }
+    if ((userStats.rankpoints >= 0.50 * 100000000) && (userStats.rankpoints <= 0.75 * 100000000)) { return <img className="m-auto bg-red-200 rounded-full" style={image} src={`http://localhost:3000/ph3.png`}/> }
+    if ((userStats.rankpoints >= 0.75 * 100000000) && (userStats.rankpoints <= 100000000)) { return <img className="m-auto bg-red-200 rounded-full" style={image} src={`http://localhost:3000/ph2.png`}/> }
+    if ((userStats.rankpoints >= 100000000) && (userStats.rankpoints <= 0.25 * 500000000)) { return <img className="m-auto bg-red-200 rounded-full" style={image} src={`http://localhost:3000/ph1.png`}/> }
+    
+
+    
+
+
+  }
+
+
+
 
   return (
     <div className="bg-gray-300 col-span-3 ">
-    <div className="lg:grid lg:grid-cols-2 gap-3 grid-rows-6">
-      <div className="bg-white m-3 p-3 text-center">
-        <h1>Current Rank: Bronze IV</h1>
-        <h1>Season 1: 60 Days Left</h1>
+    <div className="lg:grid lg:grid-cols-2 grid-rows-2 gap-3">
+      <div className="bg-white m-3 p-3 grid grid-rows-3 text-center">
+        <h1 className="row-start-2 text-2xl font-bold" >Total Rank Points : { userStats.rankpoints}</h1>
       </div>
       <div className="bg-white m-3 p-3 grid grid-rows-3 text-center">
-        <h1 className="row-start-2">Level : 1</h1>
+        <h1 className="row-start-2 text-red-500 font-bold text-5xl">Your are Level {userStats.level}</h1>
       </div>
-      <div className="bg-white row-start-2 row-span-2 m-3 p-3 text-center">
-          <img className="m-auto" style={image} src="https://cdn.shopify.com/s/files/1/0527/5808/5812/products/Badge_You_27re_Tiering_Me_Apart_Bronze_RS5_720x.png?v=1613484537"></img>
+      <div className="bg-white row-start-2 row-span-2 m-3 p-3 text-center"> 
+          <BadgeImage />
           <h1>Current Rank Badge</h1>
       </div>
-      <div className="bg-white m-3 col-start-2 row-start-2 row-span-2 p-3 text-center">
-        <h1>Total Donations</h1>
+      <div className="bg-white m-3 col-start-2 row-start-2 row-span-1 p-3 text-center">
+        <div>
+          <h1>Total Donations Made:</h1>
+          <h1 className="text-5xl font-bold">{totaldonations.sum}</h1>
+          </div>
       </div>
-      <div className="bg-white m-3 p-3 row-start-4 col-start-1 col-span-2 text-center">
-        <h1>Level Experience</h1>
-      </div>
-      <div className="bg-white m-3 p-3 row-start-5 col-start-1 col-span-2 text-center">
-        <h1>Rank Progress</h1>
-      </div>
-      <div className="bg-white m-3 p-3 row-start-6 col-start-1 col-span-3">
+      <div className="bg-white m-3 p-3 row-start-3 col-start-2">
         <h1>Earn Level exp and rank points through the following.</h1>
         <h1 className="text-blue-500">Donations</h1>
-        <h1 className="text-blue-500"s>Weekly Challenges</h1>
       </div>
     </div>
   </div>
@@ -116,21 +173,26 @@ function History(){
 
   },[])
 
+  
+
 
   return (
     <div className="bg-gray-300 col-span-3 ">
     <div className="grid lg:grid-cols-1 ">
-      <div className="bg-white m-3 p-3 grid grid-cols-3 text-center">
+      <div className="bg-white m-3 p-3 grid grid-cols-4 text-center">
         <h1 className="text-xl font-bold text-green-600">ID:</h1>
+        <h1 className="text-xl font-bold text-red-600">Fundraiser Name:</h1>
         <h1 className="text-xl font-bold text-red-600">Date Made</h1>
         <h1 className="text-xl font-bold text-blue-600">Donation Amount</h1>
       </div>
       {
         donations.map(donation => (
-          <div className=" m-3 p-3 grid grid-cols-3 text-center">
-          <h1 className="text-xl">{donation.id}</h1>
-          <h1 className="text-xl">{donation.datemade}</h1>
-          <h1 className="text-xl">{donation.amount}</h1>
+          <div className=" grid grid-cols-4 text-center">
+          <h1 className="text-sm">{donation.id}</h1>
+          <h1 className="text-sm">{donation.fundraiser}</h1>
+
+          <h1 className="text-sm">{donation.datemade}</h1>
+          <h1 className="text-sm">{donation.amount}</h1>
         </div>
         ))
       }
@@ -282,7 +344,7 @@ function Banner() {
 const Dashboard = () => {
   return (
     <div>
-      <Nav_Atrz/>
+      <NavOldUser/>
       <Banner />
       <Main />
       <Footer />

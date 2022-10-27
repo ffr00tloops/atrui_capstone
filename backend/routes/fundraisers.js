@@ -61,9 +61,20 @@ router.post('/createFundraiser', upload.single('image'), async (req,res) => {
 
 router.post('/donate', async(req,res) => {
   try {
-    const { donor, fundraiser, datemade, amount} = req.body;
+    const { donor, fundraiser, datemade, amount , uniqueid} = req.body;
 
     const newDonation = await pool.query("INSERT INTO donations(donor, fundraiser, datemade, amount) VALUES($1,$2,$3,$4) RETURNING *",[donor, fundraiser, datemade, amount])
+
+    const levelexperience = amount * 0.005 ;
+    const rankpoints = amount * 5
+
+    const level = parseInt(levelexperience)
+
+    const updateLevel = await pool.query("UPDATE userdata SET level = level + $1 WHERE uniqueid = $2",[level, uniqueid])
+    const updateRP = await pool.query("UPDATE userdata SET rankpoints = rankpoints + $1 WHERE uniqueid = $2",[rankpoints, uniqueid])
+
+
+
 
     res.json(newDonation)
   }
@@ -86,6 +97,23 @@ router.get("/getDonations/:donor", async (req, res) => {
       console.log (err.message)
   }
 })
+
+router.get("/getUserTotalDonations/:donor", async (req, res) => {
+
+  try {
+    const donor = req.params.donor
+
+    const allDonations = await pool.query("SELECT sum(amount) FROM donations WHERE donor = $1", [donor])
+      
+    res.json(allDonations.rows)
+  }
+  catch(err)
+  { 
+      console.log (err.message)
+  }
+})
+
+
 
 router.get("/getDonations", async(req, res) => {
 

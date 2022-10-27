@@ -226,7 +226,8 @@ const SubPageFundraisers = props => {
           "donor" : `${user.name}`,
           "fundraiser" : `${fundraisers.title}`,
           'datemade' : `${today}`,
-          "amount" : `${amount}`
+          "amount" : `${amount}`,
+          "uniqueid" : `${user.sub}`
 
       };
     axios.post(`http://localhost:3000/fundraisers/donate`, postData)
