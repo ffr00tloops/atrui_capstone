@@ -8,6 +8,7 @@ import { Router} from '@reach/router'
 import { withAuthenticationRequired } from '@auth0/auth0-react';
 import ProgressBar from "@ramonak/react-progress-bar";
 import { useAuth0 } from "@auth0/auth0-react";
+import NavOldUser from "../../components/NavOldUser"
 
 
 const imageStyle = {
@@ -24,7 +25,7 @@ function Fundraisers() {
   const [fundraisers, setFundraisers] = useState([]);
 
   useEffect(() => {
-    axios.get("https://atrui.online/fundraisers/getAllPosts/")
+    axios.get("http://localhost:3000/fundraisers/getAllPosts/")
     .then(res => {
         setFundraisers(res.data)
     })
@@ -33,7 +34,7 @@ function Fundraisers() {
   },[])
   
   return (
-    <div className="w-10/12 m-auto mt-8 mb-8">
+    <div className="lg:w-10/12 m-auto mt-8 mb-8">
       <h1 className="text-center text-green-600 text-5xl p-3 m-3">Fundraisers</h1>
       <div className=" lg:grid lg:grid-cols-4 lg:grid-rows-1 w-10/12 m-auto">
       {
@@ -41,7 +42,7 @@ function Fundraisers() {
           <Link to={`/user/home/fundraisers/${fundraiser.id}`}>
           <div className="border-2 rounded-xl drop-shadow-lg border-gray-200 m-3">
             <div className="p-3">
-              <img className="m-auto" style={imageStyle} src={`https://atrui.online/${fundraiser.image}`}/>
+              <img className="m-auto" style={imageStyle} src={`http://localhost:3000/${fundraiser.image}`}/>
               <h1 className="text-xl font-bold">{fundraiser.title}</h1>
               <p className="whitespace-pre-line">{fundraiser.description.substring(0,60) + "....." /*.slice(0, 50)+'...' */ }</p>
             </div> 
@@ -61,7 +62,7 @@ function Organizers() {
   const [organizations, setOrganizations] = useState([]);
 
   useEffect(() => {
-    axios.get("https://atrui.online/organizations/getAllOrgs")
+    axios.get("http://localhost:3000/organizations/getAllOrgs")
     .then(res => {
         setOrganizations(res.data)
     })
@@ -72,7 +73,7 @@ function Organizers() {
 
 
   return (
-    <div className="w-10/12 m-auto mt-8 mb-8">
+    <div className="lg:w-10/12 m-auto mt-8 mb-8">
       <h1 className="text-center text-green-600 text-5xl p-3 m-3">Organizations</h1>
       <div className="  lg:grid lg:grid-cols-4 lg:grid-rows-1 w-10/12 m-auto">
       {
@@ -80,7 +81,7 @@ function Organizers() {
           <Link to={`/user/home/organization/${organization.id}`}>
           <div className="text-center border-2 rounded-xl drop-shadow-lg border-gray-200 m-3">
             <div className="p-3">
-            <img className="m-auto" style={imageStyle} src={`https://atrui.online/${organization.image}`}/>
+            <img className="m-auto" style={imageStyle} src={`http://localhost:3000/${organization.image}`}/>
               <h1 className="text-xl font-bold">{organization.orgname}</h1>
             </div> 
           </div>
@@ -99,7 +100,7 @@ function Feed() {
   const [feeds, setFeeds] = useState([]);
 
   useEffect(() => {
-    axios.get("https://atrui.online/feed/getAllFeeds")
+    axios.get("http://localhost:3000/feed/getAllFeeds")
     .then(res => {
         setFeeds(res.data)
     })
@@ -171,22 +172,43 @@ function Nav() {
 
 const SubPageFundraisers = props => {
 
+  const imageSize = {
+    minHeight: '450px'
+    
+  }
+
 
 
   const [fundraisers, setFundraisers] = useState([]);
+  const [donationprogress, setDonationprogress] = useState([]);
+
 
   const [amount, setAmount] = useState(0);
   
   const { user } = useAuth0();
 
   useEffect(() => {
-    axios.get(`https://atrui.online/fundraisers/getAllPosts/${props.id}`)
+    axios.get(`http://localhost:3000/fundraisers/getAllPosts/${props.id}`)
     .then(res => {
         setFundraisers(res.data[0])
     })
     .catch(err => { console.log(err)})
 
-  },[])
+
+
+  },[])    
+  
+  useEffect(() => {
+  axios.get(`http://localhost:3000/fundraisers/getFundraiserProgress/${fundraisers.title}`)
+    .then(res => {
+        setDonationprogress(res.data[0])
+    })
+    .catch(err => { console.log(err)})
+  
+  },[fundraisers])
+
+
+
 
   function Donate() {
 
@@ -204,28 +226,35 @@ const SubPageFundraisers = props => {
           "donor" : `${user.name}`,
           "fundraiser" : `${fundraisers.title}`,
           'datemade' : `${today}`,
-          "amount" : `${amount}`
+          "amount" : `${amount}`,
+          "uniqueid" : `${user.sub}`
 
       };
-      axios.post(`https://atrui.online/fundraisers/donate`, postData)
-      .then( res => {
+    axios.post(`http://localhost:3000/fundraisers/donate`, postData)
+    .then( res => {
           console.log(res)
-      })
-      alert("You have submitted a recipe");
+    })
+    alert("You have submitted a donation");
+    window.location.reload(false);
+
 
   }
 
+
+
+  
   
   return (
-    	<div className="w-8/12 m-auto rounded-lg bg-gray-200 mt-3 mb-3">
-        <div className="p-3 m-3 lg:grid lg:grid-cols-1 grid-rows-6 ">
-          <img className=" border-2 border-black" style={imageStyle} src={`https://atrui.online/${fundraisers.image}`}/>
-          <div className="col-start-3 m-auto">
-            <h1 className="text-xl p-3 m-3 font-bold">{fundraisers.title}</h1>
-            <h1 className="p-3 m-3">Date Made: {fundraisers.datemade}</h1>
-            <h1 className="p-3 m-3">Total Goal Amount: {fundraisers.donationgoal}</h1>
-            <h1 className="p-3 m-3">Duration: {fundraisers.duration} Days Left</h1>
-            <ProgressBar className="p-3 m-3" completed={60} maxCompleted={100} />
+    	<div className="lg:w-8/12 m-auto rounded-lg bg-gray-200 mt-3 mb-3">
+        <div className="p-3 m-3 lg:grid lg:grid-cols-2 grid-rows-4 ">
+          <img className="col-start-1" style={imageSize} src={`http://localhost:3000/${fundraisers.image}`}/>
+          <div className="col-start-2">
+            <h1 className="text-3xl p-3 m-3 font-bold">{fundraisers.title}</h1>
+            <h1 className="p-3 m-3"><b>Date Made:</b>  {fundraisers.datemade}</h1>
+            <h1 className="p-3 m-3"><b>Total Donation Goal: </b> {fundraisers.donationgoal}</h1>
+            <h1 className="p-3 m-3"><b>Date Made:</b> {fundraisers.duration} Days Left</h1>
+            <h1 className="p-3 m-3"><b>Money Raised:</b>{donationprogress.sum}</h1>
+            <ProgressBar className="p-3 m-3" completed={donationprogress.percent} maxCompleted={100} />
             <div className="p-3 m-3 text-center">
               <input onChange={(e) => setAmount(e.target.value)} value={amount} />
               <button onClick={Donate} className="bg-green-500 p-3 m-3 text-white">Donate</button>
@@ -234,8 +263,9 @@ const SubPageFundraisers = props => {
               </Link>
             </div>
           </div>
-          <div className="p-3 m-3 row-start-2 row-span-4 col-span-4 row col-start-1">
+          <div className="p-3 m-3 row-start-2 col-span-2 row-span-3 col-start-1">
             <p className="whitespace-pre-line" >{fundraisers.description}</p>
+            <div id="gcash-container"></div>
           </div>
         </div>
       </div>
@@ -248,7 +278,7 @@ const SubPageFeed = props => {
   const [feeds, setFeeds] = useState([]);
 
   useEffect(() => {
-    axios.get(`https://atrui.online/feed/getAllFeeds/${props.id}`)
+    axios.get(`http://localhost:3000/feed/getAllFeeds/${props.id}`)
     .then(res => {
         setFeeds(res.data[0])
     })
@@ -278,7 +308,7 @@ const SubPageOrganization = props => {
   const [organizations, setOrganizations] = useState([]);
 
   useEffect(() => {
-    axios.get(`https://atrui.online/organizations/getAllOrgs/${props.id}`)
+    axios.get(`http://localhost:3000/organizations/getAllOrgs/${props.id}`)
     .then(res => {
         setOrganizations(res.data[0])
     })
@@ -290,7 +320,7 @@ const SubPageOrganization = props => {
   return (
     	<div className="w-9/12 m-auto rounded-lg bg-gray-200 mt-3 mb-3">
         <div className="p-3 lg:grid lg:grid-cols-4 ">
-          <img classname="m-auto" src={`https://atrui.online/${organizations.image}`}/>
+          <img classname="m-auto" src={`http://localhost:3000/${organizations.image}`}/>
           <div className="p-3 m-3 col-start-2 col-span-2">
             <h1 className="text-xl font-bold">{organizations.orgname}</h1>
             <h1 className="whitespace-pre-line">{organizations.description}</h1>
@@ -312,7 +342,7 @@ const SubPageOrganization = props => {
 const HomepageLogged = () => {
   return (
     <div>
-      <Nav_Atrz/>
+      <NavOldUser/>
       <Router>
         <Nav path="/user/home"/> 
         <SubPageFundraisers path="/user/home/fundraisers/:id"/>

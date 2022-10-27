@@ -43,9 +43,9 @@ INSERT INTO fundraisers(title,description,location) VALUES ('Sample Title', 'Sam
 
 
 CREATE TABLE userData (
-    id SERIAL PRIMARY KEY,
-    uniqueid VARCHAR,
-    email VARCHAR,
+    id SERIAL PRIMARY KEY UNIQUE,
+    uniqueid VARCHAR UNIQUE,
+    email VARCHAR UNIQUE,
     level FLOAT,
     rankpoints FLOAT,
     totaldonations VARCHAR,

@@ -27,11 +27,27 @@ router.post('/newUser', async(req,res) => {
     
     try {
         const {uniqueid, email} = req.body
-        const newUser = await pool.query("INSERT INTO userdata(uniqueid,email) VALUES($1,$2) RETURNING *", [uniqueid, email])
+        const newUser = await pool.query("INSERT INTO userdata(uniqueid,email,level,rankpoints) VALUES($1,$2,$3,$4) RETURNING *", [uniqueid, email,0,0])
     }
     catch(err){
         console.log(err.message)
     }
+})
+
+router.get('/getUserPoints/:id', async(req,res) => {
+
+    try {
+
+        const id = req.params.id
+        const searchUserData = await pool.query("SELECT id,level,rankpoints,totaldonations FROM userdata WHERE uniqueid = $1", [id])
+          
+        res.json(searchUserData.rows)
+      }
+      catch(err)
+      { 
+          console.log (err.message)
+      }
+
 })
 
 module.exports = router;
