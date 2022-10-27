@@ -8,6 +8,7 @@ import { Router} from '@reach/router'
 import { withAuthenticationRequired } from '@auth0/auth0-react';
 import ProgressBar from "@ramonak/react-progress-bar";
 import { useAuth0 } from "@auth0/auth0-react";
+import NavOldUser from "../../components/NavOldUser"
 
 
 const imageStyle = {
@@ -33,7 +34,7 @@ function Fundraisers() {
   },[])
   
   return (
-    <div className="w-10/12 m-auto mt-8 mb-8">
+    <div className="lg:w-10/12 m-auto mt-8 mb-8">
       <h1 className="text-center text-green-600 text-5xl p-3 m-3">Fundraisers</h1>
       <div className=" lg:grid lg:grid-cols-4 lg:grid-rows-1 w-10/12 m-auto">
       {
@@ -72,7 +73,7 @@ function Organizers() {
 
 
   return (
-    <div className="w-10/12 m-auto mt-8 mb-8">
+    <div className="lg:w-10/12 m-auto mt-8 mb-8">
       <h1 className="text-center text-green-600 text-5xl p-3 m-3">Organizations</h1>
       <div className="  lg:grid lg:grid-cols-4 lg:grid-rows-1 w-10/12 m-auto">
       {
@@ -171,10 +172,16 @@ function Nav() {
 
 const SubPageFundraisers = props => {
 
+  const imageSize = {
+    minHeight: '450px'
+    
+  }
+
 
 
   const [fundraisers, setFundraisers] = useState([]);
   const [donationprogress, setDonationprogress] = useState([]);
+
 
   const [amount, setAmount] = useState(0);
   
@@ -198,10 +205,9 @@ const SubPageFundraisers = props => {
     })
     .catch(err => { console.log(err)})
   
-  })
+  },[fundraisers])
 
 
-  console.log(donationprogress.sum)
 
 
   function Donate() {
@@ -223,27 +229,31 @@ const SubPageFundraisers = props => {
           "amount" : `${amount}`
 
       };
-      axios.post(`http://localhost:3000/fundraisers/donate`, postData)
-      .then( res => {
+    axios.post(`http://localhost:3000/fundraisers/donate`, postData)
+    .then( res => {
           console.log(res)
-      })
-      alert("You have submitted a donation");
+    })
+    alert("You have submitted a donation");
+    window.location.reload(false);
+
 
   }
+
+
 
   
   
   return (
-    	<div className="w-8/12 m-auto rounded-lg bg-gray-200 mt-3 mb-3">
-        <div className="p-3 m-3 lg:grid lg:grid-cols-2 grid-rows-6 ">
-          <img className="col-start-1" src={`http://localhost:3000/${fundraisers.image}`}/>
-          <div className="col-start-2 m-auto">
+    	<div className="lg:w-8/12 m-auto rounded-lg bg-gray-200 mt-3 mb-3">
+        <div className="p-3 m-3 lg:grid lg:grid-cols-2 grid-rows-4 ">
+          <img className="col-start-1" style={imageSize} src={`http://localhost:3000/${fundraisers.image}`}/>
+          <div className="col-start-2">
             <h1 className="text-3xl p-3 m-3 font-bold">{fundraisers.title}</h1>
             <h1 className="p-3 m-3"><b>Date Made:</b>  {fundraisers.datemade}</h1>
-            <h1 className="p-3 m-3"><b>Total Donation Goal:</b> {fundraisers.donationgoal}</h1>
+            <h1 className="p-3 m-3"><b>Total Donation Goal: </b> {fundraisers.donationgoal}</h1>
             <h1 className="p-3 m-3"><b>Date Made:</b> {fundraisers.duration} Days Left</h1>
             <h1 className="p-3 m-3"><b>Money Raised:</b>{donationprogress.sum}</h1>
-            <ProgressBar className="p-3 m-3" completed={60} maxCompleted={100} />
+            <ProgressBar className="p-3 m-3" completed={donationprogress.percent} maxCompleted={100} />
             <div className="p-3 m-3 text-center">
               <input onChange={(e) => setAmount(e.target.value)} value={amount} />
               <button onClick={Donate} className="bg-green-500 p-3 m-3 text-white">Donate</button>
@@ -252,7 +262,7 @@ const SubPageFundraisers = props => {
               </Link>
             </div>
           </div>
-          <div className="p-3 m-3 row-start-2 row-span-4 col-span-4 row col-start-1">
+          <div className="p-3 m-3 row-start-2 col-span-2 row-span-3 col-start-1">
             <p className="whitespace-pre-line" >{fundraisers.description}</p>
             <div id="gcash-container"></div>
           </div>
@@ -331,7 +341,7 @@ const SubPageOrganization = props => {
 const HomepageLogged = () => {
   return (
     <div>
-      <Nav_Atrz/>
+      <NavOldUser/>
       <Router>
         <Nav path="/user/home"/> 
         <SubPageFundraisers path="/user/home/fundraisers/:id"/>

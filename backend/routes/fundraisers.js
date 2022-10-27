@@ -106,15 +106,52 @@ router.get('/getFundraiserProgress/:fundraiser', async(req,res) => {
   try {
     const fundraiser = req.params.fundraiser
 
-      const searchFundraiser = await pool.query("SELECT SUM(amount) FROM donations WHERE fundraiser = $1", [fundraiser])
+      const fundraisergoal = await pool.query("SELECT * FROM fundraisers WHERE title = $1", [fundraiser])
 
-      res.json(searchFundraiser.rows)
+      const totaldonationsum = await pool.query("SELECT SUM(amount) FROM donations WHERE fundraiser = $1", [fundraiser])
+
+      let fund = ''
+      let donsum = ''
+
+      if (fundraisergoal.rows[0] && fundraisergoal.rows[0].donationgoal) { // ... and does the first value
+        // contain the property activated?
+        fund = fundraisergoal.rows[0].donationgoal
+      } else {
+        fund = 'No Data'
+      }
+
+      if (totaldonationsum.rows[0] && totaldonationsum.rows[0].sum) { // ... and does the first value
+        // contain the property activated?
+        donsum = totaldonationsum.rows[0].sum
+      } else {
+        donsum = 'No Data'
+      }
+      
+      const fundraisergoalconverted =  Number(fund.replace(/[^0-9.-]+/g,""));
+
+
+      const donationsumconverted =   Number(donsum.replace(/[^0-9.-]+/g,""));
+
+
+      const percentage = donationsumconverted/fundraisergoalconverted * 100
+      
+      const jsonData = {
+          0 : {
+            "sum" : totaldonationsum.rows[0].sum,
+            "percent" : parseInt(percentage)
+          }
+      }
+
+      res.json(jsonData)
       
   }
   catch(err){
       console.log(err.message)
   }
 })
+
+
+
 
 
 module.exports = router;
