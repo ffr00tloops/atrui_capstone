@@ -318,7 +318,7 @@ const SubPageOrganization = props => {
 
   
   return (
-    	<div className="w-9/12 m-auto rounded-lg bg-gray-200 mt-3 mb-3">
+    	<div className="w-9/12 m-auto rounded-lg bg-gray-200 mt-3 mb-48">
         <div className="p-3 lg:grid lg:grid-cols-4 ">
           <img classname="m-auto" src={`https://atrui.online/${organizations.image}`}/>
           <div className="p-3 m-3 col-start-2 col-span-2">
@@ -329,10 +329,10 @@ const SubPageOrganization = props => {
             </Link>
           </div>
           <div className="p-3 m-3">
-            <h1>Location: {organizations.location}</h1>
-            <h1>Contact Person: {organizations.contactperson}</h1>
-            <h1>Contact Number:{organizations.contactno}</h1>
-            <h1>Website: <a>{organizations.website}</a></h1>            
+            <h1><b>Location:</b> {organizations.location}</h1>
+            <h1><b>Contact Person:</b> {organizations.contactperson}</h1>
+            <h1><b>Contact Number:</b>{organizations.contactno}</h1>
+            <h1><b>Website:</b> <a>{organizations.website}</a></h1>            
           </div>
         </div>
       </div>
