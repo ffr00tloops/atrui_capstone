@@ -214,7 +214,7 @@ const SubPageFundraisers = props => {
       setLeaderBoard(res.data)
     })
     .catch(err => { console.log(err)})
-  })
+  },[fundraisers])
 
 
 
