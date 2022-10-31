@@ -181,6 +181,7 @@ const SubPageFundraisers = props => {
 
   const [fundraisers, setFundraisers] = useState([]);
   const [donationprogress, setDonationprogress] = useState([]);
+  const [leaderboards, setLeaderBoard] = useState([]);
 
 
   const [amount, setAmount] = useState(0);
@@ -206,6 +207,14 @@ const SubPageFundraisers = props => {
     .catch(err => { console.log(err)})
   
   },[fundraisers])
+
+  useEffect(() => {
+    axios.get(`http://localhost:3000/fundraisers/getFundraiserLeaderboard/${fundraisers.title}`)
+    .then(res => {
+      setLeaderBoard(res.data)
+    })
+    .catch(err => { console.log(err)})
+  })
 
 
 
@@ -241,12 +250,11 @@ const SubPageFundraisers = props => {
   }
 
 
-
   
   
   return (
     	<div className="lg:w-8/12 m-auto rounded-lg bg-gray-200 mt-3 mb-3">
-        <div className="p-3 m-3 lg:grid lg:grid-cols-2 grid-rows-4 ">
+        <div className="p-3 m-3 lg:grid lg:grid-cols-3 grid-rows-4 ">
           <img className="col-start-1" style={imageSize} src={`https://atrui.online/${fundraisers.image}`}/>
           <div className="col-start-2">
             <h1 className="text-3xl p-3 m-3 font-bold">{fundraisers.title}</h1>
@@ -263,7 +271,22 @@ const SubPageFundraisers = props => {
               </Link>
             </div>
           </div>
-          <div className="p-3 m-3 row-start-2 col-span-2 row-span-3 col-start-1">
+          <div className="bg-white m-3 p-3 grid grid-cols-1 text-center">
+            <div className="grid grid-cols-2">
+              <h1 className="text-md font-bold text-red-600">Donor Name</h1>
+              <h1 className="text-md font-bold text-blue-600">Donation Amount</h1>
+            </div>
+            {
+              leaderboards.map(leaderboard => (
+              <div className="grid grid-cols-2">
+                  <h1 className="text-xl">{leaderboard.donor}</h1>
+                  <h1 className="text-xl text-black">{leaderboard.amount}</h1>
+              </div>
+              ))
+            }
+
+          </div>
+          <div className="p-3 m-3 col-start-1 col-span-3 ">
             <p className="whitespace-pre-line" >{fundraisers.description}</p>
             <div id="gcash-container"></div>
           </div>

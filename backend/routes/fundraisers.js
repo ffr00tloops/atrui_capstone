@@ -129,6 +129,36 @@ router.get("/getDonations", async(req, res) => {
   }
 })
 
+router.get("/getFundraiserLeaderboard/:fundraiser", async(req, res) => {
+
+  try {
+
+    const fundraiser = req.params.fundraiser
+
+    const searchFundraiser = await pool.query("SELECT id,donor,amount FROM donations WHERE fundraiser = $1 ORDER BY id DESC LIMIT 5", [fundraiser])
+      
+    res.json(searchFundraiser.rows)
+  }
+  catch(err)
+  { 
+      console.log (err.message)
+  }
+})
+
+router.get("/getDonationsDesc", async(req, res) => {
+
+  try {
+
+    const allDonations = await pool.query("SELECT * FROM donations ORDER BY amount DESC LIMIT 10")
+      
+    res.json(allDonations.rows)
+  }
+  catch(err)
+  { 
+      console.log (err.message)
+  }
+})
+
 router.get('/getFundraiserProgress/:fundraiser', async(req,res) => {
     
   try {

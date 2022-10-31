@@ -109,49 +109,43 @@ function DashboardContent(){
 }
 
 function Leaderboard(){
+
+
+  const [donations, setDonation] = useState([]);
+
+  const {user} = useAuth0()
+
+  useEffect(() => {
+    axios.get(`http://localhost:3000/fundraisers/getDonationsDesc`)
+    .then(res => {
+        setDonation(res.data)
+    })
+    .catch(err => { console.log(err)})
+
+  },[])
+
+  
+
+
   return (
     <div className="bg-gray-300 col-span-3 ">
     <div className="grid lg:grid-cols-1 ">
-      <div className="bg-white m-3 p-3 grid grid-cols-3 text-center">
-        <h1 className="text-xl font-bold text-green-600">Position</h1>
-        <h1 className="text-xl font-bold text-red-600">User</h1>
-        <h1 className="text-xl font-bold text-blue-600">Total Donation</h1>
+      <div className="bg-white m-3 p-3 grid grid-cols-4 text-center">
+        <h1 className="text-xl font-bold text-red-600">Donor Name:</h1>
+        <h1 className="text-xl font-bold text-red-600">Fundraiser Name:</h1>
+        <h1 className="text-xl font-bold text-red-600">Date Made</h1>
+        <h1 className="text-xl font-bold text-blue-600">Donation Amount</h1>
       </div>
-      <div className="m-3 p-3 grid grid-cols-3 text-center">
-        <h1 className="text-green-600">1</h1>
-        <h1 className="text-red-600">Joe</h1>
-        <h1 className="text-blue-600">1000000000</h1>
-      </div>
-      <div className="m-3 p-3 grid grid-cols-3 text-center">
-        <h1 className="text-green-600">1</h1>
-        <h1 className="text-red-600">Joe</h1>
-        <h1 className="text-blue-600">1000000000</h1>
-      </div>
-      <div className="m-3 p-3 grid grid-cols-3 text-center">
-        <h1 className="text-green-600">1</h1>
-        <h1 className="text-red-600">Joe</h1>
-        <h1 className="text-blue-600">1000000000</h1>
-      </div>
-      <div className="m-3 p-3 grid grid-cols-3 text-center">
-        <h1 className="text-green-600">1</h1>
-        <h1 className="text-red-600">Joe</h1>
-        <h1 className="text-blue-600">1000000000</h1>
-      </div>
-      <div className="m-3 p-3 grid grid-cols-3 text-center">
-        <h1 className="text-green-600">1</h1>
-        <h1 className="text-red-600">Joe</h1>
-        <h1 className="text-blue-600">1000000000</h1>
-      </div>
-      <div className="m-3 p-3 grid grid-cols-3 text-center">
-        <h1 className="text-green-600">1</h1>
-        <h1 className="text-red-600">Joe</h1>
-        <h1 className="text-blue-600">1000000000</h1>
-      </div>
-      <div className="m-3 p-3 grid grid-cols-3 text-center">
-        <h1 className="text-green-600">1</h1>
-        <h1 className="text-red-600">Joe</h1>
-        <h1 className="text-blue-600">1000000000</h1>
-      </div>
+      {
+        donations.map(donation => (
+          <div className=" grid grid-cols-4 text-center">
+          <h1 className="text-sm">{donation.donor}</h1>
+          <h1 className="text-sm">{donation.fundraiser}</h1>
+          <h1 className="text-sm">{donation.datemade}</h1>
+          <h1 className="text-sm">{donation.amount}</h1>
+        </div>
+        ))
+      }
     </div>
   </div>
   )
@@ -203,6 +197,19 @@ function History(){
 
 function Badges(){
 
+  const [userstats, setUserStats] = useState([])
+
+  const {user} = useAuth0()
+
+  useEffect(() => {
+    axios.get(`https://atrui.online/userdata/getUserPoints/${user.sub}`)
+      .then(res => {
+          setUserStats(res.data[0])
+      })
+      .catch(err => { console.log(err)})
+    
+    },[])
+
 
   return (
     <div className="bg-gray-300 col-span-3 ">
@@ -211,7 +218,7 @@ function Badges(){
       <div className=" text-black grid grid-cols-2 text-center">
         <div>
           <h1>Your current rank is</h1>
-          <h1 className="text-yellow-500 text-2xl font-bold">Gold IV</h1>
+          <h1 className="text-yellow-500 text-2xl font-bold">{userstats.rankpoints}</h1>
         </div>
         <div>
           <h1>Points awarded:</h1>
@@ -322,7 +329,7 @@ function Main() {
           <button onClick={() => setLocation('Dashboard')}  className="cursor-pointer hover:bg-gray-300 p-3">Dashboard</button>
           <button onClick={() => setLocation('Leaderboard')} className="cursor-pointer hover:bg-gray-300 p-3">Leaderboard</button>
           <button onClick={() => setLocation('Badges')} className="cursor-pointer hover:bg-gray-300 p-3">Badges</button>
-          <button onClick={() => setLocation('History')} className="cursor-pointer hover:bg-gray-300 p-3">History</button>
+          <button onClick={() => setLocation('History')} className="cursor-pointer hover:bg-gray-300 p-3">Donation History</button>
           <button onClick={() => { logout({ returnTo: window.location.origin })}}className="cursor-pointer bg-red-500 hover:bg-red-300 text-white p-3">Logout</button>
         </div>
       </div>
