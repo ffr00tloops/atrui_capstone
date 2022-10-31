@@ -209,7 +209,7 @@ const SubPageFundraisers = props => {
   },[fundraisers])
 
   useEffect(() => {
-    axios.get(`http://localhost:3000/fundraisers/getFundraiserLeaderboard/${fundraisers.title}`)
+    axios.get(`https://atrui.online/fundraisers/getFundraiserLeaderboard/${fundraisers.title}`)
     .then(res => {
       setLeaderBoard(res.data)
     })
