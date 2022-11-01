@@ -124,8 +124,6 @@ function Leaderboard(){
 
   },[])
 
-  
-
 
   return (
     <div className="bg-gray-300 col-span-3 ">
@@ -322,7 +320,7 @@ function Main() {
   }
 
   return (
-    <div className="grid grid-cols-1 lg:grid-rows-1 lg:grid-cols-4 m-auto mb-64">
+    <div className="grid grid-cols-1 lg:grid-rows-1 lg:grid-cols-4 m-auto">
       <div className="grid grid-cols-1 lg:grid-rows-2  bg-white">
         <div className="grid grid-cols-1">
           <button onClick={() => setLocation('Home')}  className="cursor-pointer hover:bg-blue-500 bg-blue-700 text-white p-3">Home</button>
