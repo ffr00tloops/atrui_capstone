@@ -34,9 +34,11 @@ function Fundraisers() {
   },[])
   
   return (
-    <div className="lg:w-10/12 m-auto mt-8 mb-8">
-      <h1 className="text-center text-green-600 text-5xl p-3 m-3">Fundraisers</h1>
-      <div className=" lg:grid lg:grid-cols-4 lg:grid-rows-1 w-10/12 m-auto">
+    <div className="m-auto mt-8 lg:mb-8">
+    <div className="bg-green-500 p-3">
+      <h1 className="p-3 m-3 text-center text-5xl text-white">Fundraisers</h1>
+    </div>
+      <div className="mt-16 lg:grid lg:grid-cols-4 lg:grid-rows-1 w-10/12 m-auto">
       {
         fundraisers.map(fundraiser => (
           <Link to={`/user/home/fundraisers/${fundraiser.id}`}>
@@ -73,9 +75,11 @@ function Organizers() {
 
 
   return (
-    <div className="lg:w-10/12 m-auto mt-8 mb-8">
-      <h1 className="text-center text-green-600 text-5xl p-3 m-3">Organizations</h1>
-      <div className="  lg:grid lg:grid-cols-4 lg:grid-rows-1 w-10/12 m-auto">
+    <div className="m-auto mt-8 mb-8">
+    <div className="bg-green-500 p-3">
+      <h1 className="p-3 m-3 text-center text-5xl text-white">Organizations</h1>
+    </div>
+      <div className="mt-16 lg:grid lg:grid-cols-4 lg:grid-rows-1 w-10/12 m-auto">
       {
         organizations.map(organization => (
           <Link to={`/user/home/organization/${organization.id}`}>
@@ -239,21 +243,27 @@ const SubPageFundraisers = props => {
           "uniqueid" : `${user.sub}`
 
       };
-    axios.post(`https://atrui.online/fundraisers/donate`, postData)
-    .then( res => {
-          console.log(res)
-    })
-    alert("You have submitted a donation");
-    window.location.reload(false);
+
+    
+
+    if (amount < 100000 && amount > 0 ) {
+      axios.post(`https://atrui.online/fundraisers/donate`, postData)
+      .then( res => {
+            console.log(res)
+      })
+      alert("You have submitted a donation");
+      window.location.reload(false);
+
+    } else {
+      alert("You cannot donate more than 100000 or less than 0")
+    }
 
 
   }
 
-
-  
   
   return (
-    	<div className="lg:w-8/12 m-auto rounded-lg bg-gray-200 mt-3 mb-3">
+    	<div className="lg:w-10/12 m-auto rounded-lg bg-gray-200 mt-3 mb-3">
         <div className="p-3 m-3 lg:grid lg:grid-cols-3 grid-rows-4 ">
           <img className="col-start-1" style={imageSize} src={`https://atrui.online/${fundraisers.image}`}/>
           <div className="col-start-2">
