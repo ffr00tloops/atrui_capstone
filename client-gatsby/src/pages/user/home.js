@@ -182,7 +182,7 @@ const SubPageFundraisers = props => {
   }
 
 
-
+  const [isChecked, setIsChecked] = useState(false)
   const [fundraisers, setFundraisers] = useState([]);
   const [donationprogress, setDonationprogress] = useState([]);
   const [leaderboards, setLeaderBoard] = useState([]);
@@ -232,11 +232,21 @@ const SubPageFundraisers = props => {
 
     
 
+    let donorname;
+
 
     today = mm + '/' + dd + '/' + yyyy;
 
+    if (isChecked) {
+      donorname = "Anonymous"
+    } else {
+      donorname = user.name
+    }
+
+    console.log(donorname)
+
     const postData = {
-          "donor" : `${user.name}`,
+          "donor" : `${donorname}`,
           "fundraiser" : `${fundraisers.title}`,
           'datemade' : `${today}`,
           "amount" : `${amount}`,
@@ -261,6 +271,8 @@ const SubPageFundraisers = props => {
 
   }
 
+  console.log(isChecked)
+
   
   return (
     	<div className="lg:w-10/12 m-auto rounded-lg bg-gray-200 mt-3 mb-3">
@@ -274,6 +286,8 @@ const SubPageFundraisers = props => {
             <h1 className="p-3 m-3"><b>Money Raised:</b>{donationprogress.sum}</h1>
             <ProgressBar className="p-3 m-3" completed={donationprogress.percent} maxCompleted={100} />
             <div className="p-3 m-3 text-center">
+              <input type="checkbox" onChange={() => setIsChecked(!isChecked)} />
+              <label>Donate Anonymously?</label>
               <input onChange={(e) => setAmount(e.target.value)} value={amount} />
               <button onClick={Donate} className="bg-green-500 p-3 m-3 text-white">Donate</button>
               <Link to="/user/home">
