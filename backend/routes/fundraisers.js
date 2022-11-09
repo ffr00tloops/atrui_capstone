@@ -185,10 +185,10 @@ router.get('/getFundraiserProgress/:fundraiser', async(req,res) => {
         donsum = 'No Data'
       }
       
-      const fundraisergoalconverted =  Number(fund.replace(/[^0-9.-]+/g,""));
+      const fundraisergoalconverted =  fund
 
 
-      const donationsumconverted =   Number(donsum.replace(/[^0-9.-]+/g,""));
+      const donationsumconverted =   donsum
 
 
       const percentage = donationsumconverted/fundraisergoalconverted * 100
