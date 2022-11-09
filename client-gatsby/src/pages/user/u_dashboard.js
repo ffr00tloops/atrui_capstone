@@ -96,7 +96,7 @@ function DashboardContent(){
       <div className="bg-white m-3 col-start-2 row-start-2 row-span-1 p-3 text-center">
         <div>
           <h1>Total Donations Made:</h1>
-          <h1 className="text-5xl font-bold">{totaldonations.sum}</h1>
+          <h1 className="text-5xl font-bold">₱{totaldonations.sum}</h1>
           </div>
       </div>
       <div className="bg-white m-3 p-3 row-start-3 col-start-2">
@@ -140,7 +140,7 @@ function Leaderboard(){
           <h1 className="text-sm">{donation.donor}</h1>
           <h1 className="text-sm">{donation.fundraiser}</h1>
           <h1 className="text-sm">{donation.datemade}</h1>
-          <h1 className="text-sm">{donation.amount}</h1>
+          <h1 className="text-sm">₱{donation.amount}</h1>
         </div>
         ))
       }
@@ -184,7 +184,7 @@ function History(){
           <h1 className="text-sm">{donation.fundraiser}</h1>
 
           <h1 className="text-sm">{donation.datemade}</h1>
-          <h1 className="text-sm">{donation.amount}</h1>
+          <h1 className="text-sm">₱{donation.amount}</h1>
         </div>
         ))
       }

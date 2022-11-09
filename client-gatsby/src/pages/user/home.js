@@ -282,9 +282,9 @@ const SubPageFundraisers = props => {
           <div className="col-start-2">
             <h1 className="text-3xl p-3 m-3 font-bold">{fundraisers.title}</h1>
             <h1 className="p-3 m-3"><b>Date Made:</b>  {fundraisers.datemade}</h1>
-            <h1 className="p-3 m-3"><b>Total Donation Goal: </b> {fundraisers.donationgoal}</h1>
+            <h1 className="p-3 m-3"><b>Total Donation Goal: </b> ₱{fundraisers.donationgoal}</h1>
             <h1 className="p-3 m-3"><b>Date Made:</b> {fundraisers.duration} Days Left</h1>
-            <h1 className="p-3 m-3"><b>Money Raised:</b>{donationprogress.sum}</h1>
+            <h1 className="p-3 m-3"><b>Money Raised:</b>₱{donationprogress.sum}</h1>
             <ProgressBar className="p-3 m-3" completed={donationprogress.percent} maxCompleted={100} />
             <div className="p-3 m-3 text-center">
               <input type="checkbox" onChange={() => setIsChecked(!isChecked)} />
@@ -305,7 +305,7 @@ const SubPageFundraisers = props => {
               leaderboards.map(leaderboard => (
               <div className="grid grid-cols-2">
                   <h1 className="text-xl">{leaderboard.donor}</h1>
-                  <h1 className="text-xl text-black">{leaderboard.amount}</h1>
+                  <h1 className="text-xl text-black">₱{leaderboard.amount}</h1>
               </div>
               ))
             }

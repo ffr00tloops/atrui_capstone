@@ -1,7 +1,7 @@
 import * as React from "react"
 import {useState} from "react"
-import Footer from '../../components/Footer'
-import Nav_Atrz from "../../components/Nav_Atrz"
+import Footer from '../client-gatsby/src/components/Footer'
+import Nav_Atrz from "../client-gatsby/src/components/Nav_Atrz"
 import { withAuthenticationRequired } from '@auth0/auth0-react';
 import { useAuth0 } from "@auth0/auth0-react";
 import axios from 'axios';

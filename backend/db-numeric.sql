@@ -39,9 +39,6 @@ CREATE TABLE feeds (
     datemade VARCHAR
 );
 
-INSERT INTO fundraisers(title,description,location) VALUES ('Sample Title', 'Sample Description', 'Manila');
-
-
 CREATE TABLE userData (
     id SERIAL PRIMARY KEY UNIQUE,
     uniqueid VARCHAR UNIQUE,
