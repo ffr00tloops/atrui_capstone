@@ -243,6 +243,7 @@ const SubPageFundraisers = props => {
       donorname = user.name
     }
 
+    
     console.log(donorname)
 
     const postData = {
