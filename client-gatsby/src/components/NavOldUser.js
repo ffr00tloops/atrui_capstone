@@ -25,9 +25,14 @@ export default function NavOldUser() {
 
     }
 
+    const imageStyle = {
+        maxHeight: "50px",
+        margin: 'auto'
+    }
+
     return( 
         <div className="p-3 m-3 grid grid-cols-1 lg:grid-cols-3 m-auto text-center">
-            <a href="/" className="text-5xl m-auto text-green-600" style={{fontFamily: 'Merriweather'}}>ATRUI</a>
+            <img style={imageStyle} src="https://cdn.discordapp.com/attachments/688647892084588626/1041720097649201182/logo-no-background.png"/>
 
         
             {VerifyAuth()}
