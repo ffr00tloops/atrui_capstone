@@ -365,7 +365,7 @@ function Main() {
         <div className="grid grid-cols-1">
           <button onClick={() => setLocation('Home')}  className="cursor-pointer hover:bg-blue-500 bg-blue-700 text-white p-3">Home</button>
           <button onClick={() => setLocation('Dashboard')}  className="cursor-pointer hover:bg-gray-300 p-3">Dashboard</button>
-          <button onClick={() => setLocation('Leaderboard')} className="cursor-pointer hover:bg-gray-300 p-3">Leaderboard</button>
+          <button onClick={() => setLocation('Leaderboard')} className="cursor-pointer hover:bg-gray-300 p-3">All-Time Leaderboard</button>
           <button onClick={() => setLocation('Badges')} className="cursor-pointer hover:bg-gray-300 p-3">Badges</button>
           <button onClick={() => setLocation('History')} className="cursor-pointer hover:bg-gray-300 p-3">Donation History</button>
           <button onClick={() => { logout({ returnTo: window.location.origin })}}className="cursor-pointer bg-red-500 hover:bg-red-300 text-white p-3">Logout</button>
