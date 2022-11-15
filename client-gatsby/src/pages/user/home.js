@@ -36,7 +36,7 @@ function Fundraisers() {
   return (
     <div className="m-auto mt-8 lg:mb-8">
     <div className="bg-green-500 p-3">
-      <h1 className="p-3 m-3 text-center text-5xl text-white">Fundraisers</h1>
+      <h1 className="p-3 m-3 text-center text-5xl text-white font-bold">Fundraisers</h1>
     </div>
       <div className="mt-16 lg:grid lg:grid-cols-4 lg:grid-rows-1 w-10/12 m-auto">
       {
@@ -77,7 +77,7 @@ function Organizers() {
   return (
     <div className="m-auto mt-8 mb-8">
     <div className="bg-green-500 p-3">
-      <h1 className="p-3 m-3 text-center text-5xl text-white">Organizations</h1>
+      <h1 className="p-3 m-3 text-center text-5xl text-white font-bold">Organizations</h1>
     </div>
       <div className="mt-16 lg:grid lg:grid-cols-4 lg:grid-rows-1 w-10/12 m-auto">
       {
@@ -160,10 +160,10 @@ function Nav() {
 
 
   return (
-    <div className="mb-64">
-      <div className="w-6/12 m-auto mb-12 grid lg:grid-cols-2 ">
-        <button onClick={() => setLocation('Fundraisers')} className="text-white bg-red-500 hover:bg-red-300 rounded-2xl drop-shadow-md border-2 p-3">Fundraisers</button>
-        <button onClick={() => setLocation('Organizers')} className="text-white bg-red-500 hover:bg-red-300 rounded-2xl  drop-shadow-md border-2 p-3">Organizations</button>
+    <div className="mb-32">
+      <div className="w-6/12 m-auto grid lg:grid-cols-2">
+        <button onClick={() => setLocation('Fundraisers')} className="text-white bg-gray-500 hover:bg-green-300 rounded-2xl drop-shadow-md border-2 p-3">Fundraisers</button>
+        <button onClick={() => setLocation('Organizers')} className="text-white bg-gray-500 hover:bg-green-300 rounded-2xl  drop-shadow-md border-2 p-3">Organizations</button>
       </div>
 
 
@@ -364,9 +364,10 @@ const SubPageOrganization = props => {
 
   },[])
 
+
   
   return (
-    	<div className="w-9/12 m-auto rounded-lg bg-gray-200 mt-3 mb-48">
+    	<div className="w-9/12 m-auto rounded-lg bg-gray-200 mt-16 mb-96 ">
         <div className="p-3 lg:grid lg:grid-cols-4 ">
           <img classname="m-auto" src={`https://atrui.online/${organizations.image}`}/>
           <div className="p-3 m-3 col-start-2 col-span-2">

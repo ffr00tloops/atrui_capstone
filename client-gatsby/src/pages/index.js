@@ -27,8 +27,8 @@ function Fundraisers() {
   },[])
   
   return (
-    <div className="w-10/12 m-auto mt-8 mb-64">
-      <h1 className="text-center text-green-600 text-5xl p-3 m-3">Fundraisers</h1>
+    <div className="lg:w-10/12 m-auto mt-8 mb-64">
+      <h1 className="text-center text-green-600 text-5xl p-3 m-3">Featured Fundraisers</h1>
       <div className=" lg:grid lg:grid-cols-3 lg:grid-rows-1 w-10/12 m-auto">
       {
         fundraisers.map(fundraiser => (
@@ -53,7 +53,23 @@ function Fundraisers() {
 function Banner() {
   return (
     <div className="bg-green-500 p-3">
-      <h1 className="p-3 m-3 text-center text-5xl text-white font-bo"> Featured Fundraisers</h1>
+      <h1 className="p-3 m-3 text-center text-5xl text-white font-bold"> Featured Fundraisers</h1>
+    </div>
+  )
+}
+
+function Motto() {
+
+  const imageStyles = {
+    maxHeight: "20em",
+    maxWidth: "20em",
+    margin: "auto"
+  }
+
+  return (
+    <div className="bg-green-500 p-12">
+      <img style={imageStyles} src="https://cdn.discordapp.com/attachments/688647892084588626/1041719681809141800/logo-no-background.png"/>
+      <h1 className="text-center font-bold text-5xl text-white italic">Your change can make a difference</h1>
     </div>
   )
 }
@@ -62,7 +78,7 @@ const IndexPage = () => {
   return (
     <div>
       <Nav_Atrz />
-      <Banner />
+      <Motto/>
       <Fundraisers />
       <Footer/>
     </div>

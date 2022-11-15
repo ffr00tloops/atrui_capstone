@@ -48,7 +48,7 @@ export default function Nav_Atrz() {
             
         }
         else {
-            return <button onClick={loginWithRedirect} className="p-3 mr-3 text-xl rounded-3xl text-white bg-red-500">Login</button>
+            return <button onClick={loginWithRedirect} className="p-3 m-3 text-xl rounded-3xl text-white bg-red-500">Login</button>
         };
 
 
