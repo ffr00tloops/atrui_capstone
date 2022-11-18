@@ -365,11 +365,13 @@ const SubPageOrganization = props => {
   },[])
 
 
+
+
   
   return (
     	<div className="w-9/12 m-auto rounded-lg bg-gray-200 mt-16 mb-96 ">
-        <div className="p-3 lg:grid lg:grid-cols-4 ">
-          <img classname="m-auto" src={`https://atrui.online/${organizations.image}`}/>
+        <div className="p-3 m-auto lg:grid lg:grid-cols-4 ">
+          <img className="p-3 m-3 m-auto" src={`https://atrui.online/${organizations.image}`}/>
           <div className="p-3 m-3 col-start-2 col-span-2">
             <h1 className="text-xl font-bold">{organizations.orgname}</h1>
             <h1 className="whitespace-pre-line">{organizations.description}</h1>
