@@ -26,8 +26,8 @@ router.post('/verifyNewUser', async(req,res) => {
 router.post('/newUser', async(req,res) => {
     
     try {
-        const {uniqueid, email} = req.body
-        const newUser = await pool.query("INSERT INTO userdata(uniqueid,email,level,rankpoints) VALUES($1,$2,$3,$4) RETURNING *", [uniqueid, email,0,0])
+        const {uniqueid, email,role} = req.body
+        const newUser = await pool.query("INSERT INTO userdata(uniqueid,email,level,rankpoints,role) VALUES($1,$2,$3,$4,$5) RETURNING *", [uniqueid, email,0,0,role])
     }
     catch(err){
         console.log(err.message)
@@ -49,6 +49,24 @@ router.get('/getUserPoints/:id', async(req,res) => {
       }
 
 })
+
+router.get('/getUserRoles/:id', async(req,res) => {
+
+    try {
+
+        const id = req.params.id
+        const searchUserData = await pool.query("SELECT email,role FROM userdata WHERE uniqueid = $1", [id])
+          
+        res.json(searchUserData.rows)
+      }
+      catch(err)
+      { 
+          console.log (err.message)
+      }
+
+})
+
+
 
 module.exports = router;
 

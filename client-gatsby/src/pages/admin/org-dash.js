@@ -1,10 +1,11 @@
 import * as React from "react"
 import {useState} from "react"
-import Footer from '../client-gatsby/src/components/Footer'
-import Nav_Atrz from "../client-gatsby/src/components/Nav_Atrz"
+import Footer from '../../components/Footer'
+import Nav_Atrz from "../../components/Nav_Atrz"
 import { withAuthenticationRequired } from '@auth0/auth0-react';
 import { useAuth0 } from "@auth0/auth0-react";
 import axios from 'axios';
+import Link from 'gatsby-link'
 
 
 function NewFundraiser(){
@@ -220,19 +221,22 @@ function Main() {
 function Banner() {
   return (
     <div className="bg-green-500 p-3">
-      <h1 className="p-3 m-3 text-center text-5xl text-white font-bo">Admin Dashboard</h1>
+      <h1 className="p-3 m-3 text-center text-5xl text-white font-bo">Organizer Dashboard</h1>
     </div>
   )
 }
 
-const Dashboard = () => {
-  return (
+const Dashboard = ({location}) => {
+  const {showPage} = location.state || false
+  return showPage ? (
     <div>
       <Nav_Atrz/>
       <Banner />
       <Main />
       <Footer />
     </div>
+  ) : (
+    <div>Restricted Access</div>
   )
 }
 
@@ -240,4 +244,4 @@ const Dashboard = () => {
 
 export default withAuthenticationRequired(Dashboard)
 
-export const Head = () => <title>Admin Dashboard</title>
+export const Head = () => <title>Organizer Dashboard</title>
