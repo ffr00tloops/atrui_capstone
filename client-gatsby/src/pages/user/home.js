@@ -256,10 +256,9 @@ const SubPageFundraisers = props => {
       };
 
     const postDataPayment = {
-        "x-public-key" : `pk_6262bde60ed2ac4dd26b91fdffcbb2a9`,
+        "x-public-key" : "pk_6262bde60ed2ac4dd26b91fdffcbb2a9",
         "amount" : `${amount}`,
-        "description" : `For Fundraiser ${fundraisers.title}`
-
+        "description" : `For Fundraiser ${fundraisers.title}`,
     };
 
     const config = {
@@ -277,11 +276,58 @@ const SubPageFundraisers = props => {
             console.log(res)
       })
 
-      axios.post(`https://g.payx.ph/payment_request`, postDataPayment,config)
+
+      var data = new FormData();
+      data.append("x-public-key", "pk_6262bde60ed2ac4dd26b91fdffcbb2a9");
+      data.append("amount", `${amount}`);
+      data.append("description", `For Fundraiser ${fundraisers.title}`);
+  
+      var xhr = new XMLHttpRequest();
+      xhr.withCredentials = false;
+
+  
+      xhr.addEventListener("readystatechange", function() {
+      if(this.readyState === 4) {
+          console.log();
+          window.location.href = `${JSON.parse(this.responseText).data.checkouturl}`
+      }
+      });
+  
+      xhr.open("POST", "https://g.payx.ph/payment_request");
+
+  
+      xhr.send(data);
+
+      /*
+
+      axios.post(`https://cors-anywhere.herokuapp.com/https://g.payx.ph/payment_request`, postDataPayment)
       .then( res => {
             console.log(res)
       })
       .catch(error => console.log(error.toJSON()))
+
+      */
+
+      /*
+      const bodyFormData = new FormData();
+      bodyFormData.append("x-public-key", "pk_6262bde60ed2ac4dd26b91fdffcbb2a9")
+      bodyFormData.append("amount", `${amount}`)
+      bodyFormData.append("description", `For Fundraiser ${fundraisers.title}`)
+
+      axios({
+        method: "post",
+        url : "https://cors-anywhere.herokuapp.com/https://g.payx.ph/payment_request",
+        data: bodyFormData,
+        headers: { "Content-Type":"application/json"}
+      })
+      .then(function (response) {
+        console.log(response);
+      })
+      .catch(function (response) {
+        console.log(response);
+      });
+
+      */
 
       alert("You have submitted a donation");
 
