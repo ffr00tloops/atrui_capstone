@@ -19,7 +19,7 @@ export default function Nav_Atrz() {
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ uniqueid: `${user.sub}` })
             };
-            fetch('http://localhost:3000/userdata/verifyNewUser', requestOptions)
+            fetch('https://atrui.online/userdata/verifyNewUser', requestOptions)
                 .then(response => response.json())
                 .then(data =>{
                     console.log(data)
@@ -29,7 +29,7 @@ export default function Nav_Atrz() {
                             headers: { 'Content-Type': 'application/json' },
                             body: JSON.stringify({ uniqueid: `${user.sub}`, email: `${user.email}`, role: 'user'})
                         };
-                        fetch('http://localhost:3000/userdata/newUser', requestOptions2)
+                        fetch('https://atrui.online/userdata/newUser', requestOptions2)
                             .then(response => response.json())
                             .then(data => console.log("New user has been added"));
                     }
@@ -44,7 +44,7 @@ export default function Nav_Atrz() {
             const { user } = useAuth0();
 
             useEffect(() => {
-              axios.get(`http://localhost:3000/userdata/getUserRoles/${user.sub}`)
+              axios.get(`https://atrui.online/userdata/getUserRoles/${user.sub}`)
                 .then(res => {
                     setRole(res.data[0])
                 })

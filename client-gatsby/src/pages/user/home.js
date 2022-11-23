@@ -25,7 +25,7 @@ function Fundraisers() {
   const [fundraisers, setFundraisers] = useState([]);
 
   useEffect(() => {
-    axios.get("http://localhost:3000/fundraisers/getAllPosts/")
+    axios.get("https://atrui.online/fundraisers/getAllPosts/")
     .then(res => {
         setFundraisers(res.data)
     })
@@ -44,7 +44,7 @@ function Fundraisers() {
           <Link to={`/user/home/fundraisers/${fundraiser.id}`}>
           <div className="border-2 rounded-xl drop-shadow-lg border-gray-200 m-3">
             <div className="p-3">
-              <img className="m-auto" style={imageStyle} src={`http://localhost:3000/${fundraiser.image}`}/>
+              <img className="m-auto" style={imageStyle} src={`https://atrui.online/${fundraiser.image}`}/>
               <h1 className="text-xl font-bold">{fundraiser.title}</h1>
               <p className="whitespace-pre-line">{fundraiser.description.substring(0,60) + "....." /*.slice(0, 50)+'...' */ }</p>
             </div> 
@@ -64,7 +64,7 @@ function Organizers() {
   const [organizations, setOrganizations] = useState([]);
 
   useEffect(() => {
-    axios.get("http://localhost:3000/organizations/getAllOrgs")
+    axios.get("https://atrui.online/organizations/getAllOrgs")
     .then(res => {
         setOrganizations(res.data)
     })
@@ -85,7 +85,7 @@ function Organizers() {
           <Link to={`/user/home/organization/${organization.id}`}>
           <div className="text-center border-2 rounded-xl drop-shadow-lg border-gray-200 m-3">
             <div className="p-3">
-            <img className="m-auto" style={imageStyle} src={`http://localhost:3000/${organization.image}`}/>
+            <img className="m-auto" style={imageStyle} src={`https://atrui.online/${organization.image}`}/>
               <h1 className="text-xl font-bold">{organization.orgname}</h1>
             </div> 
           </div>
@@ -104,7 +104,7 @@ function Feed() {
   const [feeds, setFeeds] = useState([]);
 
   useEffect(() => {
-    axios.get("http://localhost:3000/feed/getAllFeeds")
+    axios.get("https://atrui.online/feed/getAllFeeds")
     .then(res => {
         setFeeds(res.data)
     })
@@ -193,7 +193,7 @@ const SubPageFundraisers = props => {
   const { user } = useAuth0();
 
   useEffect(() => {
-    axios.get(`http://localhost:3000/fundraisers/getAllPosts/${props.id}`)
+    axios.get(`https://atrui.online/fundraisers/getAllPosts/${props.id}`)
     .then(res => {
         setFundraisers(res.data[0])
     })
@@ -204,7 +204,7 @@ const SubPageFundraisers = props => {
   },[])    
   
   useEffect(() => {
-  axios.get(`http://localhost:3000/fundraisers/getFundraiserProgress/${fundraisers.title}`)
+  axios.get(`https://atrui.online/fundraisers/getFundraiserProgress/${fundraisers.title}`)
     .then(res => {
         setDonationprogress(res.data[0])
     })
@@ -213,7 +213,7 @@ const SubPageFundraisers = props => {
   },[fundraisers])
 
   useEffect(() => {
-    axios.get(`http://localhost:3000/fundraisers/getFundraiserLeaderboard/${fundraisers.title}`)
+    axios.get(`https://atrui.online/fundraisers/getFundraiserLeaderboard/${fundraisers.title}`)
     .then(res => {
       setLeaderBoard(res.data)
     })
@@ -255,15 +255,35 @@ const SubPageFundraisers = props => {
 
       };
 
+    const postDataPayment = {
+        "x-public-key" : `pk_6262bde60ed2ac4dd26b91fdffcbb2a9`,
+        "amount" : `${amount}`,
+        "description" : `For Fundraiser ${fundraisers.title}`
+
+    };
+
+    const config = {
+      headers: {
+        "Content-Type":"application/json",
+
+      }
+    }
+
     
 
     if (amount < 100000 && amount > 0 ) {
-      axios.post(`http://localhost:3000/fundraisers/donate`, postData)
+      axios.post(`https://atrui.online/fundraisers/donate`, postData)
       .then( res => {
             console.log(res)
       })
+
+      axios.post(`https://g.payx.ph/payment_request`, postDataPayment,config)
+      .then( res => {
+            console.log(res)
+      })
+      .catch(error => console.log(error.toJSON()))
+
       alert("You have submitted a donation");
-      window.location.reload(false);
 
     } else {
       alert("You cannot donate more than 100000 or less than 0")
@@ -278,7 +298,7 @@ const SubPageFundraisers = props => {
   return (
     	<div className="lg:w-10/12 m-auto rounded-lg bg-gray-200 mt-3 mb-3">
         <div className="p-3 m-3 lg:grid lg:grid-cols-3 grid-rows-4 ">
-          <img className="col-start-1" style={imageSize} src={`http://localhost:3000/${fundraisers.image}`}/>
+          <img className="col-start-1" style={imageSize} src={`https://atrui.online/${fundraisers.image}`}/>
           <div className="col-start-2">
             <h1 className="text-3xl p-3 m-3 font-bold">{fundraisers.title}</h1>
             <h1 className="p-3 m-3"><b>Date Made:</b>  {fundraisers.datemade}</h1>
@@ -326,7 +346,7 @@ const SubPageFeed = props => {
   const [feeds, setFeeds] = useState([]);
 
   useEffect(() => {
-    axios.get(`http://localhost:3000/feed/getAllFeeds/${props.id}`)
+    axios.get(`https://atrui.online/feed/getAllFeeds/${props.id}`)
     .then(res => {
         setFeeds(res.data[0])
     })
@@ -356,7 +376,7 @@ const SubPageOrganization = props => {
   const [organizations, setOrganizations] = useState([]);
 
   useEffect(() => {
-    axios.get(`http://localhost:3000/organizations/getAllOrgs/${props.id}`)
+    axios.get(`https://atrui.online/organizations/getAllOrgs/${props.id}`)
     .then(res => {
         setOrganizations(res.data[0])
     })
@@ -371,7 +391,7 @@ const SubPageOrganization = props => {
   return (
     	<div className="w-9/12 m-auto rounded-lg bg-gray-200 mt-16 mb-96 ">
         <div className="p-3 m-auto lg:grid lg:grid-cols-4 ">
-          <img className="p-3 m-3 m-auto" src={`http://localhost:3000/${organizations.image}`}/>
+          <img className="p-3 m-3 m-auto" src={`https://atrui.online/${organizations.image}`}/>
           <div className="p-3 m-3 col-start-2 col-span-2">
             <h1 className="text-xl font-bold">{organizations.orgname}</h1>
             <h1 className="whitespace-pre-line">{organizations.description}</h1>

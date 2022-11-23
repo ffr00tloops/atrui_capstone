@@ -25,7 +25,7 @@ function DashboardContent(){
 
 
   useEffect(() => {
-    axios.get(`http://localhost:3000/userdata/getUserPoints/${user.sub}`)
+    axios.get(`https://atrui.online/userdata/getUserPoints/${user.sub}`)
       .then(res => {
           setUserStats(res.data[0])
       })
@@ -34,7 +34,7 @@ function DashboardContent(){
     },[])
 
   useEffect(() => {
-    axios.get(`http://localhost:3000/fundraisers/getUserTotalDonations/${user.name}`)
+    axios.get(`https://atrui.online/fundraisers/getUserTotalDonations/${user.name}`)
       .then(res => {
           setTotaldonations(res.data[0])
       })
@@ -45,31 +45,31 @@ function DashboardContent(){
   
   function BadgeImage() {
 
-    if ((userStats.rankpoints >= 0.25 * 4000) && (userStats.rankpoints <= 0.50 * 4000)) { return <img className="m-auto rounded-full" style={image} src={`http://localhost:3000/br4.png`}/> }
-    if ((userStats.rankpoints >= 0.50 * 4000) && (userStats.rankpoints <= 0.75 * 4000)) { return <img className="m-auto rounded-full" style={image} src={`http://localhost:3000/br3.png`}/> }
-    if ((userStats.rankpoints >= 0.75 * 4000) && (userStats.rankpoints <= 4000)) { return <img className="m-auto rounded-full" style={image} src={`http://localhost:3000/br2.png`}/> }
-    if ((userStats.rankpoints >= 4000) && (userStats.rankpoints <= 0.25 * 32000)) { return <img className="m-auto rounded-full" style={image} src={`http://localhost:3000/br1.png`}/> }
+    if ((userStats.rankpoints >= 0.25 * 4000) && (userStats.rankpoints <= 0.50 * 4000)) { return <img className="m-auto rounded-full" style={image} src={`https://atrui.online/br4.png`}/> }
+    if ((userStats.rankpoints >= 0.50 * 4000) && (userStats.rankpoints <= 0.75 * 4000)) { return <img className="m-auto rounded-full" style={image} src={`https://atrui.online/br3.png`}/> }
+    if ((userStats.rankpoints >= 0.75 * 4000) && (userStats.rankpoints <= 4000)) { return <img className="m-auto rounded-full" style={image} src={`https://atrui.online/br2.png`}/> }
+    if ((userStats.rankpoints >= 4000) && (userStats.rankpoints <= 0.25 * 32000)) { return <img className="m-auto rounded-full" style={image} src={`https://atrui.online/br1.png`}/> }
 
-    if ((userStats.rankpoints >= 0.25 * 32000) && (userStats.rankpoints <= 0.50 * 32000)) { return <img className="m-auto rounded-full" style={image} src={`http://localhost:3000/sil4.png`}/> }
-    if ((userStats.rankpoints >= 0.50 * 32000) && (userStats.rankpoints <= 0.75 * 32000)) { return <img className="m-auto rounded-full" style={image} src={`http://localhost:3000/sil3.png`}/> }
-    if ((userStats.rankpoints >= 0.75 * 32000) && (userStats.rankpoints <= 32000)) { return <img className="m-auto rounded-full" style={image} src={`http://localhost:3000/sil2.png`}/> }
-    if ((userStats.rankpoints >= 32000) && (userStats.rankpoints <= 0.25 * 960000)) { return <img className="m-auto rounded-full" style={image} src={`http://localhost:3000/sil1.png`}/> }
+    if ((userStats.rankpoints >= 0.25 * 32000) && (userStats.rankpoints <= 0.50 * 32000)) { return <img className="m-auto rounded-full" style={image} src={`https://atrui.online/sil4.png`}/> }
+    if ((userStats.rankpoints >= 0.50 * 32000) && (userStats.rankpoints <= 0.75 * 32000)) { return <img className="m-auto rounded-full" style={image} src={`https://atrui.online/sil3.png`}/> }
+    if ((userStats.rankpoints >= 0.75 * 32000) && (userStats.rankpoints <= 32000)) { return <img className="m-auto rounded-full" style={image} src={`https://atrui.online/sil2.png`}/> }
+    if ((userStats.rankpoints >= 32000) && (userStats.rankpoints <= 0.25 * 960000)) { return <img className="m-auto rounded-full" style={image} src={`https://atrui.online/sil1.png`}/> }
 
-    if ((userStats.rankpoints >= 0.25 * 960000) && (userStats.rankpoints <= 0.50 * 960000)) { return <img className="m-auto rounded-full" style={image} src={`http://localhost:3000/gl4.png`}/> }
-    if ((userStats.rankpoints >= 0.50 * 960000) && (userStats.rankpoints <= 0.75 * 960000)) { return <img className="m-auto rounded-full" style={image} src={`http://localhost:3000/gl3.png`}/> }
-    if ((userStats.rankpoints >= 0.75 * 4000) && (userStats.rankpoints <= 960000)) { return <img className="m-auto rounded-full" style={image} src={`http://localhost:3000/gl2.png`}/> }
-    if ((userStats.rankpoints >= 960000) && (userStats.rankpoints <= 0.25 * 15360000)) { return <img className="m-auto rounded-full" style={image} src={`http://localhost:3000/gl1.png`}/> }
+    if ((userStats.rankpoints >= 0.25 * 960000) && (userStats.rankpoints <= 0.50 * 960000)) { return <img className="m-auto rounded-full" style={image} src={`https://atrui.online/gl4.png`}/> }
+    if ((userStats.rankpoints >= 0.50 * 960000) && (userStats.rankpoints <= 0.75 * 960000)) { return <img className="m-auto rounded-full" style={image} src={`https://atrui.online/gl3.png`}/> }
+    if ((userStats.rankpoints >= 0.75 * 4000) && (userStats.rankpoints <= 960000)) { return <img className="m-auto rounded-full" style={image} src={`https://atrui.online/gl2.png`}/> }
+    if ((userStats.rankpoints >= 960000) && (userStats.rankpoints <= 0.25 * 15360000)) { return <img className="m-auto rounded-full" style={image} src={`https://atrui.online/gl1.png`}/> }
 
-    if ((userStats.rankpoints >= 0.25 * 15360000) && (userStats.rankpoints <= 0.50 * 15360000)) { return <img className="m-auto rounded-full" style={image} src={`http://localhost:3000/pl4.png`}/> }
-    if ((userStats.rankpoints >= 0.50 * 15360000) && (userStats.rankpoints <= 0.75 * 15360000)) { return <img className="m-auto rounded-full" style={image} src={`http://localhost:3000/pl3.png`}/> }
-    if ((userStats.rankpoints >= 0.75 * 15360000) && (userStats.rankpoints <= 15360000)) { return <img className="m-auto rounded-full" style={image} src={`http://localhost:3000/pl2.png`}/> }
-    if ((userStats.rankpoints >= 15360000) && (userStats.rankpoints <= 0.25 * 100000000)) { return <img className="m-auto rounded-full" style={image} src={`http://localhost:3000/pl1.png`}/> }
+    if ((userStats.rankpoints >= 0.25 * 15360000) && (userStats.rankpoints <= 0.50 * 15360000)) { return <img className="m-auto rounded-full" style={image} src={`https://atrui.online/pl4.png`}/> }
+    if ((userStats.rankpoints >= 0.50 * 15360000) && (userStats.rankpoints <= 0.75 * 15360000)) { return <img className="m-auto rounded-full" style={image} src={`https://atrui.online/pl3.png`}/> }
+    if ((userStats.rankpoints >= 0.75 * 15360000) && (userStats.rankpoints <= 15360000)) { return <img className="m-auto rounded-full" style={image} src={`https://atrui.online/pl2.png`}/> }
+    if ((userStats.rankpoints >= 15360000) && (userStats.rankpoints <= 0.25 * 100000000)) { return <img className="m-auto rounded-full" style={image} src={`https://atrui.online/pl1.png`}/> }
 
 
-    if ((userStats.rankpoints >= 0.25 * 100000000) && (userStats.rankpoints <= 0.50 * 100000000)) { return <img className="m-auto rounded-full" style={image} src={`http://localhost:3000/ph4.png`}/> }
-    if ((userStats.rankpoints >= 0.50 * 100000000) && (userStats.rankpoints <= 0.75 * 100000000)) { return <img className="m-auto rounded-full" style={image} src={`http://localhost:3000/ph3.png`}/> }
-    if ((userStats.rankpoints >= 0.75 * 100000000) && (userStats.rankpoints <= 100000000)) { return <img className="m-auto rounded-full" style={image} src={`http://localhost:3000/ph2.png`}/> }
-    if ((userStats.rankpoints >= 100000000) && (userStats.rankpoints <= 0.25 * 500000000)) { return <img className="m-auto rounded-full" style={image} src={`http://localhost:3000/ph1.png`}/> }
+    if ((userStats.rankpoints >= 0.25 * 100000000) && (userStats.rankpoints <= 0.50 * 100000000)) { return <img className="m-auto rounded-full" style={image} src={`https://atrui.online/ph4.png`}/> }
+    if ((userStats.rankpoints >= 0.50 * 100000000) && (userStats.rankpoints <= 0.75 * 100000000)) { return <img className="m-auto rounded-full" style={image} src={`https://atrui.online/ph3.png`}/> }
+    if ((userStats.rankpoints >= 0.75 * 100000000) && (userStats.rankpoints <= 100000000)) { return <img className="m-auto rounded-full" style={image} src={`https://atrui.online/ph2.png`}/> }
+    if ((userStats.rankpoints >= 100000000) && (userStats.rankpoints <= 0.25 * 500000000)) { return <img className="m-auto rounded-full" style={image} src={`https://atrui.online/ph1.png`}/> }
     
 
     
@@ -116,7 +116,7 @@ function Leaderboard(){
   const {user} = useAuth0()
 
   useEffect(() => {
-    axios.get(`http://localhost:3000/fundraisers/getDonationsDesc`)
+    axios.get(`https://atrui.online/fundraisers/getDonationsDesc`)
     .then(res => {
         setDonation(res.data)
     })
@@ -157,7 +157,7 @@ function History(){
   const {user} = useAuth0()
 
   useEffect(() => {
-    axios.get(`http://localhost:3000/fundraisers/getDonations/${user.name}`)
+    axios.get(`https://atrui.online/fundraisers/getDonations/${user.name}`)
     .then(res => {
         setDonation(res.data)
     })
@@ -200,7 +200,7 @@ function Badges(){
   const {user} = useAuth0()
 
   useEffect(() => {
-    axios.get(`http://localhost:3000/userdata/getUserPoints/${user.sub}`)
+    axios.get(`https://atrui.online/userdata/getUserPoints/${user.sub}`)
       .then(res => {
           setUserStats(res.data[0])
       })
@@ -216,31 +216,31 @@ function Badges(){
 
     function BadgeImage() {
 
-      if ((userStats.rankpoints >= 0.25 * 4000) && (userStats.rankpoints <= 0.50 * 4000)) { return <><img className="m-auto rounded-full" style={image} src={`http://localhost:3000/br4.png`}/><h1>Bronze 4</h1></> }
-      if ((userStats.rankpoints >= 0.50 * 4000) && (userStats.rankpoints <= 0.75 * 4000)) { return <><img className="m-auto rounded-full" style={image} src={`http://localhost:3000/br3.png`}/><h1>Bronze 3</h1></> }
-      if ((userStats.rankpoints >= 0.75 * 4000) && (userStats.rankpoints <= 4000)) { return <><img className="m-auto rounded-full" style={image} src={`http://localhost:3000/br2.png`}/><h1>Bronze 2</h1></> }
-      if ((userStats.rankpoints >= 4000) && (userStats.rankpoints <= 0.25 * 32000)) { return <><img className="m-auto rounded-full" style={image} src={`http://localhost:3000/br1.png`}/><h1>Bronze 1</h1></> }
+      if ((userStats.rankpoints >= 0.25 * 4000) && (userStats.rankpoints <= 0.50 * 4000)) { return <><img className="m-auto rounded-full" style={image} src={`https://atrui.online/br4.png`}/><h1>Bronze 4</h1></> }
+      if ((userStats.rankpoints >= 0.50 * 4000) && (userStats.rankpoints <= 0.75 * 4000)) { return <><img className="m-auto rounded-full" style={image} src={`https://atrui.online/br3.png`}/><h1>Bronze 3</h1></> }
+      if ((userStats.rankpoints >= 0.75 * 4000) && (userStats.rankpoints <= 4000)) { return <><img className="m-auto rounded-full" style={image} src={`https://atrui.online/br2.png`}/><h1>Bronze 2</h1></> }
+      if ((userStats.rankpoints >= 4000) && (userStats.rankpoints <= 0.25 * 32000)) { return <><img className="m-auto rounded-full" style={image} src={`https://atrui.online/br1.png`}/><h1>Bronze 1</h1></> }
   
-      if ((userStats.rankpoints >= 0.25 * 32000) && (userStats.rankpoints <= 0.50 * 32000)) { return <><img className="m-auto rounded-full" style={image} src={`http://localhost:3000/sil4.png`}/><h1>Silver 4</h1></> }
-      if ((userStats.rankpoints >= 0.50 * 32000) && (userStats.rankpoints <= 0.75 * 32000)) { return <><img className="m-auto rounded-full" style={image} src={`http://localhost:3000/sil3.png`}/><h1>Silver 3</h1></> }
-      if ((userStats.rankpoints >= 0.75 * 32000) && (userStats.rankpoints <= 32000)) { return <><img className="m-auto rounded-full" style={image} src={`http://localhost:3000/sil2.png`}/><h1>Silver 2</h1></> }
-      if ((userStats.rankpoints >= 32000) && (userStats.rankpoints <= 0.25 * 960000)) { return <><img className="m-auto rounded-full" style={image} src={`http://localhost:3000/sil1.png`}/><h1>Silver 1</h1></> }
+      if ((userStats.rankpoints >= 0.25 * 32000) && (userStats.rankpoints <= 0.50 * 32000)) { return <><img className="m-auto rounded-full" style={image} src={`https://atrui.online/sil4.png`}/><h1>Silver 4</h1></> }
+      if ((userStats.rankpoints >= 0.50 * 32000) && (userStats.rankpoints <= 0.75 * 32000)) { return <><img className="m-auto rounded-full" style={image} src={`https://atrui.online/sil3.png`}/><h1>Silver 3</h1></> }
+      if ((userStats.rankpoints >= 0.75 * 32000) && (userStats.rankpoints <= 32000)) { return <><img className="m-auto rounded-full" style={image} src={`https://atrui.online/sil2.png`}/><h1>Silver 2</h1></> }
+      if ((userStats.rankpoints >= 32000) && (userStats.rankpoints <= 0.25 * 960000)) { return <><img className="m-auto rounded-full" style={image} src={`https://atrui.online/sil1.png`}/><h1>Silver 1</h1></> }
    
-      if ((userStats.rankpoints >= 0.25 * 960000) && (userStats.rankpoints <= 0.50 * 960000)) { return <><img className="m-auto rounded-full" style={image} src={`http://localhost:3000/gl4.png`}/><h1>Gold 4</h1></> }
-      if ((userStats.rankpoints >= 0.50 * 960000) && (userStats.rankpoints <= 0.75 * 960000)) { return <><img className="m-auto rounded-full" style={image} src={`http://localhost:3000/gl3.png`}/><h1>Gold 3</h1></> }
-      if ((userStats.rankpoints >= 0.75 * 4000) && (userStats.rankpoints <= 960000)) { return <><img className="m-auto rounded-full" style={image} src={`http://localhost:3000/gl2.png`}/><h1>Gold 2</h1></> }
-      if ((userStats.rankpoints >= 960000) && (userStats.rankpoints <= 0.25 * 15360000)) { return <><img className="m-auto rounded-full" style={image} src={`http://localhost:3000/gl1.png`}/><h1>Gold 1</h1></> }
+      if ((userStats.rankpoints >= 0.25 * 960000) && (userStats.rankpoints <= 0.50 * 960000)) { return <><img className="m-auto rounded-full" style={image} src={`https://atrui.online/gl4.png`}/><h1>Gold 4</h1></> }
+      if ((userStats.rankpoints >= 0.50 * 960000) && (userStats.rankpoints <= 0.75 * 960000)) { return <><img className="m-auto rounded-full" style={image} src={`https://atrui.online/gl3.png`}/><h1>Gold 3</h1></> }
+      if ((userStats.rankpoints >= 0.75 * 4000) && (userStats.rankpoints <= 960000)) { return <><img className="m-auto rounded-full" style={image} src={`https://atrui.online/gl2.png`}/><h1>Gold 2</h1></> }
+      if ((userStats.rankpoints >= 960000) && (userStats.rankpoints <= 0.25 * 15360000)) { return <><img className="m-auto rounded-full" style={image} src={`https://atrui.online/gl1.png`}/><h1>Gold 1</h1></> }
   
-      if ((userStats.rankpoints >= 0.25 * 15360000) && (userStats.rankpoints <= 0.50 * 15360000)) { return <><img className="m-auto rounded-full" style={image} src={`http://localhost:3000/pl4.png`}/><h1>Platinum 4</h1></> }
-      if ((userStats.rankpoints >= 0.50 * 15360000) && (userStats.rankpoints <= 0.75 * 15360000)) { return <><img className="m-auto rounded-full" style={image} src={`http://localhost:3000/pl3.png`}/><h1>Platinum 3</h1></> }
-      if ((userStats.rankpoints >= 0.75 * 15360000) && (userStats.rankpoints <= 15360000)) { return <><img className="m-auto rounded-full" style={image} src={`http://localhost:3000/pl2.png`}/><h1>Platinum 2</h1></> }
-      if ((userStats.rankpoints >= 15360000) && (userStats.rankpoints <= 0.25 * 100000000)) { return <><img className="m-auto rounded-full" style={image} src={`http://localhost:3000/pl1.png`}/><h1>Platinum 1</h1></> }
+      if ((userStats.rankpoints >= 0.25 * 15360000) && (userStats.rankpoints <= 0.50 * 15360000)) { return <><img className="m-auto rounded-full" style={image} src={`https://atrui.online/pl4.png`}/><h1>Platinum 4</h1></> }
+      if ((userStats.rankpoints >= 0.50 * 15360000) && (userStats.rankpoints <= 0.75 * 15360000)) { return <><img className="m-auto rounded-full" style={image} src={`https://atrui.online/pl3.png`}/><h1>Platinum 3</h1></> }
+      if ((userStats.rankpoints >= 0.75 * 15360000) && (userStats.rankpoints <= 15360000)) { return <><img className="m-auto rounded-full" style={image} src={`https://atrui.online/pl2.png`}/><h1>Platinum 2</h1></> }
+      if ((userStats.rankpoints >= 15360000) && (userStats.rankpoints <= 0.25 * 100000000)) { return <><img className="m-auto rounded-full" style={image} src={`https://atrui.online/pl1.png`}/><h1>Platinum 1</h1></> }
   
   
-      if ((userStats.rankpoints >= 0.25 * 100000000) && (userStats.rankpoints <= 0.50 * 100000000)) { return <><img className="m-auto rounded-full" style={image} src={`http://localhost:3000/ph4.png`}/><h1>Philanthropist 4</h1></> }
-      if ((userStats.rankpoints >= 0.50 * 100000000) && (userStats.rankpoints <= 0.75 * 100000000)) { return <><img className="m-auto rounded-full" style={image} src={`http://localhost:3000/ph3.png`}/><h1>Philanthropist 3</h1></> }
-      if ((userStats.rankpoints >= 0.75 * 100000000) && (userStats.rankpoints <= 100000000)) { return <><img className="m-auto rounded-full" style={image} src={`http://localhost:3000/ph2.png`}/><h1>Philanthropist 2</h1></> }
-      if ((userStats.rankpoints >= 100000000) && (userStats.rankpoints <= 0.25 * 500000000)) { return <><img className="m-auto rounded-full" style={image} src={`http://localhost:3000/ph1.png`}/><h1>Philanthropist 1</h1></> }
+      if ((userStats.rankpoints >= 0.25 * 100000000) && (userStats.rankpoints <= 0.50 * 100000000)) { return <><img className="m-auto rounded-full" style={image} src={`https://atrui.online/ph4.png`}/><h1>Philanthropist 4</h1></> }
+      if ((userStats.rankpoints >= 0.50 * 100000000) && (userStats.rankpoints <= 0.75 * 100000000)) { return <><img className="m-auto rounded-full" style={image} src={`https://atrui.online/ph3.png`}/><h1>Philanthropist 3</h1></> }
+      if ((userStats.rankpoints >= 0.75 * 100000000) && (userStats.rankpoints <= 100000000)) { return <><img className="m-auto rounded-full" style={image} src={`https://atrui.online/ph2.png`}/><h1>Philanthropist 2</h1></> }
+      if ((userStats.rankpoints >= 100000000) && (userStats.rankpoints <= 0.25 * 500000000)) { return <><img className="m-auto rounded-full" style={image} src={`https://atrui.online/ph1.png`}/><h1>Philanthropist 1</h1></> }
       
   
       

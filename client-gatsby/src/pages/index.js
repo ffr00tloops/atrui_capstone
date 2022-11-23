@@ -18,7 +18,7 @@ function Fundraisers() {
   const [fundraisers, setFundraisers] = useState([]);
 
   useEffect(() => {
-    axios.get("http://localhost:3000/fundraisers/getAllPosts/")
+    axios.get("https://atrui.online/fundraisers/getAllPosts/")
     .then(res => {
         setFundraisers(res.data)
     })
@@ -35,7 +35,7 @@ function Fundraisers() {
           <Link to={`/user/home/fundraisers/${fundraiser.id}`}>
           <div className="border-2 rounded-xl drop-shadow-lg border-gray-200 m-3">
             <div className="p-3">
-              <img className="m-auto" style={imageStyle} src={`http://localhost:3000/${fundraiser.image}`}/>
+              <img className="m-auto" style={imageStyle} src={`https://atrui.online/${fundraiser.image}`}/>
               <h1 className="text-xl font-bold">{fundraiser.title}</h1>
               <p className="whitespace-pre-line">{fundraiser.description.substring(0,60) + "....." /*.slice(0, 50)+'...' */ }</p>
             </div> 
