@@ -83,6 +83,22 @@ router.post('/donate', async(req,res) => {
   }
 })
 
+
+router.get("/getDonations", async(req, res) => {
+
+  try {
+
+    const allDonations = await pool.query("SELECT * FROM donations")
+      
+    res.json(allDonations.rows)
+  }
+  catch(err)
+  { 
+      console.log (err.message)
+  }
+})
+
+
 router.get("/getDonations/:donor", async (req, res) => {
 
   try {
@@ -115,19 +131,7 @@ router.get("/getUserTotalDonations/:donor", async (req, res) => {
 
 
 
-router.get("/getDonations", async(req, res) => {
 
-  try {
-
-    const allDonations = await pool.query("SELECT * FROM donations")
-      
-    res.json(allDonations.rows)
-  }
-  catch(err)
-  { 
-      console.log (err.message)
-  }
-})
 
 router.get("/getFundraiserLeaderboard/:fundraiser", async(req, res) => {
 

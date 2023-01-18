@@ -192,9 +192,6 @@ function Main() {
     else if (location == 'NewFundraiser') {
       return <NewFundraiser />
     }
-    else if (location == 'NewOrg') {
-      return <NewOrg />
-    }
     else {
       return <h1>Error</h1>
     }
@@ -207,7 +204,6 @@ function Main() {
         <div className="grid grid-cols-1">
             <button onClick={() => setLocation('Home')}  className="cursor-pointer hover:bg-blue-500 bg-blue-700 text-white p-3">Home</button>
             <button onClick={() => setLocation('NewFundraiser')}  className="cursor-pointer hover:bg-gray-300 bg-green-200 p-3">New Fundraiser +</button>
-            <button onClick={() => setLocation('NewOrg')}  className="cursor-pointer hover:bg-gray-300 bg-green-200 p-3">New Organization +</button>
             <button onClick={() => { logout({ returnTo: window.location.origin })}}className="cursor-pointer bg-red-500 hover:bg-red-300 text-white p-3">Logout</button>
         </div>
       </div>
