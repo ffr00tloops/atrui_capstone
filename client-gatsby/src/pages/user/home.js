@@ -165,8 +165,6 @@ function Nav() {
         <button onClick={() => setLocation('Fundraisers')} className="text-white bg-gray-500 hover:bg-green-300 rounded-2xl drop-shadow-md border-2 p-3">Fundraisers</button>
         <button onClick={() => setLocation('Organizers')} className="text-white bg-gray-500 hover:bg-green-300 rounded-2xl  drop-shadow-md border-2 p-3">Organizations</button>
       </div>
-
-
       {renderMenu()}
     </div>
   )
@@ -343,7 +341,7 @@ const SubPageFundraisers = props => {
   
   return (
     	<div className="lg:w-10/12 m-auto rounded-lg bg-gray-200 mt-3 mb-3">
-        <div className="p-3 m-3 lg:grid lg:grid-cols-3 grid-rows-4 ">
+        <div className="p-3 m-3 lg:grid lg:grid-cols-3 grid-rows-1">
           <img className="col-start-1" style={imageSize} src={`https://atrui.online/${fundraisers.image}`}/>
           <div className="col-start-2">
             <h1 className="text-3xl p-3 m-3 font-bold">{fundraisers.title}</h1>
@@ -355,7 +353,7 @@ const SubPageFundraisers = props => {
             <div className="p-3 m-3 text-center">
               <input type="checkbox" onChange={() => setIsChecked(!isChecked)} />
               <label>Donate Anonymously?</label>
-              <input onChange={(e) => setAmount(e.target.value)} value={amount} />
+              <input className="border-black border-2" onChange={(e) => setAmount(e.target.value)} value={amount} />
               <button onClick={Donate} className="bg-green-500 p-3 m-3 text-white">Donate</button>
               <Link to="/user/home">
               <button className="bg-blue-500 p-3 m-3 text-white">Go Back</button>
@@ -375,7 +373,6 @@ const SubPageFundraisers = props => {
               </div>
               ))
             }
-
           </div>
           <div className="p-3 m-3 col-start-1 col-span-3 ">
             <p className="whitespace-pre-line" >{fundraisers.description}</p>
