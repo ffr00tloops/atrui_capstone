@@ -27,7 +27,7 @@ function Fundraisers() {
   },[])
   
   return (
-    <div className="lg:w-10/12 m-auto mt-8 mb-64">
+    <div className="lg:w-10/12 m-auto mt-8 mb-8">
       <h1 className="text-center text-green-600 text-5xl p-3 m-3">Featured Fundraisers</h1>
       <div className=" lg:grid lg:grid-cols-3 lg:grid-rows-1 w-10/12 m-auto">
       {

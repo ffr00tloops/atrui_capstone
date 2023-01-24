@@ -394,7 +394,6 @@ const SubPageFeed = props => {
         setFeeds(res.data[0])
     })
     .catch(err => { console.log(err)})
-
   },[])
 
   
