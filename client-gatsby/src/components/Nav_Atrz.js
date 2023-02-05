@@ -53,20 +53,33 @@ export default function Nav_Atrz() {
               },[])
 
             
+             
+            const [isHover, setIsHover] = useState("Dashboard");
+
+            const handleMouseEnter = () => {
+                 setIsHover("Dashboard");
+              };
+            const handleMouseLeave = () => {
+                 setIsHover(user.email);
+            };
+
+
+            
             if (role.role != undefined) {
                 if(role.role === 'organizer') {
                     return (
                     <>
-                        <Link to="/user/home"><h1 href='/user/home'className="p-3 m-3 text-lg rounded-3xl text-white bg-green-500">Homepage</h1></Link>
-                        <Link to="/admin/org-dash" state={{showPage : true}}><h1 className="p-3 m-3 text-md rounded-3xl text-white bg-red-500">{user.email}</h1></Link>    
+                        <Link to="/user/home"><h1 className="p-3 m-3 text-lg rounded-3xl text-white bg-green-500">Homepage</h1></Link>
+                        <Link to="/user/u_dashboard"><h1 onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave} className="p-3 m-3 text-md rounded-3xl text-white bg-blue-500">{isHover}</h1></Link>
+                        <Link to="/admin/org-dash" state={{showPage : true}}><h1 className="p-3 m-3 text-md rounded-3xl text-white bg-red-500">Org Dashboard</h1></Link>    
                     </>
                     )
                 }
                 else {
                     return (
                         <>
-                        <Link to="/user/home"><h1 href='/user/home'className="p-3 m-3 text-lg rounded-3xl text-white bg-green-500">Homepage</h1></Link>
-                            <Link to="/user/u_dashboard"><h1 href='/user/u_dashboard'className="p-3 m-3 text-md rounded-3xl text-white bg-blue-500">{user.email}</h1></Link>    
+                        <Link to="/user/home"><h1 className="p-3 m-3 text-lg rounded-3xl text-white bg-green-500">Homepage</h1></Link>
+                        <Link to="/user/u_dashboard"><h1 onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave} className="p-3 m-3 text-md rounded-3xl text-white bg-blue-500">{isHover}</h1></Link>
                         </>
                         )
                 }
@@ -74,8 +87,8 @@ export default function Nav_Atrz() {
             else {
                 return (
                     <>
-                        <Link to="/user/home"><h1 href='/user/home'className="p-3 m-3 text-lg rounded-3xl text-white bg-green-500">Homepage</h1></Link>
-                        <Link to="/user/u_dashboard"><h1 href='/user/u_dashboard'className="p-3 m-3 text-md rounded-3xl text-white bg-blue-500">{user.email}</h1></Link>  
+                        <Link to="/user/home"><h1 className="p-3 m-3 text-lg rounded-3xl text-white bg-green-500">Homepage</h1></Link>
+                        <Link to="/user/u_dashboard"><h1 onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave} className="p-3 m-3 text-md rounded-3xl text-white bg-blue-500">{isHover}</h1></Link> 
                     </>
                     )
             }
@@ -106,7 +119,7 @@ export default function Nav_Atrz() {
     }
 
     return( 
-        <div className="p-3 m-3 grid grid-cols-1 lg:grid-cols-3 m-auto text-center">
+        <div className="p-3 m-3 grid lg:grid-cols-1 lg:grid-cols-4 m-auto text-center">
             <img style={imageStyle} src="https://cdn.discordapp.com/attachments/688647892084588626/1041720097649201182/logo-no-background.png"/>
 
         
