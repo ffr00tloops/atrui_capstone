@@ -9,7 +9,7 @@ router.post('/verifyNewUser', async(req,res) => {
         const searchUserId = await pool.query("SELECT * FROM userdata WHERE uniqueid = $1", [uniqueid])
 
         // if the array is greater than one then there is already an existing user with the id therefore no user will be added.
-        if ((searchUserId.rows).length > 1) {
+        if ((searchUserId.rows).length > 0) {
             res.json(true)
         }
         else {
