@@ -16,6 +16,10 @@ const imageStyle = {
   maxHeight: "200px"
 }
 
+const cardStyle = {
+  minHeight: "20em",
+  maxHeight: "20em"
+}
 
 
 function Fundraisers() {
@@ -32,6 +36,7 @@ function Fundraisers() {
     .catch(err => { console.log(err)})
 
   },[])
+
   
   return (
     <div className="m-auto mt-8 lg:mb-8">
@@ -43,7 +48,7 @@ function Fundraisers() {
         fundraisers.map(fundraiser => (
           <Link to={`/user/home/fundraisers/${fundraiser.id}`}>
           <div className="border-2 rounded-xl drop-shadow-lg border-gray-200 m-3">
-            <div className="p-3">
+            <div className="p-3" style={cardStyle}>
               <img className="m-auto" style={imageStyle} src={`https://atrui.online/${fundraiser.image}`}/>
               <h1 className="text-xl font-bold">{fundraiser.title}</h1>
               <p className="whitespace-pre-line">{fundraiser.description.substring(0,60) + "....." /*.slice(0, 50)+'...' */ }</p>
@@ -73,6 +78,12 @@ function Organizers() {
   },[])
 
 
+  const cardStyle = {
+    minHeight: "18em",
+    maxHeight: "18em"
+  }
+
+
 
   return (
     <div className="m-auto mt-8 mb-8">
@@ -84,7 +95,7 @@ function Organizers() {
         organizations.map(organization => (
           <Link to={`/user/home/organization/${organization.id}`}>
           <div className="text-center border-2 rounded-xl drop-shadow-lg border-gray-200 m-3">
-            <div className="p-3">
+            <div style={cardStyle} className="p-3">
             <img className="m-auto" style={imageStyle} src={`https://atrui.online/${organization.image}`}/>
               <h1 className="text-xl font-bold">{organization.orgname}</h1>
             </div> 
@@ -96,43 +107,6 @@ function Organizers() {
       </div>
   </div>
   
-  )
-}
-
-function Feed() {
-
-  const [feeds, setFeeds] = useState([]);
-
-  useEffect(() => {
-    axios.get("https://atrui.online/feed/getAllFeeds")
-    .then(res => {
-        setFeeds(res.data)
-    })
-    .catch(err => { console.log(err)})
-
-  },[])
-
-  console.log(feeds)
-
-  
-  return (
-    <div className="w-10/12 m-auto mt-8 mb-8">
-      <h1 className="text-center text-green-600 text-5xl p-3 m-3">Feed</h1>
-      <div className=" lg:grid lg:grid-cols-4 lg:grid-rows-1 w-10/12 m-auto">
-      {
-        feeds.map(feed => (
-          <Link to={`/user/home/feeds/${feed.id}`}>
-          <div className="text-center border-2 rounded-xl drop-shadow-lg border-gray-200 m-3">
-            <div className="p-3"> 
-              <h1 className="text-xl font-bold">{feed.title}</h1>
-              <h1 className="">{feed.description}</h1>
-            </div> 
-          </div>
-          </Link>        
-        ))
-      }  
-      </div>
-  </div>
   )
 }
 
@@ -162,8 +136,8 @@ function Nav() {
   return (
     <div className="mb-32">
       <div className="w-6/12 m-auto grid lg:grid-cols-2">
-        <button onClick={() => setLocation('Fundraisers')} className="text-white bg-gray-500 hover:bg-green-300 rounded-2xl drop-shadow-md border-2 p-3">Fundraisers</button>
-        <button onClick={() => setLocation('Organizers')} className="text-white bg-gray-500 hover:bg-green-300 rounded-2xl  drop-shadow-md border-2 p-3">Organizations</button>
+        <button onClick={() => setLocation('Fundraisers')} className="p-3 m-3 text-xl rounded-3xl text-white bg-gray-500">Fundraisers</button>
+        <button onClick={() => setLocation('Organizers')} className="p-3 m-3 text-xl rounded-3xl text-white bg-gray-500">Organizations</button>
       </div>
       {renderMenu()}
     </div>
@@ -361,23 +335,22 @@ const SubPageFundraisers = props => {
 
   
   return (
-    	<div className="lg:w-10/12 m-auto rounded-lg bg-gray-200 mt-3 mb-3">
+    	<div className="lg:w-10/12 m-auto rounded-lg bg-gray-200 mt-3 mb-14">
         <div className="p-3 m-3 lg:grid lg:grid-cols-3 grid-rows-1">
           <img className="col-start-1" style={imageSize} src={`https://atrui.online/${fundraisers.image}`}/>
           <div className="col-start-2">
             <h1 className="text-3xl p-3 m-3 font-bold">{fundraisers.title}</h1>
             <h1 className="p-3 m-3"><b>Date Made:</b>  {fundraisers.datemade}</h1>
             <h1 className="p-3 m-3"><b>Total Donation Goal: </b> ₱{fundraisers.donationgoal}</h1>
-            <h1 className="p-3 m-3"><b>Date Made:</b> {fundraisers.duration} Days Left</h1>
             <h1 className="p-3 m-3"><b>Money Raised:</b>₱{donationprogress.sum}</h1>
             <ProgressBar className="p-3 m-3" completed={donationprogress.percent} maxCompleted={100} />
             <div className="p-3 m-3 text-center">
-              <input type="checkbox" onChange={() => setIsChecked(!isChecked)} />
-              <label>Donate Anonymously?</label>
-              <input className="border-black border-2" onChange={(e) => setAmount(e.target.value)} value={amount} />
-              <button onClick={Donate} className="bg-green-500 p-3 m-3 text-white">Donate</button>
+              <input className="m-3" type="checkbox" onChange={() => setIsChecked(!isChecked)} />
+              <label className="m-3">Donate Anonymously?</label>
+              <input className="border-black border-2 rounded-xl" onChange={(e) => setAmount(e.target.value)} value={amount} />
+              <button onClick={Donate} className="bg-green-500 rounded-xl p-3 m-3 text-white">Donate</button>
               <Link to="/user/home">
-              <button className="bg-blue-500 p-3 m-3 text-white">Go Back</button>
+              <button className="bg-blue-500 rounded-xl p-3 m-3 text-white">Go Back</button>
               </Link>
             </div>
           </div>
@@ -399,35 +372,6 @@ const SubPageFundraisers = props => {
             <p className="whitespace-pre-line" >{fundraisers.description}</p>
             <div id="gcash-container"></div>
           </div>
-        </div>
-      </div>
-  )
-}
-
-const SubPageFeed = props => {
-
-
-  const [feeds, setFeeds] = useState([]);
-
-  useEffect(() => {
-    axios.get(`https://atrui.online/feed/getAllFeeds/${props.id}`)
-    .then(res => {
-        setFeeds(res.data[0])
-    })
-    .catch(err => { console.log(err)})
-  },[])
-
-  
-  return (
-    	<div className="w-6/12 m-auto rounded-lg bg-gray-200 mt-3 mb-3">
-        <div className="p-3 grid lg:grid-cols-1 text-center ">
-          <h1 className="text-3xl font-bold ">{feeds.title}</h1>
-          <p className="whitespace-pre-line">{feeds.description}</p>
-          <p>{feeds.orgname}</p>
-          <Link to="/user/home">
-          <button className="bg-blue-500 p-3 m-3 text-white">Go Back</button>
-          </Link>
-            
         </div>
       </div>
   )
@@ -459,7 +403,7 @@ const SubPageOrganization = props => {
             <h1 className="text-xl font-bold">{organizations.orgname}</h1>
             <h1 className="whitespace-pre-line">{organizations.description}</h1>
             <Link to="/user/home">
-            <button className="bg-blue-500 p-3 m-3 text-white">Go Back</button>
+            <button className="bg-blue-500 p-3 my-6 rounded-xl text-white">Go Back</button>
             </Link>
           </div>
           <div className="p-3 m-3">
@@ -480,7 +424,6 @@ const HomepageLogged = () => {
       <Router>
         <Nav path="/user/home"/> 
         <SubPageFundraisers path="/user/home/fundraisers/:id"/>
-        <SubPageFeed path="/user/home/feeds/:id"/>
         <SubPageOrganization path="/user/home/organization/:id"/>
       </Router>
       <Footer />

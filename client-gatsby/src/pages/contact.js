@@ -11,7 +11,7 @@ function EmailForm() {
         <input className="border-gray-300 border-2 p-3 m-3 rounded-lg" placeholder="Email Address"/>
         <input className="border-gray-300 border-2 p-3 m-3 rounded-lg" placeholder="Phone Number"/>
         <input type="text" className="border-gray-300 border-2 p-3 m-3 lg:pr-64 pb-64 rounded-lg" placeholder="Write your message here"/>
-        <button className="hover:bg-green-900 hover:text-white mt-14 pr-8 pl-8 text-xl p-3 rounded-xl text-lg text-white bg-green-400">Send Inquiry</button>
+        <button className="hover:bg-green-900 hover:text-white mt-14 pr-8 pl-8 text-xl p-3 rounded-xl text-lg text-white bg-green-600 font-bold">Send Inquiry</button>
       </div> 
     )
   }
