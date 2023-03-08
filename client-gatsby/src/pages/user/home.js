@@ -253,18 +253,28 @@ const SubPageFundraisers = props => {
 
       };
 
+    
+    
     const postDataPayment = {
-        "x-public-key" : "pk_6262bde60ed2ac4dd26b91fdffcbb2a9",
+        // Gcash Oayment Key "x-public-key" : "pk_6262bde60ed2ac4dd26b91fdffcbb2a9",
+        "external_id": "atrui-payment",
         "amount" : `${amount}`,
         "description" : `For Fundraiser ${fundraisers.title}`,
     };
 
+
+    /*
     const config = {
       headers: {
+        "Origin": "localhost:8000",
         "Content-Type":"application/json",
-
+        "X-Requested-With": "XMLHttpRequest",
+        "Authorization": "Basic eG5kX2RldmVsb3BtZW50X2RDWDU5bktVdXY3VlUwWTh0UXE3bEZiQmVaQkRYUUwxZUJWcnBacEVYdzhydlNBdUN6QTlFbGhBZEJJSWxrOg" 
       }
     }
+    
+    */
+
 
     
 
@@ -276,7 +286,8 @@ const SubPageFundraisers = props => {
 
 
       var data = new FormData();
-      data.append("x-public-key", "pk_6262bde60ed2ac4dd26b91fdffcbb2a9");
+      // Gcash Payment Key data.append("x-public-key", "pk_6262bde60ed2ac4dd26b91fdffcbb2a9");
+      data.append("external_id", 'atrui-payment');
       data.append("amount", `${amount}`);
       data.append("description", `For Fundraiser ${fundraisers.title}`);
   
@@ -287,14 +298,24 @@ const SubPageFundraisers = props => {
       xhr.addEventListener("readystatechange", function() {
       if(this.readyState === 4) {
           console.log();
-          window.location.href = `${JSON.parse(this.responseText).data.checkouturl}`
+          window.location.href = `${JSON.parse(this.responseText).invoice_url}`
       }
       });
   
-      xhr.open("POST", "https://g.payx.ph/payment_request");
+      xhr.open("POST", "https://cors-anywhere.herokuapp.com/https://api.xendit.co/v2/invoices");
+
+      xhr.setRequestHeader("Content-Type", "application/json");
+      xhr.setRequestHeader("X-Requested-With", "XMLHttpRequest");
+      xhr.setRequestHeader("Authorization", "Basic eG5kX2RldmVsb3BtZW50X2RDWDU5bktVdXY3VlUwWTh0UXE3bEZiQmVaQkRYUUwxZUJWcnBacEVYdzhydlNBdUN6QTlFbGhBZEJJSWxrOg");
 
   
-      xhr.send(data);
+      const jsonObj = {
+        "external_id": "atrui-payment",
+        "amount": `${amount}`,
+        "description": `For Fundraiser ${fundraisers.title}`
+        }
+
+      xhr.send(JSON.stringify(jsonObj));
 
       /*
 
