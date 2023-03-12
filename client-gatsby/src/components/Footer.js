@@ -3,7 +3,7 @@ import React from 'react'
 
 export default function Footer() {
     return (
-    <footer class="p-4 bottom-0 bg-white rounded-lg bg-green-600 shadow md:px-6 md:py-8 font-bold text-white ">
+    <footer class="p-4 bottom-0 bg-green-600 rounded-lg shadow md:px-6 md:py-8 font-bold text-white ">
         <div class="sm:flex sm:items-center sm:justify-between">
             <a href="https://atrui.vercel.app" class="flex items-center mb-4 sm:mb-0">
                 <img src="https://media.discordapp.net/attachments/688647892084588626/1041719681809141800/logo-no-background.png?width=601&height=676" class="mr-3 h-8" alt="Atrui Logo"/>
