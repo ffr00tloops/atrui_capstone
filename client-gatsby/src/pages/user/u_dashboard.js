@@ -113,7 +113,7 @@ function Leaderboard(){
   const {user} = useAuth0()
 
   useEffect(() => {
-    axios.get(`http://localhost:3000/fundraisers/getAllTotalDonations`)
+    axios.get(`https://atrui.online/fundraisers/getAllTotalDonations`)
     .then(res => {
         setDonation(res.data)
     })
