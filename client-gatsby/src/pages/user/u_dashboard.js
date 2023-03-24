@@ -57,7 +57,7 @@ function DashboardContent(){
 
     if ((userStats.rankpoints >= 0.25 * 960000) && (userStats.rankpoints <= 0.50 * 960000)) { return <img className="m-auto rounded-full" style={image} src={`https://atrui.online/gl4.png`}/> }
     if ((userStats.rankpoints >= 0.50 * 960000) && (userStats.rankpoints <= 0.75 * 960000)) { return <img className="m-auto rounded-full" style={image} src={`https://atrui.online/gl3.png`}/> }
-    if ((userStats.rankpoints >= 0.75 * 4000) && (userStats.rankpoints <= 960000)) { return <img className="m-auto rounded-full" style={image} src={`https://atrui.online/gl2.png`}/> }
+    if ((userStats.rankpoints >= 0.75 * 960000) && (userStats.rankpoints <= 960000)) { return <img className="m-auto rounded-full" style={image} src={`https://atrui.online/gl2.png`}/> }
     if ((userStats.rankpoints >= 960000) && (userStats.rankpoints <= 0.25 * 15360000)) { return <img className="m-auto rounded-full" style={image} src={`https://atrui.online/gl1.png`}/> }
 
     if ((userStats.rankpoints >= 0.25 * 15360000) && (userStats.rankpoints <= 0.50 * 15360000)) { return <img className="m-auto rounded-full" style={image} src={`https://atrui.online/pl4.png`}/> }
@@ -71,9 +71,6 @@ function DashboardContent(){
     if ((userStats.rankpoints >= 0.75 * 100000000) && (userStats.rankpoints <= 100000000)) { return <img className="m-auto rounded-full" style={image} src={`https://atrui.online/ph2.png`}/> }
     if ((userStats.rankpoints >= 100000000) && (userStats.rankpoints <= 0.25 * 500000000)) { return <img className="m-auto rounded-full" style={image} src={`https://atrui.online/ph1.png`}/> }
     
-
-    
-
 
   }
 
@@ -116,7 +113,7 @@ function Leaderboard(){
   const {user} = useAuth0()
 
   useEffect(() => {
-    axios.get(`https://atrui.online/fundraisers/getDonationsDesc`)
+    axios.get(`http://localhost:3000/fundraisers/getAllTotalDonations`)
     .then(res => {
         setDonation(res.data)
     })
@@ -124,23 +121,69 @@ function Leaderboard(){
 
   },[])
 
+  const image = {
+    maxWidth: "50px",
+    maxHeight: "50px"
+  };
+
+  function badgeImage(totaldonations) {
+
+    if ((totaldonations >= 0.25 * 4000) && (totaldonations <= 0.50 * 4000)) { 
+      return <img className="m-auto rounded-full" style={image} src={`https://atrui.online/br4.png`}/> 
+    }
+    if ((totaldonations >= 0.50 * 4000) && (totaldonations <= 0.75 * 4000)) { 
+        return <img className="m-auto rounded-full" style={image} src={`https://atrui.online/br3.png`}/> 
+    } 
+    if ((totaldonations >= 0.75 * 4000) && (totaldonations <= 4000)) { 
+        return <img className="m-auto rounded-full" style={image} src={`https://atrui.online/br2.png`}/> 
+    }
+    if ((totaldonations >= 4000) && (totaldonations <= 0.25 * 32000)) { 
+        return <img className="m-auto rounded-full" style={image} src={`https://atrui.online/br1.png`}/> 
+    }
+  
+
+    if ((totaldonations >= 0.25 * 32000) && (totaldonations <= 0.50 * 32000)) { return <img className="m-auto rounded-full" style={image} src={`https://atrui.online/sil4.png`}/> }
+    if ((totaldonations >= 0.50 * 32000) && (totaldonations <= 0.75 * 32000)) { return <img className="m-auto rounded-full" style={image} src={`https://atrui.online/sil3.png`}/> }
+    if ((totaldonations >= 0.75 * 32000) && (totaldonations <= 32000)) { return <img className="m-auto rounded-full" style={image} src={`https://atrui.online/sil2.png`}/> }
+    if ((totaldonations >= 32000) && (totaldonations <= 0.25 * 960000)) { return <img className="m-auto rounded-full" style={image} src={`https://atrui.online/sil1.png`}/> }
+    
+    if ((totaldonations >= 0.25 * 960000) && (totaldonations <= 0.50 * 960000)) { return <img className="m-auto rounded-full" style={image} src={`https://atrui.online/gl4.png`}/> }
+    if ((totaldonations >= 0.50 * 960000) && (totaldonations <= 0.75 * 960000)) { return <img className="m-auto rounded-full" style={image} src={`https://atrui.online/gl3.png`}/> }
+    if ((totaldonations >= 0.75 * 960000) && (totaldonations <= 960000)) { return <img className="m-auto rounded-full" style={image} src={`https://atrui.online/gl2.png`}/> }
+    if ((totaldonations >= 960000) && (totaldonations <= 0.25 * 15360000)) { return <img className="m-auto rounded-full" style={image} src={`https://atrui.online/gl1.png`}/> }
+    
+    if ((totaldonations >= 0.25 * 15360000) && (totaldonations <= 0.50 * 15360000)) { return <img className="m-auto rounded-full" style={image} src={`https://atrui.online/pl4.png`}/> }
+    if ((totaldonations >= 0.50 * 15360000) && (totaldonations <= 0.75 * 15360000)) { return <img className="m-auto rounded-full" style={image} src={`https://atrui.online/pl3.png`}/> }
+    if ((totaldonations >= 0.75 * 15360000) && (totaldonations <= 15360000)) { return <img className="m-auto rounded-full" style={image} src={`https://atrui.online/pl2.png`}/> }
+    if ((totaldonations >= 15360000) && (totaldonations <= 0.25 * 100000000)) { return <img className="m-auto rounded-full" style={image} src={`https://atrui.online/pl1.png`}/> }
+    
+    
+
+    if ((totaldonations >= 0.25 * 100000000) && (totaldonations <= 0.50 * 100000000)) { return <img className="m-auto rounded-full" style={image} src={`https://atrui.online/ph4.png`}/> }
+    if ((totaldonations >= 0.50 * 100000000) && (totaldonations <= 0.75 * 100000000)) { return <img className="m-auto rounded-full" style={image} src={`https://atrui.online/ph3.png`}/> }
+    if ((totaldonations >= 0.75 * 100000000) && (totaldonations <= 100000000)) { return <img className="m-auto rounded-full" style={image} src={`https://atrui.online/ph2.png`}/> }
+    if ((totaldonations >= 100000000) && (totaldonations <= 0.25 * 500000000)) { return <img className="m-auto rounded-full" style={image} src={`https://atrui.online/ph1.png`}/> }
+    
+    
+
+  }
+
 
   return (
     <div className="bg-gray-300 col-span-3 ">
     <div className="grid lg:grid-cols-1 ">
-      <div className="bg-white m-3 p-3 grid grid-cols-4 text-center">
+      <div className="bg-white m-3 p-3 grid grid-cols-3 text-center">
         <h1 className="text-xl font-bold text-red-600">Donor Name:</h1>
-        <h1 className="text-xl font-bold text-red-600">Fundraiser Name:</h1>
-        <h1 className="text-xl font-bold text-red-600">Date Made</h1>
         <h1 className="text-xl font-bold text-blue-600">Donation Amount</h1>
+        <h1 className="text-xl font-bold mr-3 text-red-600">Rank</h1>
+        
       </div>
       {
         donations.map(donation => (
-          <div className=" grid grid-cols-4 text-center">
+          <div className=" grid grid-cols-3 text-center items-center">
           <h1 className="text-sm">{donation.donor}</h1>
-          <h1 className="text-sm">{donation.fundraiser}</h1>
-          <h1 className="text-sm">{donation.datemade}</h1>
-          <h1 className="text-sm">₱{donation.amount}</h1>
+          <h1 className="text-sm">₱{donation.total_donations}</h1>
+          {badgeImage(donation.total_donations)}
         </div>
         ))
       }
@@ -155,6 +198,7 @@ function History(){
   const [donations, setDonation] = useState([]);
 
   const {user} = useAuth0()
+
 
   useEffect(() => {
     axios.get(`https://atrui.online/fundraisers/getDonations/${user.name}`)

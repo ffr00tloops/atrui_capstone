@@ -129,6 +129,20 @@ router.get("/getUserTotalDonations/:donor", async (req, res) => {
   }
 })
 
+// GET THE TABLE FOR WHO DONATED THE MOST LAID OUT DESCENDINGLY
+router.get("/getAllTotalDonations", async (req, res) => {
+
+  try {
+
+    const allDonations = await pool.query("SELECT donor, sum(amount) as total_donations from donations GROUP BY donor ORDER BY total_donations DESC LIMIT 10")
+      
+    res.json(allDonations.rows)
+  }
+  catch(err)
+  { 
+      console.log (err.message)
+  }
+})
 
 
 
@@ -139,7 +153,7 @@ router.get("/getFundraiserLeaderboard/:fundraiser", async(req, res) => {
 
     const fundraiser = req.params.fundraiser
 
-    const searchFundraiser = await pool.query("SELECT id,donor,amount FROM donations WHERE fundraiser = $1 ORDER BY id DESC LIMIT 5", [fundraiser])
+    const searchFundraiser = await pool.query("SELECT id,donor,amount FROM donations WHERE fundraiser = $1 ORDER BY amount DESC LIMIT 10", [fundraiser])
       
     res.json(searchFundraiser.rows)
   }
