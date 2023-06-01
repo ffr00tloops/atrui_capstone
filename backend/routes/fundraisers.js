@@ -3,6 +3,8 @@ const router = express.Router();
 const pool = require('../db')
 const path = require('path')
 const multer = require('multer')
+const PDFDocument = require('pdfkit');
+
 
 
 const storage = multer.diskStorage({
@@ -28,6 +30,65 @@ router.get("/getAllPosts", async (req, res) => {
       console.log (err.message)
   }
 })
+
+/* GET REPORTS
+
+AI PROMPT : Write a paragraph to be put in a capstone paper regarding a reports system that possess these features. Use perspective of proponents.
+
+-- Log the current date during query
+-- Check the Total amount of donations made. Millions Hundreds
+-- Check the average level of the player
+-- Check the number of transactions that were made in the site.
+-- Check the number of users
+-- Check the number of site visits
+-- Check the number of users for each role
+-- Check the number of organizations
+-- Check the number of fundraisers
+-- Check the number of donors in a speciifc fundraiser
+-- Check the number of donations in a specific fundraiser
+
+*/
+
+router.get("/getReports", async (req, res) => {
+
+  try {
+
+    const currentDate = new Date()
+    const date = currentDate.toDateString()
+    const totaldonationsmade = await pool.query("SELECT SUM(amount) FROM donations")
+    const averageLevel = await pool.query("SELECT AVG(level) FROM userdata")
+    const totalTransactions = await pool.query("SELECT COUNT(*) FROM donations")
+    const totalUsers = await pool.query("SELECT COUNT(*) FROM userdata")
+    const admin = await pool.query("SELECT COUNT(*) FROM userdata WHERE role = $1", ['admin'])
+    const organization = await pool.query("SELECT COUNT(*) FROM userdata WHERE role = $1", ['organizer'])
+    const donor = await pool.query("SELECT COUNT(*) FROM userdata WHERE role = $1", ['user'])
+    const totalOrganizations = await pool.query("SELECT COUNT(*) FROM organizations")
+    const totalFundraisers = await pool.query("SELECT COUNT(*) FROM fundraisers")
+
+    const jsonData = {
+      "datemade" : date,
+      "totalDonationsMade": `${totaldonationsmade.rows[0].sum}`,
+      "averageLevel": `${averageLevel.rows[0].avg}`,
+      "totalTransactions": `${totalTransactions.rows[0].count}`,
+      "totalUsers": `${totalUsers.rows[0].count}`,
+      "totalSiteVisits": 0,
+      "totalUsersPerRole": {
+        "admin": `${admin.rows[0].count}`, 
+        "organization": `${organization.rows[0].count}`,
+        "donor": `${donor.rows[0].count}`
+      },
+      "totalOrganizations": `${totalOrganizations.rows[0].count}`,
+      "totalFundraisers": `${totalFundraisers.rows[0].count}`,
+    }
+
+    res.json(jsonData)
+  }
+  catch(err)
+  { 
+      console.log (err.message)
+  }
+})
+
 
 router.get('/getAllPosts/:id', async(req,res) => {
     

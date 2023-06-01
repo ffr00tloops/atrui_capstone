@@ -10,6 +10,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@flaticon/flaticon-uicons": "^2.2.0",
     "body-parser": "^1.20.1",
     "cors": "^2.8.5",
     "dotenv": "^16.0.3",
@@ -17,6 +18,7 @@
     "express-fileupload": "^1.4.0",
     "express-openid-connect": "^2.8.0",
     "multer": "^1.4.5-lts.1",
+    "pdfkit": "^0.13.0",
     "pg": "^8.8.0"
   }
 }
