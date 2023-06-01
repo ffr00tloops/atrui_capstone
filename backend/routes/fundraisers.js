@@ -3,7 +3,6 @@ const router = express.Router();
 const pool = require('../db')
 const path = require('path')
 const multer = require('multer')
-const PDFDocument = require('pdfkit');
 
 
 
