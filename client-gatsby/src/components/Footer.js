@@ -34,7 +34,7 @@ function Footer_Desktop() {
 
 function Footer_Mobile (){
     return (
-    <footer id="footer_container_mobile" class="grid grid-rows-1 grid-cols-4 bg-white border-2 bg-black sticky bottom-0 ">
+    <footer id="footer_container_mobile" class="py-1 grid grid-rows-1 grid-cols-4 bg-white border-2 bg-black sticky bottom-0 ">
         <div class="ico_txt_cont" onClick={() => window.location.href = '/user/home'}>
             <i class="fi fi-rr-house-blank"></i>
             <h1>Home</h1>

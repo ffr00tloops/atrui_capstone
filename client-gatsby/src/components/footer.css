@@ -2,6 +2,7 @@
 
 #footer_container {
     display: block;
+    margin-top: 200px;
 }
 
 #footer_container_mobile {
@@ -22,9 +23,6 @@
 
 .ico_txt_cont:hover {
     cursor: pointer;
-    background-color: rgb(177, 177, 177);
-    border-radius: 5px;
-    color: white;
 }
 
 

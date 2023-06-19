@@ -3,6 +3,7 @@ import { useAuth0 } from "@auth0/auth0-react";
 import axios from 'axios'
 import Link from 'gatsby-link'
 import { navigate } from '@reach/router';
+import nav_btns from './nav_btns.css'
 
 
 export default function Nav_Atrz() {
@@ -69,17 +70,17 @@ export default function Nav_Atrz() {
                 if(role.role === 'organizer') {
                     return (
                     <>
-                        <Link to="/user/home"><h1 className="p-3 m-3 text-lg rounded-3xl text-white bg-green-500">Homepage</h1></Link>
-                        <Link to="/user/u_dashboard"><h1 onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave} className="p-3 m-3 text-md rounded-3xl text-white bg-blue-500">{isHover}</h1></Link>
-                        <Link to="/admin/org-dash" state={{showPage : true}}><h1 className="p-3 m-3 text-md rounded-3xl text-white bg-red-500">Org Dashboard</h1></Link>    
+                        <Link to="/user/home"><h1 className="hide-mobile drop-shadow p-3 m-3 text-lg rounded-3xl text-white bg-green-500">Homepage</h1></Link>
+                        <Link to="/user/u_dashboard"><h1 onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave} className="drop-shadow hide-mobile p-3 m-3 text-md rounded-3xl text-white bg-blue-500">{isHover}</h1></Link>
+                        <Link to="/admin/org-dash" state={{showPage : true}}><h1 className="drop-shadow hide-mobile p-3 m-3 text-md rounded-3xl text-white bg-red-500">Org Dashboard</h1></Link>    
                     </>
                     )
                 }
                 else {
                     return (
                         <>
-                        <Link to="/user/home"><h1 className="p-3 m-3 text-lg rounded-3xl text-white bg-green-500">Homepage</h1></Link>
-                        <Link to="/user/u_dashboard"><h1 onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave} className="p-3 m-3 text-md rounded-3xl text-white bg-blue-500">{isHover}</h1></Link>
+                        <Link to="/user/home"><h1 className="drop-shadow hide-mobile p-3 m-3 text-lg rounded-3xl text-white bg-green-500">Homepage</h1></Link>
+                        <Link to="/user/u_dashboard"><h1 onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave} className="drop-shadow hide-mobile p-3 m-3 text-md rounded-3xl text-white bg-blue-500">{isHover}</h1></Link>
                         </>
                         )
                 }
@@ -87,8 +88,8 @@ export default function Nav_Atrz() {
             else {
                 return (
                     <>
-                        <Link to="/user/home"><h1 className="p-3 m-3 text-lg rounded-3xl text-white bg-green-500">Homepage</h1></Link>
-                        <Link to="/user/u_dashboard"><h1 onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave} className="p-3 m-3 text-md rounded-3xl text-white bg-blue-500">{isHover}</h1></Link> 
+                        <Link to="/user/home"><h1 className="drop-shadow hide-mobile p-3 m-3 text-lg rounded-3xl text-white bg-green-500">Homepage</h1></Link>
+                        <Link to="/user/u_dashboard"><h1 onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave} className="drop-shadow hide-mobile p-3 m-3 text-md rounded-3xl text-white bg-blue-500">{isHover}</h1></Link> 
                     </>
                     )
             }

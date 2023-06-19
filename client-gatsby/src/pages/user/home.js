@@ -40,10 +40,7 @@ function Fundraisers() {
   
   return (
     <div className="m-auto mt-8 lg:mb-8">
-    <div className="bg-green-500 p-3">
-      <h1 className="p-3 m-3 text-center text-5xl text-white font-bold">Fundraisers</h1>
-    </div>
-      <div className="mt-16 lg:grid lg:grid-cols-4 lg:grid-rows-1 w-10/12 m-auto">
+      <div className="mt-16 lg:grid lg:grid-cols-4 lg:grid-rows-1 drop-shadow w-10/12 m-auto">
       {
         fundraisers.map(fundraiser => (
           <Link to={`/user/home/fundraisers/${fundraiser.id}`}>
@@ -87,10 +84,7 @@ function Organizers() {
 
   return (
     <div className="m-auto mt-8 mb-8">
-    <div className="bg-green-500 p-3">
-      <h1 className="p-3 m-3 text-center text-5xl text-white font-bold">Organizations</h1>
-    </div>
-      <div className="mt-16 lg:grid lg:grid-cols-4 lg:grid-rows-1 w-10/12 m-auto">
+      <div className="mt-16 lg:grid lg:grid-cols-4 lg:grid-rows-1 w-10/12 m-auto drop-shadow">
       {
         organizations.map(organization => (
           <Link to={`/user/home/organization/${organization.id}`}>
@@ -135,9 +129,9 @@ function Nav() {
 
   return (
     <div className="mb-32">
-      <div className="w-6/12 m-auto grid lg:grid-cols-2">
-        <button onClick={() => setLocation('Fundraisers')} className="p-3 m-3 text-xl rounded-3xl text-white bg-gray-500">Fundraisers</button>
-        <button onClick={() => setLocation('Organizers')} className="p-3 m-3 text-xl rounded-3xl text-white bg-gray-500">Organizations</button>
+      <div className="lg:w-3/12 m-auto lg:my-10 grid grid-cols-2">
+        <button onClick={() => setLocation('Fundraisers')} className="p-3 drop-shadow-lg font-bold lg:m-3 lg:rounded-lg hover:bg-gray-500 inline-block px-4 py-3 text-white bg-green-500 ">Fundraisers</button>
+        <button onClick={() => setLocation('Organizers')} className="p-3 drop-shadow-lg lg:m-3 font-bold lg:rounded-lg  hover:bg-gray-500 inline-block px-4 py-3 text-white bg-green-500 ">Organizations</button>
       </div>
       {renderMenu()}
     </div>
